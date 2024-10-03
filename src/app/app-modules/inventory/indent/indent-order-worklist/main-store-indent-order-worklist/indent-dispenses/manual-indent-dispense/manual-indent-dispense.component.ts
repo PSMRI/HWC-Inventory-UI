@@ -145,7 +145,7 @@ export class ManualIndentDispenseComponent implements OnInit, DoCheck {
         } else {
           this.confirmationService.alert(
             this.currentLanguageSet.inventory.noBatchavailableforthisItem,
-          );
+            );
         }
         }
       });
