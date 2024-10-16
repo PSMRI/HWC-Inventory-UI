@@ -32,6 +32,7 @@ export const environment = {
   loginUrl: `${COMMON_API_OPEN}user/userAuthenticate`,
   logoutUrl: `${COMMON_API_OPEN}user/userLogout`,
   userlogoutPreviousSessionUrl: `${COMMON_API_OPEN}user/logOutUserFromConcurrentSession`,
+  getUserAuth: `${COMMON_API_OPEN}user/getLoginResponse`,
 
   /**
    * Security Question and Forgot password Url

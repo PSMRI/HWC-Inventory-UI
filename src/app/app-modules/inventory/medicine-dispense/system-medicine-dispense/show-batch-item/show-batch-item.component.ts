@@ -40,7 +40,7 @@ export class ShowBatchItemComponent implements OnInit, DoCheck {
     private inventoryService: InventoryService,
     public http_service: LanguageService,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public mdDialogRef: MatDialogRef<ShowBatchItemComponent>,
+    public mdDialogRef: MatDialogRef<ShowBatchItemComponent>, 
   ) {}
   issuedBatchList = new MatTableDataSource<any>();
   beneficaryDetail: any;
@@ -68,7 +68,8 @@ export class ShowBatchItemComponent implements OnInit, DoCheck {
     this.issuedBatchList.data.forEach((dispenseItem: any) => {
       dispenseItem.itemBatchList.forEach((batch: any) => {
         const dispensedItem = {
-          createdBy: localStorage.getItem('userID'),
+          //createdBy: localStorage.getItem('userID'),
+          createdBy: sessionStorage['userID'],
           itemID: dispenseItem.itemID,
           itemStockEntryID: batch.itemStockEntryID,
           quantity: batch.quantity,

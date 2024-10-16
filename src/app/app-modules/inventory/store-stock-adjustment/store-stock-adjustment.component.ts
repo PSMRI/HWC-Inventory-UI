@@ -35,6 +35,7 @@ import { ConfirmationService } from '../../core/services/confirmation.service';
 import { InventoryService } from '../shared/service/inventory.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 @Component({
   selector: 'app-store-stock-adjustment',
@@ -75,6 +76,7 @@ export class StoreStockAdjustmentComponent
     private route: ActivatedRoute,
     private confirmationService: ConfirmationService,
     private inventoryService: InventoryService,
+    private sessionstorage:SessionStorageService,
   ) {
     this.subs = this.inventoryService
       .getDialogClosedObservable()
@@ -104,7 +106,7 @@ export class StoreStockAdjustmentComponent
       // this.loadStockAdjData();
     }
 
-    const isMainStore: any = localStorage.getItem('facilityDetail');
+    const isMainStore: any = sessionStorage.getItem('facilityDetail'); //localStorage.getItem('facilityDetail');
     this.isMainStore = JSON.parse(isMainStore).isMainFacility;
     this.showLastUpdatedStockLog();
     this.loadStockAdjData();
@@ -213,10 +215,12 @@ export class StoreStockAdjustmentComponent
     );
 
     const otherDetails = {
-      createdBy: localStorage.getItem('username'),
-      modifiedBy: localStorage.getItem('username'),
-      providerServiceMapID: localStorage.getItem('providerServiceID'),
-      facilityID: localStorage.getItem('facilityID'),
+      // createdBy: localStorage.getItem('username'),
+      createdBy: this.sessionstorage.username,
+      // modifiedBy: localStorage.getItem('username'),
+      modifiedBy: this.sessionstorage.username,
+      providerServiceMapID: this.sessionstorage.providerServiceID, //localStorage.getItem('providerServiceID'),
+      facilityID: sessionStorage.getItem('facilityID'),
       vanID: localStorage.getItem('vanID'),
       parkingPlaceID: localStorage.getItem('parkingPlaceID'),
     };
@@ -278,9 +282,10 @@ export class StoreStockAdjustmentComponent
     );
 
     const otherDetails = {
-      createdBy: localStorage.getItem('username'),
-      providerServiceMapID: localStorage.getItem('providerServiceID'),
-      facilityID: localStorage.getItem('facilityID'),
+      // createdBy: localStorage.getItem('username'),
+      createdBy: this.sessionstorage.username,
+      providerServiceMapID: this.sessionstorage.providerServiceID, //localStorage.getItem('providerServiceID'),
+      facilityID: sessionStorage.getItem('facilityID'),
       vanID: localStorage.getItem('vanID'),
       parkingPlaceID: localStorage.getItem('parkingPlaceID'),
     };
@@ -409,7 +414,7 @@ export class StoreStockAdjustmentComponent
 
   addEAushadhiStock() {
     const reqObj = {
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: sessionStorage.getItem('facilityID'),
     };
     this.inventoryService.addEAushadhiItemsToAmrit(reqObj).subscribe(
       (response) => {
@@ -431,7 +436,7 @@ export class StoreStockAdjustmentComponent
   }
   showLastUpdatedStockLog() {
     const reqObj = {
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: sessionStorage.getItem('facilityID'),
     };
     this.inventoryService.showLastUpdatedStockLogs(reqObj).subscribe(
       (logResponse) => {

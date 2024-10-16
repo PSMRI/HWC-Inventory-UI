@@ -30,6 +30,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 @Component({
   selector: 'app-view-medicine-dispense',
@@ -59,6 +60,7 @@ export class ViewMedicineDispenseComponent implements OnInit, DoCheck {
     public http_service: LanguageService,
     private router: Router,
     private dataStorageService: DataStorageService,
+    private sessionstorage:SessionStorageService,
   ) {}
 
   ngOnInit() {
@@ -106,7 +108,7 @@ export class ViewMedicineDispenseComponent implements OnInit, DoCheck {
     endDate.setMilliseconds(0);
 
     return {
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: sessionStorage.getItem('facilityID'),
       fromDate: new Date(
         startDate.valueOf() - 1 * startDate.getTimezoneOffset() * 60 * 1000,
       ),
