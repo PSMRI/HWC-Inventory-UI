@@ -107,23 +107,7 @@ export class AppHeaderComponent implements OnInit, OnChanges, AfterContentChecke
     // }
     if (this.isAuthenticated) {
       this.fetchLanguageSet();
-      this.auth.getUserDetails().subscribe((res: any) => {
-        // console.log(">>>>>>", res);
-        if (res.statusCode == '200') {
-          if (res.data.previlegeObj && res.data.previlegeObj[0]) {
-            this.cookieService.set('Jwttoken', res.data.Jwttoken);
-            delete res.data.Jwttoken;
-            sessionStorage.setItem('loginDataResponse', JSON.stringify(res.data));
-            sessionStorage.setItem('key', res.key);
-            // sessionStorage.setItem('designation', this.designation);
-            this.sessionstorage.userID=res.userID;
-            this.sessionstorage.userName=res.userName;
-            this.sessionstorage.username=res.userName;
-          } else {
-            this.confirmationService.alert('Seems you are logged in from somewhere else, Logout from there & try back in.', 'error');
-          }
-        }
-      });
+      this.refreshLogin();
     }
     
   }
@@ -133,6 +117,26 @@ export class AppHeaderComponent implements OnInit, OnChanges, AfterContentChecke
         console.log('isActive');
         this.updateCSSToShowActivePharmacist = true;
     }
+  }
+
+  refreshLogin(){
+    this.auth.getUserDetails().subscribe((res: any) => {
+      // console.log(">>>>>>", res);
+      if (res.statusCode == '200') {
+        if (res.data.previlegeObj && res.data.previlegeObj[0]) {
+          this.cookieService.set('Jwttoken', res.data.Jwttoken);
+          delete res.data.Jwttoken;
+          sessionStorage.setItem('loginDataResponse', JSON.stringify(res.data));
+          sessionStorage.setItem('key', res.key);
+          // sessionStorage.setItem('designation', this.designation);
+          this.sessionstorage.userID=res.userID;
+          this.sessionstorage.userName=res.userName;
+          this.sessionstorage.username=res.userName;
+        } else {
+          this.confirmationService.alert('Seems you are logged in from somewhere else, Logout from there & try back in.', 'error');
+        }
+      }
+    });
   }
 
   fetchLanguageSet() {
