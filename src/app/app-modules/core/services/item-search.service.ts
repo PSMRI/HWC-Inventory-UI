@@ -20,16 +20,20 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { SessionStorageService } from './session-storage.service';
 @Injectable()
 export class ItemSearchService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient, 
+    public sessionstorage:SessionStorageService) {
+  }
 
   searchDrugItem(searchTerms: string) {
     const body = {
       itemName: searchTerms,
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: this.sessionstorage.getItem('facilityID'),
     };
 
     return this.http.post<any>(environment.searchItemUrl, body);
@@ -38,7 +42,7 @@ export class ItemSearchService {
   searchDrugItemforTransfer(search: any, facilityTo: any) {
     const body = {
       itemName: search,
-      transferFromFacilityID: localStorage.getItem('facilityID'),
+      transferFromFacilityID: this.sessionstorage.getItem('facilityID'),
       transferToFacilityID: facilityTo,
     };
 
@@ -48,7 +52,7 @@ export class ItemSearchService {
   getItemDetailsByName(searchTerms: string) {
     const searchedItem = {
       itemName: searchTerms,
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: this.sessionstorage.getItem('facilityID'),
     };
     return this.http.post<any>(
       environment.getItemDetailsByNameUrl,

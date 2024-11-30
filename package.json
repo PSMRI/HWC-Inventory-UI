@@ -38,6 +38,9 @@
     "crypto-js": "^4.2.0",
     "exceljs": "^4.4.0",
     "file-saver": "^2.0.5",
+    "hwc-inventory-ui": "file:",
+    "ng-cryptostore": "^16.0.0",
+    "ngx-cookie-service": "^18.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
