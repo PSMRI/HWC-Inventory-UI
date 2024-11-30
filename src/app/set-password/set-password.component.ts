@@ -25,6 +25,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../login/authentication.service';
 import { ConfirmationService } from '../app-modules/core/services/confirmation.service';
 import * as CryptoJS from 'crypto-js';
+import { SessionStorageService } from '../app-modules/core/services/session-storage.service';
 @Component({
   selector: 'app-set-password',
   templateUrl: './set-password.component.html',
@@ -49,6 +50,7 @@ export class SetPasswordComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthenticationService,
+    readonly sessionstorage:SessionStorageService,
     //private confirmationService: ConfirmationService) { }
 
     private confirmationService: ConfirmationService,
@@ -102,7 +104,8 @@ export class SetPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.uname = localStorage.getItem('userID');
+    // this.uname = localStorage.getItem('userID');
+    this.uname = this.sessionstorage.userID;
   }
 
   showPWD() {
