@@ -38,6 +38,7 @@ import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-la
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 @Component({
   selector: 'app-indent-request',
@@ -75,6 +76,7 @@ export class IndentRequestComponent implements OnInit, DoCheck {
     private inventoryService: InventoryService,
     private confirmationService: ConfirmationService,
     private dataStorageService: DataStorageService,
+    readonly sessionstorage:SessionStorageService,
   ) {
     this.subs = this.inventoryService
       .getDialogClosedObservable()
@@ -264,17 +266,19 @@ export class IndentRequestComponent implements OnInit, DoCheck {
     const otherDetails = {
       refNo: indentRequestForm.value.referenceNumber,
       reason: indentRequestForm.value.indentReason,
-      fromFacilityID: localStorage.getItem('facilityID'),
+      fromFacilityID: this.sessionstorage.getItem('facilityID'),
       fromFacilityName: JSON.parse(
-        localStorage.getItem('facilityDetail') || '{}',
+        this.sessionstorage.getItem('facilityDetail') || '{}', 
       ).facilityName,
-      toFacilityID: JSON.parse(localStorage.getItem('facilityDetail') || '{}')
+      toFacilityID: JSON.parse(this.sessionstorage.getItem('facilityDetail') || '{}') 
         .mainFacilityID,
-      createdBy: localStorage.getItem('username'),
-      providerServiceMapID: localStorage.getItem('providerServiceID'),
+      // createdBy: localStorage.getItem('username'),
+      createdBy: this.sessionstorage.username,
+      providerServiceMapID: this.sessionstorage.providerServiceID, //localStorage.getItem('providerServiceID'),
       vanID: localStorage.getItem('vanID'),
       parkingPlaceID: localStorage.getItem('parkingPlaceID'),
-      userID: localStorage.getItem('userID'),
+      //userID: localStorage.getItem('userID'),
+      useriD: this.sessionstorage.userID
     };
 
     console.log('otherDetails under submitIndentRequest', otherDetails);
@@ -346,17 +350,19 @@ export class IndentRequestComponent implements OnInit, DoCheck {
     const otherDetails = {
       refNo: indentRequestForm.value.referenceNumber,
       reason: indentRequestForm.value.indentReason,
-      fromFacilityID: localStorage.getItem('facilityID'),
+      fromFacilityID: this.sessionstorage.getItem('facilityID'),
       fromFacilityName: JSON.parse(
-        localStorage.getItem('facilityDetail') || '{}',
+        this.sessionstorage.getItem('facilityDetail') || '{}', //localStorage.getItem('facilityDetail')
       ).facilityName,
-      toFacilityID: JSON.parse(localStorage.getItem('facilityDetail') || '{}')
+      toFacilityID: JSON.parse(this.sessionstorage.getItem('facilityDetail') || '{}') //localStorage.getItem('facilityDetail')
         .mainFacilityID,
-      createdBy: localStorage.getItem('username'),
-      providerServiceMapID: localStorage.getItem('providerServiceID'),
+      // createdBy: localStorage.getItem('username'),
+      createdBy: this.sessionstorage.username,
+      providerServiceMapID: this.sessionstorage.providerServiceID, //localStorage.getItem('providerServiceID'),
       vanID: localStorage.getItem('vanID'),
       parkingPlaceID: localStorage.getItem('parkingPlaceID'),
-      userID: localStorage.getItem('userID'),
+      //userID: localStorage.getItem('userID'),
+      userID: this.sessionstorage.userID,
       indentID: this.dataStorageService.indentDetails.indentID,
       orderDate: this.dataStorageService.indentDetails.orderDate,
       status: this.dataStorageService.indentDetails.status,
