@@ -5,6 +5,7 @@ import { InventoryService } from '../../shared/service/inventory.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { ConfirmationService } from 'src/app/app-modules/core/services/confirmation.service';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 @Component({
   selector: 'app-e-aushadha',
@@ -28,10 +29,11 @@ export class EAushadhaComponent implements OnInit, DoCheck {
     private datePipe: DatePipe,
     private http_service: LanguageService,
     private dialogService: ConfirmationService,
-    private inventoryService: InventoryService) { }
+    private inventoryService: InventoryService,
+    readonly sessionstorage:SessionStorageService) { }
 
   ngOnInit() {
-    this.facilityID = localStorage.getItem('facilityID')
+    this.facilityID = this.sessionstorage.getItem('facilityID');
     this.eAushadhaForm = this.createeAushadhaForm();
     this.today = new Date();
     if(this.failedRecordsArray === null || this.failedRecordsArray === undefined || this.failedRecordsArray.length === 0){
