@@ -6,6 +6,7 @@ import { FaciltyService } from './facilty.service';
 import { ConfirmationService } from '../app-modules/core/services';
 import { SetLanguageComponent } from '../app-modules/core/components/set-language.component';
 import { LanguageService } from '../app-modules/core/services/language.service';
+import { SessionStorageService } from '../app-modules/core/services/session-storage.service';
 
 
 @Component({
@@ -31,6 +32,7 @@ export class FacilitySelectionComponent implements OnInit, DoCheck {
     private faciltyService: FaciltyService,
     private http_service: LanguageService,
     private confirmationService: ConfirmationService,
+    readonly sessionstorage:SessionStorageService,
   ) {}
 
   facilityForm = this.fb.group({
@@ -43,7 +45,7 @@ export class FacilitySelectionComponent implements OnInit, DoCheck {
     localStorage.removeItem('facilityDetail');
     localStorage.removeItem('facilityID');
     this.fetchLanguageResponse();
-    this.serviceProviderId = localStorage.getItem('providerServiceID');
+    this.serviceProviderId = this.sessionstorage.providerServiceID; //localStorage.getItem('providerServiceID');
     this.getAllStores();
   }
 
@@ -74,12 +76,12 @@ export class FacilitySelectionComponent implements OnInit, DoCheck {
       this.facilityForm.controls.facility.value
     ) {
       this.enableContinue = true;
-      localStorage.setItem('facilityID', facility.facilityID);
-      localStorage.setItem('facilityDetail', JSON.stringify(facility));
+      this.sessionstorage.setItem('facilityID', facility.facilityID);
+      this.sessionstorage.setItem('facilityDetail', JSON.stringify(facility));
     } else if (isMainStore === 'false' && facility && subFacility) {
       this.enableContinue = true;
-      localStorage.setItem('facilityID', subFacility.facilityID);
-      localStorage.setItem('facilityDetail', JSON.stringify(subFacility));
+      this.sessionstorage.setItem('facilityID', subFacility.facilityID);
+      this.sessionstorage.setItem('facilityDetail', JSON.stringify(subFacility));
       this.getFacilityMappedVanID(subFacility.facilityID);
     } else {
       this.enableContinue = false;

@@ -4,6 +4,8 @@ import { AuthenticationService } from './authentication.service';
 import { ConfirmationService } from '../app-modules/core/services/confirmation.service';
 // import * as CryptoJS from 'crypto-js';
 import * as CryptoJS from 'crypto-js';
+import { SessionStorageService } from '../app-modules/core/services/session-storage.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login-cmp',
@@ -29,6 +31,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthenticationService,
     private confirmationService: ConfirmationService,
+    readonly sessionstorage:SessionStorageService,
+    private cookieService: CookieService,
     private router: Router) {
       this._keySize = 256;
       this._ivSize = 128;
@@ -102,7 +106,9 @@ export class LoginComponent implements OnInit {
       .subscribe(res => {
         if (res.statusCode == '200') {
           if (res.data.previlegeObj && res.data.previlegeObj[0]) {
-            localStorage.setItem('loginDataResponse', JSON.stringify(res.data));
+            this.cookieService.set('Jwttoken', res.data.Jwttoken);
+            delete res.data.Jwttoken;
+            this.sessionstorage.setItem('loginDataResponse', JSON.stringify(res.data));
             this.checkRoleMapped(res.data);
           } else {
             this.confirmationService.alert('Seems you are logged in from somewhere else, Logout from there & try back in.', 'error');
@@ -116,6 +122,8 @@ export class LoginComponent implements OnInit {
               this.authService.login(this.userName, encryptPassword, true).subscribe((userLoggedIn) => {
                 if (userLoggedIn.statusCode == '200') {
                 if (userLoggedIn.data.previlegeObj != null && userLoggedIn.data.previlegeObj != undefined && userLoggedIn.data.previlegeObj[0]) {
+                  this.cookieService.set('Jwttoken', userLoggedIn.data.Jwttoken);
+                  delete userLoggedIn.data.Jwttoken;
                   this.checkRoleMapped(userLoggedIn.data);
                 } else {
                   this.confirmationService.alert('Seems you are logged in from somewhere else, Logout from there & try back in.', 'error'); 
@@ -159,7 +167,8 @@ export class LoginComponent implements OnInit {
           })
         })
         if (this.roleArray && this.roleArray.length > 0) {
-          localStorage.setItem('role', JSON.stringify(this.roleArray))
+          // localStorage.setItem('role', JSON.stringify(this.roleArray))
+          this.sessionstorage.setItem('role', JSON.stringify(this.roleArray))
           this.checkMappedDesignation(loginDataResponse);
         } else {
           this.confirmationService.alert('Role Features is not mapped for user , Please map a role feature', 'error');
@@ -188,11 +197,16 @@ export class LoginComponent implements OnInit {
 
   checkDesignationWithRole(loginDataResponse: any) {
     if (this.roleArray.includes(this.designation)) {
+      console.error("Nagendra-------------1",loginDataResponse.key);
       sessionStorage.setItem('key', loginDataResponse.key);
-      localStorage.setItem('designation', this.designation);
-      localStorage.setItem('userID', loginDataResponse.userID);
-      localStorage.setItem('userName', loginDataResponse.userName);
-      localStorage.setItem('username', this.userName);
+      this.sessionstorage.setItem('designation', this.designation);
+      // localStorage.setItem('designation', this.designation);
+      //localStorage.setItem('userID', loginDataResponse.userID);
+      // localStorage.setItem('userName', loginDataResponse.userName);
+      this.sessionstorage.userID=loginDataResponse.userID;
+      this.sessionstorage.userName=loginDataResponse.userName;
+      // localStorage.setItem('username', this.userName);
+      this.sessionstorage.username=loginDataResponse.userName;
       const services = loginDataResponse.previlegeObj.map((item: any)  => {
         if (item.roles[0].serviceRoleScreenMappings[0].providerServiceMapping.serviceID == '9' || item.roles[0].serviceRoleScreenMappings[0].providerServiceMapping.serviceID == '2') {
           return {
@@ -206,8 +220,8 @@ export class LoginComponent implements OnInit {
          return;
       })
       if (services.length > 0) {
-        localStorage.setItem('services', JSON.stringify(services));
-
+        // localStorage.setItem('services', JSON.stringify(services));
+        this.sessionstorage.setItem('services', JSON.stringify(services));
         if (loginDataResponse.Status.toLowerCase() == 'new') {
           this.router.navigate(['/set-security-questions'])
         }
