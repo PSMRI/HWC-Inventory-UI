@@ -4,7 +4,7 @@ import { AuthenticationService } from './authentication.service';
 import { ConfirmationService } from '../app-modules/core/services/confirmation.service';
 // import * as CryptoJS from 'crypto-js';
 import * as CryptoJS from 'crypto-js';
-import { SessionStorageService } from '../app-modules/core/services/session-storage.service';
+import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({

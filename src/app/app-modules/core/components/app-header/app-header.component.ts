@@ -20,7 +20,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { environment } from "src/environments/environment";
 import { ShowCommitAndVersionDetailsComponent } from "../show-commit-and-version-details/show-commit-and-version-details.component";
 import { CookieService } from 'ngx-cookie-service';
-import { SessionStorageService } from "../../services/session-storage.service";
+import { SessionStorageService } from "Common-UI/src/registrar/services/session-storage.service";
 @Component({
   selector: "app-header",
   templateUrl: "./app-header.component.html",

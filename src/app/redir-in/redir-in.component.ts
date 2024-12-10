@@ -31,7 +31,7 @@ import { Location } from '@angular/common';
 import { SpinnerService } from '../app-modules/core/services/spinner.service';
 
 import { AuthenticationService } from '../login/authentication.service';
-import { SessionStorageService } from '../app-modules/core/services/session-storage.service';
+import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 @Component({
   selector: 'app-redir-in',
   templateUrl: './redir-in.component.html',
