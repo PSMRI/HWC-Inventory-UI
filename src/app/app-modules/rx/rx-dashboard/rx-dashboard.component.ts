@@ -64,7 +64,7 @@ export class RxDashboardComponent implements OnInit, DoCheck {
     this.fetchLanguageResponse();
     this.parent_url = this.sessionstorage.getItem('return');
     // this.username = localStorage.getItem('username');
-    this.username = this.sessionstorage.username;
+    this.username = this.sessionstorage.getItem('username');
     this.getBenDetails();
     this.getPrescriptionDetails();
   }
@@ -75,7 +75,7 @@ export class RxDashboardComponent implements OnInit, DoCheck {
     this.route.params.subscribe((param) => {
       this.benRegID = param['beneficiaryRegID'];
       // const benFlowID: any = localStorage.getItem('benFlowID');
-      const benFlowID: any = this.sessionstorage.benFlowID;
+      const benFlowID: any = this.sessionstorage.getItem('benFlowID');
       this.beneficiaryDetailsService.getBeneficiaryDetails(
         this.benRegID,
         benFlowID,
@@ -180,7 +180,7 @@ export class RxDashboardComponent implements OnInit, DoCheck {
       beneficiaryID: beneficiary.beneficiaryID,
       benRegID: beneficiary.beneficiaryRegID,
       createdBy: this.username,
-      providerServiceMapID: this.sessionstorage.providerServiceID, //localStorage.getItem('providerServiceID'),
+      providerServiceMapID: this.sessionstorage.getItem('providerServiceID'), //localStorage.getItem('providerServiceID'),
       doctorName: prescription.consultantName,
       gender: beneficiary.genderName,
       issueType: this.issueType === 0 ? 'Manual' : 'System',

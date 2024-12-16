@@ -58,7 +58,7 @@ export class ResetPasswordComponent {
   wrong_answer_msg: any = '';
 
   getQuestions(username: any) {
-    this.sessionstorage.userID=username;
+    this.sessionstorage.setItem('userID', username);
     //localStorage.setItem('userID', username);
     this.authService.getUserSecurityQuestionsAnswer(username).subscribe(
       (response: any) => {
@@ -142,8 +142,7 @@ export class ResetPasswordComponent {
     this.authService
       .validateSecurityQuestionAndAnswer(
         this.userFinalAnswers,
-        // localStorage.getItem('userID'),
-        this.sessionstorage.userID
+        this.sessionstorage.getItem('userID'),
       )
       .subscribe(
         (response: any) => {
@@ -153,7 +152,7 @@ export class ResetPasswordComponent {
             this.authService.transactionId = response.data.transactionId;
           } else {
             //this.getQuestions(localStorage.getItem('userID'));
-            this.getQuestions(this.sessionstorage.userID);
+            this.getQuestions(this.sessionstorage.getItem('userID'));
             this.onFailureNavigateToResetPassword(response);
           }
         },

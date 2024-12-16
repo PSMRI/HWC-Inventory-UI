@@ -103,7 +103,7 @@ export class StoreStockTransferComponent implements OnInit, DoCheck {
   }
 
   getAllStore() {
-    const serviceProviderId = this.sessionstorage.providerServiceID; //localStorage.getItem('providerServiceID');
+    const serviceProviderId = this.sessionstorage.getItem('providerServiceID'); //localStorage.getItem('providerServiceID');
     this.inventoryService.getAllStore(serviceProviderId).subscribe((data) => {
       console.log('data****', data);
       const newArr: any = Object.entries(data).map(([key, value]) => value);
@@ -183,8 +183,8 @@ export class StoreStockTransferComponent implements OnInit, DoCheck {
     this.stockTransferForm.patchValue({
       dated: moment(new Date()).format('DD/MM/YYYY'),
 // createdBy: localStorage.getItem('username'),
-createdBy: this.sessionstorage.username,
-      providerServiceMapID: this.sessionstorage.providerServiceID, //localStorage.getItem('providerServiceID'),
+createdBy: this.sessionstorage.getItem('username'),
+      providerServiceMapID: this.sessionstorage.getItem('providerServiceID'), //localStorage.getItem('providerServiceID'),
     });
   }
 

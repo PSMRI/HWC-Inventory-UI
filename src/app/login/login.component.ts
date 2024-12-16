@@ -203,10 +203,10 @@ export class LoginComponent implements OnInit {
       // localStorage.setItem('designation', this.designation);
       //localStorage.setItem('userID', loginDataResponse.userID);
       // localStorage.setItem('userName', loginDataResponse.userName);
-      this.sessionstorage.userID=loginDataResponse.userID;
-      this.sessionstorage.userName=loginDataResponse.userName;
+      this.sessionstorage.setItem('userID', loginDataResponse.userID);
+      this.sessionstorage.setItem('userName', loginDataResponse.userName);
       // localStorage.setItem('username', this.userName);
-      this.sessionstorage.username=loginDataResponse.userName;
+      this.sessionstorage.setItem('username', loginDataResponse.userName);
       const services = loginDataResponse.previlegeObj.map((item: any)  => {
         if (item.roles[0].serviceRoleScreenMappings[0].providerServiceMapping.serviceID == '9' || item.roles[0].serviceRoleScreenMappings[0].providerServiceMapping.serviceID == '2') {
           return {

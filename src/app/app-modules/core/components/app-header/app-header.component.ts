@@ -67,7 +67,7 @@ export class AppHeaderComponent implements OnInit, OnChanges, AfterContentChecke
     this.getUIVersionAndCommitDetails();
     // this.servicePoint = localStorage.getItem('servicePointName');
     // const userName = localStorage.getItem('userName');
-    const userName = this.sessionstorage.userName;
+    const userName = this.sessionstorage.getItem('userName');
     if (userName != null) {
       this.userName = userName;
     }
@@ -79,7 +79,7 @@ export class AppHeaderComponent implements OnInit, OnChanges, AfterContentChecke
     this.isExternal = this.sessionstorage.getItem('isExternal') == 'true';
     this.parent_app = this.sessionstorage.getItem('host');
     // const providerServiceID = localStorage.getItem('providerServiceID');
-    const providerServiceID = this.sessionstorage.providerServiceID;
+    const providerServiceID = this.sessionstorage.getItem('providerServiceID');
     if (providerServiceID != null) {
       this.providerServiceID = providerServiceID;
     }
@@ -132,9 +132,9 @@ export class AppHeaderComponent implements OnInit, OnChanges, AfterContentChecke
           }
 
           // sessionStorage.setItem('designation', this.designation);
-          this.sessionstorage.userID=res.data.userID;
-          this.sessionstorage.userName=res.data.userName;
-          this.sessionstorage.username=res.data.userName;
+          this.sessionstorage.setItem('userID', res.data.userID);
+          this.sessionstorage.setItem('userName', res.data.userName);
+          this.sessionstorage.setItem('username', res.data.userName);
         } else {
           this.confirmationService.alert('Seems you are logged in from somewhere else, Logout from there & try back in.', 'error');
         }

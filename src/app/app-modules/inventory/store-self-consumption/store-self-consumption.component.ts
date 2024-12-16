@@ -86,10 +86,10 @@ export class StoreSelfConsumptionComponent implements OnInit, DoCheck {
 
   ngOnInit() {
     // this.createdBy = localStorage.getItem('username');
-    this.createdBy = this.sessionstorage.username;
+    this.createdBy = this.sessionstorage.getItem('username');
     this.facilityID = this.sessionstorage.getItem('facilityID');
     this.fetchLanguageResponse();
-    this.providerServiceMapID = this.sessionstorage.providerServiceID; //localStorage.getItem('providerServiceID');
+    this.providerServiceMapID = this.sessionstorage.getItem('providerServiceID'); //localStorage.getItem('providerServiceID');
 
     if (this.facilityID === null || this.facilityID <= 0) {
       this.router.navigate(['/inventory']);

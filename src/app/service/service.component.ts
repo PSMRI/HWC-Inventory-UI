@@ -48,7 +48,7 @@ export class ServiceComponent implements OnInit {
 
   selectService(service: any): void {
     // localStorage.setItem('providerServiceID', service.providerServiceID);
-    this.sessionstorage.providerServiceID = service.providerServiceID;
+    this.sessionstorage.setItem('providerServiceID', service.providerServiceID);
     this.sessionstorage.setItem('apimanClientKey', service.apimanClientKey);
     this.router.navigate(['/facility']);
   }

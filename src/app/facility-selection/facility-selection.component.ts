@@ -45,7 +45,7 @@ export class FacilitySelectionComponent implements OnInit, DoCheck {
     localStorage.removeItem('facilityDetail');
     localStorage.removeItem('facilityID');
     this.fetchLanguageResponse();
-    this.serviceProviderId = this.sessionstorage.providerServiceID; //localStorage.getItem('providerServiceID');
+    this.serviceProviderId = this.sessionstorage.getItem('providerServiceID'); //localStorage.getItem('providerServiceID');
     this.getAllStores();
   }
 

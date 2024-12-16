@@ -165,7 +165,7 @@ export class RedirInComponent implements OnInit {
     this.sessionstorage.setItem('parentBen', this.externalSession.ben);
     this.sessionstorage.setItem('parentBenVisit', this.externalSession.visit);
     // localStorage.setItem('benFlowID', this.externalSession.flowID);
-    this.sessionstorage.benFlowID = this.externalSession.flowID;
+    this.sessionstorage.setItem('benFlowID', this.externalSession.flowID);
     localStorage.setItem('vanID', this.externalSession.vanID);
     localStorage.setItem('parkingPlaceID', this.externalSession.parkingPlaceID);
     localStorage.setItem(
@@ -178,7 +178,7 @@ export class RedirInComponent implements OnInit {
       this.externalSession.currentLanguage,
     );
     // localStorage.setItem('healthID', this.externalSession.healthID);
-    this.sessionstorage.healthID = this.externalSession.healthID;
+    this.sessionstorage.setItem('healthID', this.externalSession.healthID);
     this.fallback = this.sessionstorage.getItem('fallback');
 
     this.checkSession();
@@ -281,9 +281,9 @@ export class RedirInComponent implements OnInit {
           );
           // localStorage.setItem('username', loginDataResponse.userName);
           // localStorage.setItem('userName', loginDataResponse.userName);
-          this.sessionstorage.username=loginDataResponse.userName;
-          this.sessionstorage.userName=loginDataResponse.userName;
-          this.sessionstorage.userID=loginDataResponse.userID;
+          this.sessionstorage.setItem('username', loginDataResponse.userName);
+          this.sessionstorage.setItem('userName', loginDataResponse.userName);
+          this.sessionstorage.setItem('userID', loginDataResponse.userID);
           //localStorage.setItem('userID', loginDataResponse.userID);
           localStorage.setItem(
             'designation',

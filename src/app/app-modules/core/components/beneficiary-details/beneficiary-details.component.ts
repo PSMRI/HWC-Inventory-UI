@@ -53,11 +53,11 @@ export class BeneficiaryDetailsComponent implements OnInit, DoCheck, OnDestroy {
   ngOnInit() {
     this.today = new Date();
     //const healthIDValue: any = localStorage.getItem('healthID');
-    const healthIDValue: any = this.sessionstorage.healthID;
+    const healthIDValue: any = this.sessionstorage.getItem('healthID');
     this.healthIDValue = healthIDValue;
     this.route.params.subscribe((param) => {
       // const benFlowId: any = localStorage.getItem('benFlowID');
-      const benFlowId: any = this.sessionstorage.benFlowID;
+      const benFlowId: any = this.sessionstorage.getItem('benFlowID');
       this.beneficiaryDetailsService.getBeneficiaryDetails(
         param['beneficiaryRegID'],
         benFlowId,
