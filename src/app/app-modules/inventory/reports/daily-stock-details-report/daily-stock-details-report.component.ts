@@ -131,7 +131,7 @@ export class DailyStockDetailsReportComponent implements OnInit, DoCheck {
       facilityID:
         this.dailyStockDetailsForm.value.facilityName === 'All'
           ? null
-          : this.sessionstorage.facilityID,
+          : this.sessionstorage.getItem('facilityID'),
     };
     console.log(
       'Data form data',

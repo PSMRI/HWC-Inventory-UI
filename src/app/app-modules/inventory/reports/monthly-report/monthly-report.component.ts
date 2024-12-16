@@ -126,7 +126,7 @@ export class MonthlyReportComponent implements OnInit, DoCheck {
       facilityID:
         this.monthlyForm.value.facilityName === 'All'
           ? null
-          : this.sessionstorage.facilityID,
+          : this.sessionstorage.getItem('facilityID'),
     };
     console.log(
       'Data form data',

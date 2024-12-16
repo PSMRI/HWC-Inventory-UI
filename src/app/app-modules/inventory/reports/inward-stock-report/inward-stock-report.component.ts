@@ -133,7 +133,7 @@ export class InwardStockReportComponent implements OnInit, DoCheck {
       facilityID:
         this.inwardStockForm.value.facilityName === 'All'
           ? null
-          : this.sessionstorage.facilityID,
+          : this.sessionstorage.getItem('facilityID'),
     };
     console.log(
       'Data form data',

@@ -103,7 +103,7 @@ export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
 
     this.inventoryService
       .getBeneficaryVisitDetail({
-        providerServiceMapID: this.sessionstorage.providerServiceID, //localStorage.getItem('providerServiceID'),
+        providerServiceMapID: this.sessionstorage.getItem('providerServiceID'), //localStorage.getItem('providerServiceID'),
         beneficiaryID:
           this.beneficiaryDetailForm.controls['beneficiaryID'].value,
       })
@@ -165,7 +165,7 @@ export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
       ) {
         this.inventoryService
           .getBeneficaryVisitDetail({
-            providerServiceMapID: this.sessionstorage.providerServiceID, //localStorage.getItem('providerServiceID'),
+            providerServiceMapID: this.sessionstorage.getItem('providerServiceID'), //localStorage.getItem('providerServiceID'),
             beneficiaryID:
               this.beneficiaryDetailForm.controls['beneficiaryID'].value,
           })
@@ -255,8 +255,8 @@ export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
       beneficiaryID: this.beneficiaryID,
       benRegID: this.beneficiaryVisitDetailList.beneficiaryRegID,
       // createdBy: localStorage.getItem('username'),
-      createdBy: this.sessionstorage.username,
-      providerServiceMapID: this.sessionstorage.providerServiceID, //localStorage.getItem('providerServiceID'),
+      createdBy: this.sessionstorage.getItem('username'),
+      providerServiceMapID: this.sessionstorage.getItem('providerServiceID'), //localStorage.getItem('providerServiceID'),
       doctorName: this.visitCode.agentId,
       facilityID: this.sessionstorage.getItem('facilityID'),
       gender: this.visitCode.genderName,

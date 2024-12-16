@@ -98,7 +98,7 @@ export class YearlyReportComponent implements OnInit, DoCheck {
       facilityID:
         this.yearlyForm.value.facilityName === 'All'
           ? null
-          : this.sessionstorage.facilityID,
+          : this.sessionstorage.getItem('facilityID'),
     };
     console.log(
       'Data form data',

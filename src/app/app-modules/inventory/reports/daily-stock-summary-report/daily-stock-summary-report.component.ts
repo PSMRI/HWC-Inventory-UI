@@ -130,7 +130,7 @@ export class DailyStockSummaryReportComponent implements OnInit, DoCheck {
       facilityID:
         this.dailyStockSummaryForm.value.facilityName === 'All'
           ? null
-          : this.sessionstorage.facilityID,
+          : this.sessionstorage.getItem('facilityID'),
     };
     console.log(
       'Data form data',

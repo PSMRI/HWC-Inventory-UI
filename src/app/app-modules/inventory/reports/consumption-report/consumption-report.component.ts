@@ -131,7 +131,7 @@ export class ConsumptionReportComponent implements OnInit, DoCheck {
       facilityID:
         this.consumptionForm.value.facilityName === 'All'
           ? null
-          : this.sessionstorage.facilityID,
+          : this.sessionstorage.getItem('facilityID'),
     };
     console.log(
       'Data form data',
