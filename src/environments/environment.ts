@@ -17,7 +17,7 @@ const COMMON_API = `${commonIP}commonapi-v3.0.0/`;
 const INVENTORY_API = `${inventoryIP}Inventoryapi-v3.0.0/`;
 const MMU_API = `${mmuIP}mmuapi-v3.0.0/`;
 const FHIR_API = `${FHIRIP}fhirapi-v3.0.0/`;
-const sessionStorageEncKey = 'asdfghjklkjhgfd';
+const sessionStorageEncKey = '<>';
 // const FHIR_API = `http://localhost:8080/fhirapi-v1.0/`;
 
 export const environment = {
