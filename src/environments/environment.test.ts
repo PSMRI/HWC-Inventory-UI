@@ -16,11 +16,13 @@ const COMMON_API_OPEN = `${commonIP}commonapi-v1.0/`;
 const COMMON_API = `${commonIP}commonapi-v1.0/`;
 const INVENTORY_API = `${inventoryIP}Inventoryapi-v1.0/`;
 const MMU_API = `${mmuIP}mmuapi-v1.0/`;
-const FHIR_API = `${FHIRIP}fhirapi-v1.0/`;
+const FHIR_API = `${FHIRIP}fhirapi-v1.0/`; 
+const sessionStorageEncKey = '';
 
 export const environment = {
   production: true,
   countryId: 1,
+  encKey: sessionStorageEncKey,
 
   getBeneficiaryDetail: `registrar/get/benDetailsByRegIDForLeftPanelNew`,
   getBeneficiaryImage: `registrar/getBenImage`,
