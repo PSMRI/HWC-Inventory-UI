@@ -334,7 +334,7 @@ export class RedirInComponent implements OnInit {
 
   getFacility() {
     this.authService
-      .getFacilityDetails(this.sessionstorage.getItem(this.externalSession.facility))
+      .getFacilityDetails(this.externalSession.facility)
       .subscribe((res) => {
         if (res && res.statusCode === 200 && res.data) {
           this.sessionstorage.setItem('facilityDetail', JSON.stringify(res.data));
