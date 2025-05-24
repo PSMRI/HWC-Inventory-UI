@@ -40,6 +40,8 @@ export class AuthenticationService {
       userName: userName,
       password: password,
       doLogout: doLogout,
+      withCredentials: true,
+      
     });
   }
 

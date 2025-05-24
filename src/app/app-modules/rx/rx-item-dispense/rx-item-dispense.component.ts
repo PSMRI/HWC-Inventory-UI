@@ -35,6 +35,7 @@ import { ConfirmationService } from './../../core/services/confirmation.service'
 import { LanguageService } from '../../core/services/language.service';
 import { SetLanguageComponent } from '../../core/components/set-language.component';
 import { MatTableDataSource } from '@angular/material/table';
+import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 @Component({
   selector: 'app-rx-item-dispense',
   templateUrl: './rx-item-dispense.component.html',
@@ -71,11 +72,12 @@ export class RxItemDispenseComponent implements OnInit, OnChanges, DoCheck {
     private prescribedDrugService: PrescribedDrugService,
     private confirmationService: ConfirmationService,
     private http_service: LanguageService,
+    public sessionstorage: SessionStorageService, 
   ) {}
 
   ngOnInit() {
     this.fetchLanguageResponse();
-    this.facilityID = localStorage.getItem('facilityID');
+    this.facilityID = this.sessionstorage.getItem('facilityID');
     this.copyprescription = JSON.parse(JSON.stringify(this.prescription));
     this.loadForm(this.prescription);
   }

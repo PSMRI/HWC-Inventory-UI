@@ -20,17 +20,23 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Injectable()
 export class BatchSearchService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    readonly sessionstorage:SessionStorageService
+  ) {
+   
+  }
 
   searchItemBatch(searchTerms: string) {
     const body = {
       itemName: searchTerms,
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: this.sessionstorage.getItem('facilityID')
     };
 
     return this.http.post<any>(environment.searchBatchUrl, body);
@@ -39,7 +45,7 @@ export class BatchSearchService {
   searchAdjustmentBatch(searchTerms: string) {
     const body = {
       itemName: searchTerms,
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: this.sessionstorage.getItem('facilityID'),
     };
 
     return this.http.post<any>(environment.searchBatchUrl, body);
@@ -47,7 +53,7 @@ export class BatchSearchService {
   searchItem(searchTerm: string) {
     const reqObj = {
       itemName: searchTerm,
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: this.sessionstorage.getItem('facilityID'),
     };
     return this.http.post<any>(environment.searchItemListUrl, reqObj);
   }

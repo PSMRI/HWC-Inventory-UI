@@ -7,6 +7,7 @@ import { AppComponent } from "./app.component";
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AppRoutingModule } from "./app-routing.module";
+import { CookieService } from 'ngx-cookie-service';
 
 // import { RouteReuseStrategy } from '@angular/router';
 // import { CustomRouteReuseStrategy } from './custom-route-reuse-strategy';
@@ -117,6 +118,7 @@ import { AuthService } from "./app-modules/core/services/auth.service";
     AuthenticationService,
     LanguageService,
     AuthService,
+    CookieService,
     HttpInterceptorService,
     {
       provide: HTTP_INTERCEPTORS,

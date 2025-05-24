@@ -6,8 +6,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.iemr.hwc-inventory-ui</groupId>
 	<artifactId>hwc-inventory-ui</artifactId>
-	<version>1.0</version>
-	<name>hwc-inventory-ui</name>
+	<version>3.1.0</version>
+	<name>HWC-Inventory-UI</name>
 	<description>Piramal - inventory: Module ui</description>
 	<packaging>war</packaging>
 	<profiles>
@@ -73,7 +73,7 @@
 
 	<!-- install the necessary node_modules & compile in prod mode -->
 	<build>
-		<finalName>hwc-inventory-ui</finalName>
+		<finalName>${artifactId}-${version}</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>

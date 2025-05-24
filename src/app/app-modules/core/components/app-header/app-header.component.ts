@@ -19,6 +19,8 @@ import { LanguageService } from "../../services/language.service";
 import { MatDialog } from "@angular/material/dialog";
 import { environment } from "src/environments/environment";
 import { ShowCommitAndVersionDetailsComponent } from "../show-commit-and-version-details/show-commit-and-version-details.component";
+import { CookieService } from 'ngx-cookie-service';
+import { SessionStorageService } from "Common-UI/src/registrar/services/session-storage.service";
 @Component({
   selector: "app-header",
   templateUrl: "./app-header.component.html",
@@ -41,7 +43,7 @@ export class AppHeaderComponent implements OnInit, OnChanges, AfterContentChecke
   filteredNavigation: any;
   roles: any;
   parent_app: any;
-  parent_url = sessionStorage.getItem("return");
+  parent_url = this.sessionstorage.getItem("return");
   reportsList:any = [];
   languageArray: any;
   language_file_path: any = "./assets/";
@@ -55,24 +57,29 @@ export class AppHeaderComponent implements OnInit, OnChanges, AfterContentChecke
     private auth: AuthService,
     private dialog: MatDialog,
     private http_service: LanguageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    readonly sessionstorage:SessionStorageService,
+    private cookieService: CookieService,
   ) {}
   license: any;
   ngOnInit() {
     // this.changeLanguage(this.language);
     this.getUIVersionAndCommitDetails();
     // this.servicePoint = localStorage.getItem('servicePointName');
-    const userName = localStorage.getItem('userName');
+    // const userName = localStorage.getItem('userName');
+    const userName = this.sessionstorage.getItem('userName');
     if (userName != null) {
       this.userName = userName;
     }
-    const designation = localStorage.getItem('designation');
+    // const designation = localStorage.getItem('designation');
+    const designation = this.sessionstorage.getItem('designation');
     if (designation != null) {
       this.designation = designation;
     }
-    this.isExternal = sessionStorage.getItem('isExternal') == 'true';
-    this.parent_app = sessionStorage.getItem('host');
-    const providerServiceID = localStorage.getItem('providerServiceID');
+    this.isExternal = this.sessionstorage.getItem('isExternal') == 'true';
+    this.parent_app = this.sessionstorage.getItem('host');
+    // const providerServiceID = localStorage.getItem('providerServiceID');
+    const providerServiceID = this.sessionstorage.getItem('providerServiceID');
     if (providerServiceID != null) {
       this.providerServiceID = providerServiceID;
     }
@@ -100,6 +107,7 @@ export class AppHeaderComponent implements OnInit, OnChanges, AfterContentChecke
     // }
     if (this.isAuthenticated) {
       this.fetchLanguageSet();
+      this.refreshLogin();
     }
     
   }
@@ -109,6 +117,29 @@ export class AppHeaderComponent implements OnInit, OnChanges, AfterContentChecke
         console.log('isActive');
         this.updateCSSToShowActivePharmacist = true;
     }
+  }
+
+  refreshLogin(){
+    this.auth.getUserDetails().subscribe((res: any) => {
+      // console.log(">>>>>>", res);
+      if (res.statusCode == '200') {
+        if (res.data.previlegeObj && res.data.previlegeObj[0]) {
+          this.cookieService.set('Jwttoken', res.data.Jwttoken);
+          delete res.data.Jwttoken;
+          this.sessionstorage.setItem('loginDataResponse', JSON.stringify(res.data));
+          if(res.data && res.data.key){
+            sessionStorage.setItem('key', res.data.key);
+          }
+
+          // sessionStorage.setItem('designation', this.designation);
+          this.sessionstorage.setItem('userID', res.data.userID);
+          this.sessionstorage.setItem('userName', res.data.userName);
+          this.sessionstorage.setItem('username', res.data.userName);
+        } else {
+          this.confirmationService.alert('Seems you are logged in from somewhere else, Logout from there & try back in.', 'error');
+        }
+      }
+    });
   }
 
   fetchLanguageSet() {
@@ -121,8 +152,8 @@ export class AppHeaderComponent implements OnInit, OnChanges, AfterContentChecke
   }
 
   getLanguage() {
-    if (localStorage.getItem('currentLanguage') != null) {
-      this.changeLanguage(localStorage.getItem('currentLanguage'));
+    if (sessionStorage.getItem('currentLanguage') != null) {
+      this.changeLanguage(sessionStorage.getItem('currentLanguage'));
     } else {
       this.changeLanguage(this.language);
     }
@@ -154,7 +185,8 @@ export class AppHeaderComponent implements OnInit, OnChanges, AfterContentChecke
     }
     if (response[language] != undefined) {
       this.currentLanguageSet = response[language];
-      localStorage.setItem('currentLanguage', language);
+      // localStorage.setItem('currentLanguage', language);
+      sessionStorage.setItem('currentLanguage', language);
       if (this.currentLanguageSet) {
         this.languageArray.forEach((item: any) => {
           if (item.languageName == language) {
@@ -238,8 +270,10 @@ export class AppHeaderComponent implements OnInit, OnChanges, AfterContentChecke
 
   ngOnChanges() {
 
-    const facility = localStorage.getItem('facilityDetail');
-    if (facility != null) {
+    const facility = this.sessionstorage.getItem('facilityDetail');
+    console.log(">>>sessionStorage", facility);
+    
+    if (facility) {
       this.facility = JSON.parse(facility);
     }
     if (this.facility) {
