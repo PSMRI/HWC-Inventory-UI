@@ -21,6 +21,9 @@ const INVENTORY_API = `${inventoryIP}Inventoryapi-v1.0/`;
 const MMU_API = `${mmuIP}mmuapi-v1.0/`;
 const FHIR_API = `${FHIRIP}fhirapi-v1.0/`;
 const sessionStorageEncKey = '';
+const siteKey = '';
+const captchaChallengeURL = '';
+const enableCaptcha = false;
 
 export const environment = {
   production: true,
@@ -140,5 +143,8 @@ export const environment = {
 
   /* TransactionID for changing password */
   getTransacIDForPasswordChange: `${COMMON_API}user/getTransactionIdForChangePassword`,
-  saveEAusadhaStock_Url: `${COMMON_API}eAusadha/create-eAusadha`
+  saveEAusadhaStock_Url: `${COMMON_API}eAusadha/create-eAusadha`,
+  siteKey:siteKey,
+  captchaChallengeURL:captchaChallengeURL,
+  enableCaptcha: enableCaptcha,
 };

@@ -72,6 +72,7 @@ import { ResetPasswordComponent } from "./reset-password/reset-password.componen
 import { SetPasswordComponent } from "./set-password/set-password.component";
 import { SetSecurityQuestionsComponent } from "./set-security-questions/set-security-questions.component";
 import { AuthService } from "./app-modules/core/services/auth.service";
+import { CaptchaComponent } from "./captcha/captcha.component";
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { AuthService } from "./app-modules/core/services/auth.service";
     FacilitySelectionComponent,
     RedirInComponent,
     LoadStoreDetailsComponent,
+    CaptchaComponent
   ],
   imports: [
     BrowserModule,
