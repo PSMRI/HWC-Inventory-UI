@@ -1,4 +1,4 @@
-import { Component, ElementRef, AfterViewInit, Output, EventEmitter, Inject, OnDestroy, ViewChild } from '@angular/core';
+import { Component, ElementRef, AfterViewInit, Output, EventEmitter, OnDestroy, ViewChild } from '@angular/core';
 import { CaptchaService } from '../app-modules/core/services/captcha.service';
 import { environment } from 'src/environments/environment';
 
@@ -14,8 +14,7 @@ export class CaptchaComponent implements AfterViewInit, OnDestroy {
   private widgetId: string | null = null;
 
   constructor(
-    private el: ElementRef,
-    private captchaService: CaptchaService
+    private readonly captchaService: CaptchaService
   ) {}
 
   async ngAfterViewInit() {
