@@ -125,20 +125,24 @@ export class LoginComponent implements OnInit {
                  
                   this.checkRoleMapped(userLoggedIn.data);
                 } else {
+                  this.resetCaptcha();
                   this.confirmationService.alert('Seems you are logged in from somewhere else, Logout from there & try back in.', 'error'); 
                 }  
               }
               else {
+                this.resetCaptcha();
                 this.confirmationService.alert(userLoggedIn.errorMessage, 'error');
               }  
               })
             }
               else {
+                this.resetCaptcha();
                 this.confirmationService.alert(userlogoutPreviousSession.errorMessage, 'error');
               }
           });
         }
           else {
+            this.resetCaptcha();
             sessionStorage.clear();
             this.router.navigate(["/login"]);
             // this.confirmationService.alert(res.errorMessage, 'error');
@@ -146,13 +150,14 @@ export class LoginComponent implements OnInit {
         });
         }
         else {  
+          this.resetCaptcha();
           this.confirmationService.alert(res.errorMessage, 'error');
         }
       }
       }, err => {
+        this.resetCaptcha();
         this.confirmationService.alert(err, 'error');
       });
-      this.resetCaptcha();
   }
 
   serviceRoleArray: any;
