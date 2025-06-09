@@ -33,15 +33,13 @@
               </legend>
               <div class="row">
                 <div class="col-md-1 right-padding-remove-desktop">
-                  <mat-form-field
-                    class="input-full-width "
-                  >
+                  <mat-form-field class="input-full-width">
                     <mat-label>{{
                       currentLanguageSet?.itemDispense?.form
                     }}</mat-label>
                     <input
                       autocomplete="off"
-                      readonly="true"
+                      [disabled]="true"
                       type="text"
                       matInput
                       formControlName="drugForm"
@@ -49,51 +47,43 @@
                   </mat-form-field>
                 </div>
                 <div class="col-md-2">
-                  <mat-form-field
-                    class="input-full-width "
-                  >
+                  <mat-form-field class="input-full-width">
                     <mat-label>{{
                       currentLanguageSet?.itemDispense?.duration
                     }}</mat-label>
                     <input
                       autocomplete="off"
-                      readonly="true"
+                      [disabled]="true"
                       type="text"
                       matInput
                       formControlName="durationView"
-                      
                     />
                   </mat-form-field>
                 </div>
                 <div
                   class="col-md-2 left-padding-remove-desktop right-padding-remove-desktop"
                 >
-                  <mat-form-field
-                    class="input-full-width "
-                  >
+                  <mat-form-field class="input-full-width">
                     <mat-label>{{
                       currentLanguageSet?.itemDispense?.frequency
                     }}</mat-label>
                     <input
                       autocomplete="off"
-                      readonly="true"
+                      [disabled]="true"
                       type="text"
                       matInput
                       formControlName="frequency"
-                     
                     />
                   </mat-form-field>
                 </div>
                 <div class="col-md-2">
-                  <mat-form-field
-                    class="input-full-width "
-                  >
+                  <mat-form-field class="input-full-width">
                     <mat-label>{{
                       currentLanguageSet?.itemDispense?.dose
                     }}</mat-label>
                     <input
                       autocomplete="off"
-                      readonly="true"
+                      [disabled]="true"
                       type="text"
                       matInput
                       formControlName="dose"
@@ -101,51 +91,43 @@
                   </mat-form-field>
                 </div>
                 <div class="col-md-2">
-                  <mat-form-field
-                    class="input-full-width "
-                  >
+                  <mat-form-field class="input-full-width">
                     <mat-label>{{
                       currentLanguageSet?.itemDispense?.quantityPrescribed
                     }}</mat-label>
                     <input
                       autocomplete="off"
-                      readonly="true"
+                      [disabled]="true"
                       type="text"
                       matInput
                       formControlName="qtyPrescribed"
-                      
                     />
                   </mat-form-field>
                 </div>
                 <div class="col-md-3">
-                  <mat-form-field
-                    class="input-full-width "
-                  >
+                  <mat-form-field class="input-full-width">
                     <mat-label>{{
                       currentLanguageSet?.itemDispense?.quantityDispensed
                     }}</mat-label>
                     <input
                       autocomplete="off"
-                      readonly="true"
+                      [disabled]="true"
                       type="text"
                       matInput
                       allowText="number"
                       formControlName="qtyDispensed"
-                      
                       allowMax="drug.value.qtyPrescribed"
                     />
                   </mat-form-field>
                 </div>
                 <div class="col-md-4 right-padding-remove-desktop">
-                  <mat-form-field
-                    class="input-full-width "
-                  >
-                  <mat-label>{{
-                    currentLanguageSet?.itemDispense?.route
-                  }}</mat-label>
+                  <mat-form-field class="input-full-width">
+                    <mat-label>{{
+                      currentLanguageSet?.itemDispense?.route
+                    }}</mat-label>
                     <input
                       autocomplete="off"
-                      readonly="true"
+                      [disabled]="true"
                       type="text"
                       matInput
                       formControlName="route"
@@ -158,17 +140,15 @@
                     'col-md-8': issueType === 1 && allocated === false
                   }"
                 >
-                  <mat-form-field
-                    class="input-full-width "
-                  >
-                  <mat-label>{{
-                    currentLanguageSet?.itemDispense?.specialInstructions
-                  }}</mat-label>
+                  <mat-form-field class="input-full-width">
+                    <mat-label>{{
+                      currentLanguageSet?.itemDispense?.specialInstructions
+                    }}</mat-label>
                     <input
                       autocomplete="off"
                       type="text"
                       matInput
-                      [readonly]="true"
+                      [disabled]="true"
                       formControlName="specialInstruction"
                     />
                   </mat-form-field>
