@@ -44,26 +44,26 @@ export class PrescribedDrugsUtils {
     return batches;
   }
 
-  initPrescribedDrugs(drug: any, selection: any): FormGroup {
-    return this.fb.group({
-      duration: drug.duration,
-      durationUnit: drug.durationUnit,
-      durationView: `${drug.duration} ${drug.durationUnit}`,
-      dose: drug.dose,
-      route: drug.route,
-      genericDrugName: drug.genericDrugName,
-      drugStrength: drug.drugStrength,
-      specialInstruction: drug.specialInstruction,
-      qtyDispensed: null,
-      qtyPrescribed: drug.qtyPrescribed,
-      drugID: drug.drugID,
-      drugForm: drug.drugForm,
-      frequency: drug.frequency,
-      batchList: this.fb.array([]),
-      selectionBatchList: this.fb.array([]),
-      preDefinedBatchList: this.initBatchListArray(drug.batchList, selection),
-    });
-  }
+initPrescribedDrugs(drug: any, selection: any): FormGroup {
+  return this.fb.group({
+    duration: [{ value: drug.duration, disabled: true }],
+    durationUnit: [{ value: drug.durationUnit, disabled: true }],
+    durationView: [{ value: `${drug.duration} ${drug.durationUnit}`, disabled: true }],
+    dose: [{ value: drug.dose, disabled: true }],
+    route: [{ value: drug.route, disabled: true }],
+    genericDrugName: drug.genericDrugName,
+    drugStrength: drug.drugStrength,
+    specialInstruction: [{ value: drug.specialInstruction, disabled: true }],
+    qtyDispensed: [{ value: null, disabled: true }],
+    qtyPrescribed: [{ value: drug.qtyPrescribed, disabled: true }],
+    drugID: drug.drugID,
+    drugForm: [{ value: drug.drugForm, disabled: true }],
+    frequency: [{ value: drug.frequency, disabled: true }],
+    batchList: this.fb.array([]),
+    selectionBatchList: this.fb.array([]),
+    preDefinedBatchList: this.initBatchListArray(drug.batchList, selection),
+  });
+}
 
   initPrescribedDrugsArray(itemList: any, selection: any): FormArray {
     const drugArray: FormArray = this.fb.array([]);

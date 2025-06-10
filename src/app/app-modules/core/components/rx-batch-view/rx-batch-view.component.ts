@@ -165,10 +165,10 @@ export class RxBatchViewComponent implements OnInit, DoCheck {
       'MM/dd/yyyy',
     );
     return this.fb.group({
-      expiryDate: formatedExpDate,
-      batchNo: batch.batchNo,
-      quantity: batch.quantity,
-      quantityInHand: batch.qty || batch.quantityInHand,
+      expiryDate: [{ value: formatedExpDate, disabled: true }],
+      batchNo: [{ value: batch.batchNo, disabled: true }],
+      quantity: [{ value: batch.quantity, disabled: selection === 1 ? true : false }],
+      quantityInHand: [{ value: batch.qty || batch.quantityInHand, disabled: true }],
       expiresIn: batch.expiresIn,
       itemStockEntryID: batch.itemStockEntryID,
       selection: batch.selection || selection === 1 ? true : false,
