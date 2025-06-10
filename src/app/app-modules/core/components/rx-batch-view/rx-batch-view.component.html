@@ -74,7 +74,6 @@
                     autocomplete="off"
                     matInput
                     defaultNull
-                    [disabled]="true"
                     name="batchNo"
                     formControlName="batchNo"
                   />
@@ -90,7 +89,6 @@
                     autocomplete="off"
                     matInput
                     defaultNull
-                    [disabled]="true"
                     name="quantityInHand"
                     formControlName="quantityInHand"
                   />
@@ -109,7 +107,6 @@
                     matInput
                     defaultNull
                     [required]="batch.value.selection"
-                    [disabled]="editSelection === 1"
                     name="quantity"
                     formControlName="quantity"
                     (blur)="
@@ -125,7 +122,6 @@
                   }}</mat-label>
                   <input
                     matInput
-                    [disabled]="true"
                     allowText="alphaspace"
                     formControlName="expiryDate"
                   />
