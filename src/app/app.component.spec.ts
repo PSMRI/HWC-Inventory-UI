@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'HWC-Inventory-UI'`, () => {
+  it(`should have as title 'AAM-Inventory-UI'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('HWC-Inventory-UI');
+    expect(app.title).toEqual('AAM-Inventory-UI');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('HWC-Inventory-UI app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('AAM-Inventory-UI app is running!');
   });
 });
