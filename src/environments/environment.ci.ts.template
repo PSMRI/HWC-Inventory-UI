@@ -10,6 +10,9 @@ const INVENTORY_API = '<%= INVENTORY_API_BASE %>';
 const MMU_API = '<%= MMU_API_BASE %>';
 const FHIR_API = '<%= FHIR_API_BASE %>';
 const sessionStorageEncKey = '<%= SESSION_STORAGE_ENC_KEY %>';
+const siteKey = '<%= SITE_KEY %>';
+const captchaChallengeURL = '<%= CAPTCHA_CHALLENGE_URL %>';
+const enableCaptcha = '<%= ENABLE_CAPTCHA %>';
 
 export const environment = {
   production: true,
@@ -129,5 +132,8 @@ export const environment = {
 
   /* TransactionID for changing password */
   getTransacIDForPasswordChange: `${COMMON_API}user/getTransactionIdForChangePassword`,
-  saveEAusadhaStock_Url: `${COMMON_API}eAusadha/create-eAusadha`
+  saveEAusadhaStock_Url: `${COMMON_API}eAusadha/create-eAusadha`,
+  siteKey:siteKey,
+  captchaChallengeURL: captchaChallengeURL,
+  enableCaptcha: enableCaptcha
 };
