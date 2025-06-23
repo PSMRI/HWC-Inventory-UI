@@ -12,38 +12,40 @@
         <div class="row">
           <div class="col-6">
             <mat-radio-group
-            [(ngModel)]="issueType"
-            class="radio-group pull-left"
-          >
-            <mat-radio-button
-              class="radio-button m-a-5"
-              disableRipple="true"
-              color="primary"
-              [value]="1"
+              [(ngModel)]="issueType"
+              class="radio-group pull-left"
             >
-              {{ currentLanguageSet?.itemDispense?.systemIssue }}
-            </mat-radio-button>
-            <mat-radio-button
-              class="radio-button m-a-5"
-              disableRipple="true"
-              color="primary"
-              [value]="0"
-            >
-              {{ currentLanguageSet?.itemDispense?.manualIssue }}
-            </mat-radio-button>
-          </mat-radio-group>
+              <mat-radio-button
+                class="radio-button m-a-5"
+                disableRipple="true"
+                color="primary"
+                [value]="1"
+              >
+                {{ currentLanguageSet?.itemDispense?.systemIssue }}
+              </mat-radio-button>
+              <mat-radio-button
+                class="radio-button m-a-5"
+                disableRipple="true"
+                color="primary"
+                [value]="0"
+              >
+                {{ currentLanguageSet?.itemDispense?.manualIssue }}
+              </mat-radio-button>
+            </mat-radio-group>
           </div>
-          <div class="col-6"><button
-            mat-raised-button
-            *ngIf="issueType === 1 && !prescribedList?.allocated"
-            class="btn-green pull-right"
-            id="allocate-batch"
-            style="color: white"
-            (click)="prescribedList.allocate()"
-            type="button"
-          >
-            {{ currentLanguageSet?.inventory?.allocateBatch }}
-          </button></div>
+          <div class="col-6">
+            <button
+              mat-raised-button
+              *ngIf="issueType === 1 && !prescribedList?.allocated"
+              class="btn-green pull-right"
+              id="allocate-batch"
+              style="color: white"
+              (click)="prescribedList.allocate()"
+              type="button"
+            >
+              {{ currentLanguageSet?.inventory?.allocateBatch }}
+            </button>
+          </div>
         </div>
         <div class="row m-t-20" *ngIf="prescription">
           <mat-accordion>
@@ -55,29 +57,31 @@
           </mat-accordion>
         </div>
       </div>
-      <div class="row m-t-20 col-12" style="margin-bottom: 30px">
-        <div class="col-6" style="margin-top: 15px">
-          <button
-            mat-mini-fab
-            class="example-fab"
-            color="primary"
-            (click)="sideNavModeChange(sidenav)"
-          >
-            <mat-icon>account_box</mat-icon>
-          </button>
-        </div>
-        <div class="col-6 step-btn" style="text-align: end">
-          <button
-            mat-raised-button
-            id="submitButton"
-            class="btn-green"
-            (click)="submitForm(prescribedList.prescriptionForm)"
-            style="color: white"
-            type="button"
-          >
-            {{ currentLanguageSet?.common?.submit }}
-          </button>
-        </div>
+      <div class="col-6" style="margin-top: 15px">
+        <button
+          mat-mini-fab
+          class="example-fab"
+          color="primary"
+          (click)="sideNavModeChange(sidenav)"
+        >
+          <mat-icon>account_box</mat-icon>
+        </button>
+      </div>
+
+      <div
+        class="col-12 m-t-20 step-btn"
+        style="text-align: end; margin-bottom: 30px"
+      >
+        <button
+          mat-raised-button
+          id="submitButton"
+          class="btn-green"
+          (click)="submitForm(prescribedList.prescriptionForm)"
+          style="color: white"
+          type="button"
+        >
+          {{ currentLanguageSet?.common?.submit }}
+        </button>
       </div>
     </div>
   </mat-sidenav-container>

@@ -1,12 +1,11 @@
-.stepper {
-  margin-bottom: 100px;
-}
- 
 .mat-stepper-horizontal {
   padding: 0px;
   background: #f2f2f0 !important;
 }
- 
+
+.stepper {
+  margin-bottom: 100px;
+}
 .mat-horizontal-stepper-header-container {
   background: #f2f2f0 !important;
 }
@@ -52,7 +51,8 @@ md-card {
   position: fixed;
   left: 20px;
   bottom: 50px;
-  z-index: 3;
+  z-index: 1;
+  display: flex;
 }
  
 .centered {
