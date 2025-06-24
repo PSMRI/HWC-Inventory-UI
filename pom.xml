@@ -4,10 +4,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<!-- @Author : Sunil K Sundaram @Date : 21-May-17 @Email : sunil.ks@gmail.com -->
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.iemr.hwc-inventory-ui</groupId>
-	<artifactId>hwc-inventory-ui</artifactId>
+	<groupId>com.iemr.aam-inventory-ui</groupId>
+	<artifactId>aam-inventory-ui</artifactId>
 	<version>3.1.0</version>
-	<name>HWC-Inventory-UI</name>
+	<name>AAM-Inventory-UI</name>
 	<description>Piramal - inventory: Module ui</description>
 	<packaging>war</packaging>
 	<profiles>
@@ -57,7 +57,7 @@
 	<!-- we could create individual properties similar to variables -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<final-name>hwc-inventory-ui</final-name>
+		<final-name>aam-inventory-ui</final-name>
 		<hostname-dev>10.208.122.32</hostname-dev>
 		<port-dev>9990</port-dev>
 		<hostname-local>localhost</hostname-local>
