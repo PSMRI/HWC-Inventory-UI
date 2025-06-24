@@ -73,19 +73,18 @@
           {{ currentLanguageSet?.common?.submit }}
         </button>
       </div>
-
-      <div class="col-6 m-t-20">
-        <button
-          mat-mini-fab
-          class="example-fab"
-          color="primary"
-          (click)="sideNavModeChange(sidenav)"
-        >
-          <mat-icon>account_box</mat-icon>
-        </button>
-      </div>
     </div>
   </mat-sidenav-container>
+  <div class="col-6 m-t-20">
+    <button
+      mat-mini-fab
+      class="example-fab"
+      color="primary"
+      (click)="sideNavModeChange(sidenav)"
+    >
+      <mat-icon>account_box</mat-icon>
+    </button>
+  </div>
 </div>
 
 <app-footer></app-footer>
