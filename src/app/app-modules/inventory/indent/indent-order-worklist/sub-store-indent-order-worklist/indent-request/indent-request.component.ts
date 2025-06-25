@@ -111,7 +111,7 @@ export class IndentRequestComponent implements OnInit, DoCheck {
       indentID: this.dataStorageService.indentDetails.indentID,
       fromFacilityID: this.dataStorageService.indentDetails.fromFacilityID,
     };
-    if (this.viewItemReqObj !== undefined || this.viewItemReqObj !== null) {
+    if (this.viewItemReqObj !== undefined && this.viewItemReqObj !== null) {
       this.editMode = true;
       this.getItemList(this.viewItemReqObj);
     } else {
