@@ -38,8 +38,8 @@ export class ResetPasswordComponent {
     private router: Router,
     private authService: AuthenticationService,
     private confirmationService: ConfirmationService,
-    readonly sessionstorage:SessionStorageService,
-  ) {}
+    readonly sessionstorage: SessionStorageService,
+  ) { }
 
   public response: any;
   public error: any;
@@ -84,13 +84,12 @@ export class ResetPasswordComponent {
       } else {
         this.router.navigate(['/']);
         this.confirmationService.alert(
-          'Questions are not set for this User',
+          'Questions are not set',
           'error',
         );
       }
     } else {
       this.router.navigate(['/']);
-      this.confirmationService.alert('User Not Found', 'info');
     }
   }
 
