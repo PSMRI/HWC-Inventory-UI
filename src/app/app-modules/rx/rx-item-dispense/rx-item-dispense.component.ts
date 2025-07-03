@@ -35,6 +35,7 @@ import { ConfirmationService } from './../../core/services/confirmation.service'
 import { LanguageService } from '../../core/services/language.service';
 import { SetLanguageComponent } from '../../core/components/set-language.component';
 import { MatTableDataSource } from '@angular/material/table';
+import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 @Component({
   selector: 'app-rx-item-dispense',
   templateUrl: './rx-item-dispense.component.html',
@@ -71,11 +72,12 @@ export class RxItemDispenseComponent implements OnInit, OnChanges, DoCheck {
     private prescribedDrugService: PrescribedDrugService,
     private confirmationService: ConfirmationService,
     private http_service: LanguageService,
+    public sessionstorage: SessionStorageService, 
   ) {}
 
   ngOnInit() {
     this.fetchLanguageResponse();
-    this.facilityID = localStorage.getItem('facilityID');
+    this.facilityID = this.sessionstorage.getItem('facilityID');
     this.copyprescription = JSON.parse(JSON.stringify(this.prescription));
     this.loadForm(this.prescription);
   }
@@ -92,8 +94,8 @@ export class RxItemDispenseComponent implements OnInit, OnChanges, DoCheck {
     this.filteredDrugMaster = [];
     drugMasterCopy.itemList.forEach((element: any) => {
       if (
-        element.isEDL != null &&
-        element.isEDL != undefined &&
+        element.isEDL !== null &&
+        element.isEDL !== undefined &&
         (element.isEDL === true || element.batchList.length > 0)
       ) {
         this.filteredDrugMaster.push(element);
@@ -124,7 +126,7 @@ export class RxItemDispenseComponent implements OnInit, OnChanges, DoCheck {
   }
 
   getBatchList() {
-    const formItemValues = this.prescriptionForm.controls['itemList'].value;
+    const formItemValues = this.prescriptionForm.controls['itemList'].getRawValue();
     const meds: any = [];
     formItemValues.map((obj: any) =>
       meds.push({ itemID: obj.drugID, quantity: obj.qtyPrescribed }),
@@ -150,7 +152,7 @@ export class RxItemDispenseComponent implements OnInit, OnChanges, DoCheck {
 
   applyBatches(itemID: any, batches: any) {
     console.log(itemID, batches, 'checko');
-    const formItemValues = this.prescriptionForm.controls['itemList'].value;
+    const formItemValues = this.prescriptionForm.controls['itemList'].getRawValue();
     const itemIndex = formItemValues
       .map(function (e: any) {
         return e.drugID;
@@ -187,7 +189,7 @@ export class RxItemDispenseComponent implements OnInit, OnChanges, DoCheck {
 
   changeIssueType() {
     const formItems = <FormArray>this.prescriptionForm.controls['itemList'];
-    formItems.value.forEach((element: any, i: any) => {
+    formItems.getRawValue().forEach((element: any, i: any) => {
       const currentGroup: FormGroup = <FormGroup>formItems.at(i);
       const selectionBatchList: FormArray = <FormArray>(
         currentGroup.controls['selectionBatchList']
@@ -227,12 +229,12 @@ export class RxItemDispenseComponent implements OnInit, OnChanges, DoCheck {
     const currentGroup: FormGroup = <FormGroup>formItems.at(index);
 
     const selectionBatchListValue: FormArray = <FormArray>(
-      currentGroup.controls['selectionBatchList'].value
+      currentGroup.controls['selectionBatchList'].getRawValue()
     );
     if (selectionBatchListValue.length) {
       this.batchViewService
         .batches(
-          currentGroup.value.qtyPrescribed,
+          currentGroup.getRawValue().qtyPrescribed,
           selectionBatchListValue,
           this.issueType,
         )

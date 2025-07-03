@@ -1,4 +1,4 @@
-# HWCInventoryUINEXT
+# AAM InventoryUI
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.10.
 
@@ -25,3 +25,12 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Filing Issues
+
+If you encounter any issues, bugs, or have feature requests, please file them in the [main AMRIT repository](https://github.com/PSMRI/AMRIT/issues). Centralizing all feedback helps us streamline improvements and address concerns efficiently.  
+
+## Join Our Community
+
+We’d love to have you join our community discussions and get real-time support!  
+Join our [Discord server](https://discord.gg/FVQWsf5ENS) to connect with contributors, ask questions, and stay updated.  

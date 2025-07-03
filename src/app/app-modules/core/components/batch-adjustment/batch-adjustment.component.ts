@@ -49,7 +49,7 @@ export class BatchAdjustmentComponent implements OnInit, DoCheck {
   constructor(
     @Inject(MAT_DIALOG_DATA) public input: any,
     private confirmationService: ConfirmationService,
-    public dialogRef: MatDialogRef<BatchAdjustmentComponent>,
+    public dialogRef: MatDialogRef<any>,
     public http_service: LanguageService,
     private batchSearchService: BatchSearchService,
   ) {}
