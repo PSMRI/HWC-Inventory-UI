@@ -12,11 +12,11 @@ const FHIRIP = "http://localhost";
 // const INVENTORY_API = `http://${IP}:8080/apiman-gateway/IEMR/Inventory/1.0/`;
 // const MMU_API = `http://${IP}:8080/apiman-gateway/IEMR/MMU/1.0/`;
 
-const COMMON_API_OPEN = `${commonIP}common-api/`;
-const COMMON_API = `${commonIP}common-api/`;
-const INVENTORY_API = `${inventoryIP}inventory-api/`;
-const MMU_API = `${mmuIP}mmu-api/`;
-const FHIR_API = `${FHIRIP}fhir-api/`;
+const COMMON_API_OPEN = `${commonIP}:8083/`;
+const COMMON_API = `${commonIP}:8083/`;
+const INVENTORY_API = `${inventoryIP}:8086/`;
+const MMU_API = `${mmuIP}:8087/`;
+const FHIR_API = `${FHIRIP}:8093/`;
 
 // const FHIR_API = `http://localhost:8080/fhirapi-v1.0/`;
 const sessionStorageEncKey = '';
