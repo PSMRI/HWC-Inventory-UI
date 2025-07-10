@@ -38,13 +38,18 @@ export class AuthService {
   getAPIVersionAndCommitDetails() {
     return this.http.get(environment.apiVersionUrl);
   }
-  login(userName: string, password: string, doLogout: any) {
-    return this.http.post(environment.loginUrl, {
+  login(userName: string, password: string, doLogout: any, captchaToken?:string) {
+    const requestBody: any = {
       userName: userName,
       password: password,
       doLogout: doLogout,
       withCredentials: true,
-    });
+    };
+
+    if (captchaToken) {
+      requestBody.captchaToken = captchaToken;
+    }
+    return this.http.post(environment.loginUrl, requestBody);
   }
 
   getUserDetails() {

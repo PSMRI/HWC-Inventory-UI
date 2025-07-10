@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './authentication.service';
 import { ConfirmationService } from '../app-modules/core/services/confirmation.service';
 // import * as CryptoJS from 'crypto-js';
 import * as CryptoJS from 'crypto-js';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { CaptchaComponent } from '../captcha/captcha.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login-cmp',
@@ -12,7 +14,7 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  @ViewChild('captchaCmp') captchaCmp: CaptchaComponent | undefined;
   userName: any;
   password: any;
   designation: any;
@@ -25,7 +27,8 @@ export class LoginComponent implements OnInit {
   _keySize: any;
   _ivSize: any;
   _iterationCount: any;
-
+  captchaToken!: string;
+  enableCaptcha = environment.enableCaptcha;
 
   constructor(
     private authService: AuthenticationService,
@@ -100,7 +103,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     const encryptPassword = this.encrypt(this.Key_IV, this.password)
-    this.authService.login(this.userName.trim(), encryptPassword, false)
+    this.authService.login(this.userName.trim(), encryptPassword, false, this.enableCaptcha ? this.captchaToken : undefined)
       .subscribe(res => {
         if (res.statusCode == '200') {
           if (res.data.previlegeObj && res.data.previlegeObj[0]) {
@@ -116,26 +119,30 @@ export class LoginComponent implements OnInit {
             if(confirmResponse) {
               this.authService.userlogoutPreviousSession(this.userName).subscribe((userlogoutPreviousSession) => {
                 if (userlogoutPreviousSession.statusCode == '200') {
-              this.authService.login(this.userName, encryptPassword, true).subscribe((userLoggedIn) => {
+              this.authService.login(this.userName, encryptPassword, true,this.enableCaptcha ? this.captchaToken : undefined).subscribe((userLoggedIn) => {
                 if (userLoggedIn.statusCode == '200') {
                 if (userLoggedIn.data.previlegeObj != null && userLoggedIn.data.previlegeObj != undefined && userLoggedIn.data.previlegeObj[0]) {
                  
                   this.checkRoleMapped(userLoggedIn.data);
                 } else {
+                  this.resetCaptcha();
                   this.confirmationService.alert('Seems you are logged in from somewhere else, Logout from there & try back in.', 'error'); 
                 }  
               }
               else {
+                this.resetCaptcha();
                 this.confirmationService.alert(userLoggedIn.errorMessage, 'error');
               }  
               })
             }
               else {
+                this.resetCaptcha();
                 this.confirmationService.alert(userlogoutPreviousSession.errorMessage, 'error');
               }
           });
         }
           else {
+            this.resetCaptcha();
             sessionStorage.clear();
             this.router.navigate(["/login"]);
             // this.confirmationService.alert(res.errorMessage, 'error');
@@ -143,10 +150,12 @@ export class LoginComponent implements OnInit {
         });
         }
         else {  
+          this.resetCaptcha();
           this.confirmationService.alert(res.errorMessage, 'error');
         }
       }
       }, err => {
+        this.resetCaptcha();
         this.confirmationService.alert(err, 'error');
       });
   }
@@ -240,5 +249,17 @@ export class LoginComponent implements OnInit {
   hidePWD() {
     this.dynamictype = 'password';
   }
+
+  onCaptchaResolved(token: any) {
+    this.captchaToken = token;
+  }
+
+  resetCaptcha() {
+    if (this.enableCaptcha && this.captchaCmp && typeof this.captchaCmp.reset === 'function') {
+      this.captchaCmp.reset();
+      this.captchaToken = '';
+    }
+  }
+
 
 }

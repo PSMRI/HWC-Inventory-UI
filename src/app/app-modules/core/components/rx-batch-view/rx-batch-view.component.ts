@@ -63,7 +63,7 @@ export class RxBatchViewComponent implements OnInit, DoCheck {
     const formArray = this.initBatchListArray(items, this.editSelection);
     console.log('this.editSelection', this.editSelection);
     this.itemsForm?.addControl('formArray', formArray);
-    this.setDispensed(formArray.value);
+    this.setDispensed(formArray.getRawValue());
   }
   setDispensed(formArray: any, index = -1) {
     this.checkQuant(formArray, index);
@@ -111,16 +111,16 @@ export class RxBatchViewComponent implements OnInit, DoCheck {
   save() {
     const formItems = <FormArray>this.itemsForm.controls['formArray'];
     if (!formItems.invalid) {
-      console.log('formItems1', formItems.value);
-      formItems.value.forEach((item: any) => {
+      console.log('formItems1', formItems.getRawValue());
+      formItems.getRawValue().forEach((item: any) => {
         const newExpDate: any = new Date(item.expiryDate);
         console.log('newExpDate', newExpDate);
         item.expiryDate = newExpDate;
       });
-      console.log('formItems2', formItems.value);
+      console.log('formItems2', formItems.getRawValue());
       this.dialogRef.close({
-        selectionBatchList: formItems.value,
-        batchList: formItems.value.filter(
+        selectionBatchList: formItems.getRawValue(),
+        batchList: formItems.getRawValue().filter(
           (item: any) => item.selection === true,
         ),
         dispensed: this.dispensed > 0 ? this.dispensed : null,
@@ -153,7 +153,7 @@ export class RxBatchViewComponent implements OnInit, DoCheck {
       currentGroup.patchValue({
         quantity: null,
       });
-      this.setDispensed(formItems.value, index);
+      this.setDispensed(formItems.getRawValue(), index);
     }
   }
 
@@ -165,10 +165,10 @@ export class RxBatchViewComponent implements OnInit, DoCheck {
       'MM/dd/yyyy',
     );
     return this.fb.group({
-      expiryDate: formatedExpDate,
-      batchNo: batch.batchNo,
-      quantity: batch.quantity,
-      quantityInHand: batch.qty || batch.quantityInHand,
+      expiryDate: [{ value: formatedExpDate, disabled: true }],
+      batchNo: [{ value: batch.batchNo, disabled: true }],
+      quantity: [{ value: batch.quantity, disabled: selection === 1 ? true : false }],
+      quantityInHand: [{ value: batch.qty || batch.quantityInHand, disabled: true }],
       expiresIn: batch.expiresIn,
       itemStockEntryID: batch.itemStockEntryID,
       selection: batch.selection || selection === 1 ? true : false,

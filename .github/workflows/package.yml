@@ -40,10 +40,10 @@ jobs:
             npm run build-ci
         
     - name: Create WAR file 
-      run: jar -cvf hwc-inventory-ui.war -C dist .
+      run: jar -cvf aam-inventory-ui.war -C dist .
       
     - name: Upload WAR file as artifact
       uses: actions/upload-artifact@v4 
       with:
-        name: HWC-Inventory-UI
-        path: dist/hwc-inventory-ui/hwc-inventory-ui.war
+        name: AAM-Inventory-UI
+        path: dist/aam-inventory-ui/aam-inventory-ui.war

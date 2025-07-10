@@ -43,7 +43,10 @@ const defaultEnvValues = {
   INVENTORY_API_BASE: '',
   MMU_API_BASE: '',
   FHIR_API_BASE: '',
-  SESSION_STORAGE_ENC_KEY: ''
+  SESSION_STORAGE_ENC_KEY: '',
+  SITE_KEY:'',
+  CAPTCHA_CHALLENGE_URL:'',
+  ENABLE_CAPTCHA: false,
 };
 
 // Generate output data
