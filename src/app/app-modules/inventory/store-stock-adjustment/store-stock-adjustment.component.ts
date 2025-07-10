@@ -378,8 +378,8 @@ export class StoreStockAdjustmentComponent
       if (qoh >= 0 && adjustedQuantity >= 0)
         stockForm.patchValue({ qohAfterAdjustment: qoh + adjustedQuantity });
     } else if (adjustmentType === 'Issue') {
-      if (qoh > 0 && adjustedQuantity >= 0 && adjustedQuantity <= qoh)
-      if(adjustedQuantity > qoh) {
+      
+      if(qoh > 0 && adjustedQuantity >= 0 && adjustedQuantity > qoh) {
         this.confirmationService.alert(
           this.currentLanguageSet?.alerts?.adjustedQuantityExceeds,
           'error',
