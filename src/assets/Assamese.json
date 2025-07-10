@@ -35,7 +35,8 @@
             "confirmtoProceedFurther": "অনুগ্ৰহ কৰি আগবাঢি়বলৈ নিশ্চিত কৰক",
             "medicinenotavailable": "চিকিৎসা বিজ্ঞান নির্দেশ কৰা হোৱা নাই",
             "langNotDefinesd": "ভাষআটি নির্দিষ্টকৈ নির্দেশ কৰা হোৱা নাই",
-            "comingUpWithThisLang": "আমি এই ভাষাটোৰে সৈতে লৈ আহিছো"
+            "comingUpWithThisLang": "আমি এই ভাষাটোৰে সৈতে লৈ আহিছো",
+            "adjustedQuantityExceeds": "সমন্বয় কৰা পৰিমাণ ষ্টক পৰিমাণতকৈ অধিক হ'ব নোৱাৰে"
         },
         "bendetails": {
             "edit": "এডিট (সম্পাদনা কৰক)",
@@ -367,28 +368,29 @@
             "dailyStockReportDetails": "দৈনিক ষ্টক বিৱৰণ প্ৰতিবেদন",
             "dailyStockReportSummary": "দৈনিক ষ্টক সাৰাংশ প্ৰতিবেদন",
             "store": "সংৰক্ষণ কৰক",
-            "storeSelection": "Store Selection",
-            "itemNameCode": "Item Name / Code",
-            "provideDraftDesc": "Provide Draft Description",
-            "drugItem": "Drug Item",
-            "itemBatch": "Item Batch",
+            "storeSelection": "দোকান নিৰ্বাচন",
+            "itemNameCode": "আইটেমৰ নাম / কোড",
+            "provideDraftDesc": "খচৰা বিৱৰণ প্ৰদান কৰক",
+            "drugItem": "ঔষধ বস্তু",
+            "itemBatch": "আইটেম বেচ",
             "removeRedEye": "remove_red_eye",
-            "dispensedQuantity": "Dispensed Quantity",
+            "dispensedQuantity": "বিতৰণ কৰা পৰিমাণ",
             "entryID": "এণ্ট্ৰি আইডি",
-            "stockAdjustmentDraftID": "Stock Adjustment Draft ID",
-            "selectmonth": "Select month",
-            "selectyear": "Select year",
+            "stockAdjustmentDraftID": "ষ্টক এডজাষ্টমেণ্ট খচৰা আইডি",
+            "selectmonth": "মাহ নিৰ্বাচন কৰক",
+            "selectyear": "বছৰ নিৰ্বাচন কৰক",
             "batchID": "বেচ আইডি",
-            "errorinFetchingData": "Error in Fetching Data, try again later",
-            "issueID": "Issue ID",
+            "errorinFetchingData": "তথ্য প্ৰাপ্ত কৰাত ত্ৰুটি, পিছত পুনৰ চেষ্টা কৰক",
+            "issueID": "সমস্যা আইডি",
             "stockAdjustment": "ষ্টক এডজাষ্টমেণ্ট",
-            "toDateCannotBeBeforeFromDate":"To Date cannot be before From Date",
-            "inwardDate": "Inward Date",
-            "failedStockEntryMessage": "Please click here to see the failed stock list",
-            "listOfFailedStock": "List Of Failed stock",
-            "drugName": "Drug Name",
-            "failedStock": "Failed Stock"
+            "toDateCannotBeBeforeFromDate":"আজিৰ তাৰিখ আৰম্ভণিৰ তাৰিখতকৈ আগত হ'ব নোৱাৰে",
+            "inwardDate": "আভ্যন্তৰীণ তাৰিখ",
+            "failedStockEntryMessage": "ব্যৰ্থ ষ্টক তালিকা চাবলৈ অনুগ্ৰহ কৰি ইয়াত ক্লিক কৰক",
+            "listOfFailedStock": "ব্যৰ্থ ষ্টকৰ তালিকা",
+            "drugName": "ঔষধৰ নাম",
+            "failedStock": "ব্যৰ্থ ষ্টক"
+
         },
-        "healthId":"Health ID"
+        "healthId":"হেল্থ আইডি"
     }
 }
