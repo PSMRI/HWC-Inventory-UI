@@ -1,31 +1,29 @@
 <app-header [showRoles]="true"></app-header>
 
-<div class="container-fluid">
-  <mat-sidenav-container class="example-sidenav-fab-container">
-    <mat-sidenav #sidenav mode="side" opened="true">
-      <div class="example-scrolling-content sidenav">
-        <app-beneficiary-details></app-beneficiary-details>
-      </div>
-    </mat-sidenav>
-    <div class="example-scrolling-content content">
-      <!-- <div class="container-fluid"> -->
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" opened class="sidenav">
+    <app-beneficiary-details></app-beneficiary-details>
+  </mat-sidenav>
+
+  <mat-sidenav-content
+    class="content"
+    [ngClass]="{ 'full-width': !sidenav.opened }"
+  >
+    <div class="main-content">
       <div class="row">
         <div class="col-6">
-          <mat-radio-group
-            [(ngModel)]="issueType"
-            class="radio-group pull-left"
-          >
+          <mat-radio-group [(ngModel)]="issueType" class="radio-group">
             <mat-radio-button
-              class="radio-button m-a-5"
-              disableRipple="true"
+              class="radio-button"
+              disableRipple
               color="primary"
               [value]="1"
             >
               {{ currentLanguageSet?.itemDispense?.systemIssue }}
             </mat-radio-button>
             <mat-radio-button
-              class="radio-button m-a-5"
-              disableRipple="true"
+              class="radio-button"
+              disableRipple
               color="primary"
               [value]="0"
             >
@@ -57,13 +55,8 @@
           ></app-rx-item-dispense>
         </mat-accordion>
       </div>
-      <!-- </div> -->
 
-
-      <div
-        class="col-12 m-t-20 step-btn"
-        style="text-align: end; margin-bottom: 30px"
-      >
+      <div class="step-btn">
         <button
           mat-raised-button
           id="submitButton"
@@ -76,7 +69,7 @@
         </button>
       </div>
 
-      <div class="col-6 m-t-20">
+      <div>
         <button
           mat-mini-fab
           class="example-fab"
@@ -87,17 +80,16 @@
         </button>
       </div>
     </div>
-  </mat-sidenav-container>
-  <div class="col-6 m-t-20">
-    <button
-      mat-mini-fab
-      class="example-fab"
-      color="primary"
-      (click)="sideNavModeChange(sidenav)"
-    >
-      <mat-icon>account_box</mat-icon>
-    </button>
-  </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<div class="col-6 m-t-20">
+  <button
+    mat-mini-fab
+    class="example-fab"
+    color="primary"
+    (click)="sideNavModeChange(sidenav)"
+  >
+    <mat-icon>account_box</mat-icon>
+  </button>
 </div>
-
 <app-footer></app-footer>
