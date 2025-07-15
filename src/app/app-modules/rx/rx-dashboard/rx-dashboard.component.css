@@ -1,89 +1,62 @@
-.mat-stepper-horizontal {
-  padding: 0px;
-  background: #f2f2f0 !important;
-}
-
-.stepper {
-  margin-bottom: 100px;
-}
-.mat-horizontal-stepper-header-container {
-  background: #f2f2f0 !important;
-}
- 
-.step-btn button {
-  float: right;
-  margin-left: 5px;
-  margin-top: 15px;
-}
- 
-md-card {
-  min-height: 425px;
-}
- 
- 
-.example-sidenav-fab-container {
+.sidenav-container {
   width: 100%;
-  overflow: auto;
-}
-
-.example-sidenav-fab-container md-sidenav {
-  max-width: 250px;
-}
-
-.sideNav {
-  max-width: 250px;
+  height: 100vh;
   display: flex;
 }
- 
 
-.example-scrolling-content {
-  flex: auto;
-  /* overflow: auto; */
+mat-sidenav.sidenav {
+  width: 15%;
+  max-width: 25%;
   background: #f2f2f0 !important;
-  min-height: 500px;
+  padding: 2%;
 }
- 
-.sidenav {
-  padding: 20px;
-}
- 
-.content {
+
+mat-sidenav-content.content {
+  width: 85%;
+  max-width: 100%;
   background: #f2f2f0 !important;
-  padding: 20px 0px;
+  padding: 2% 3%;
+  box-sizing: border-box;
+  transition: width 0.3s ease;
 }
- 
-.example-fab{
+
+mat-sidenav-content.full-width {
+  width: 100% !important;
+}
+
+.main-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2%;
+}
+
+.step-btn {
+  text-align: right;
+  margin-top: 2%;
+  margin-bottom: 3%;
+}
+
+.example-fab {
   position: fixed;
-  left: 20px;
-  bottom: 50px;
+  left: 2%;
+  bottom: 5%;
   z-index: 1000;
+}
+
+.radio-group {
   display: flex;
+  gap: 2%;
 }
- 
-.centered {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+.radio-button {
+  margin-right: 2%;
 }
- 
-@media only screen and (max-width: 700px) {
- 
- 
-  .example-sidenav-fab-container{
-    height: stretch;
-  }
- 
-  .sideNav {
-    max-width: unset;
-    width: 50%;
-  }
- 
-  .example-sidenav-fab-container .content {
-    height: stretch;
-  }
-}
- 
-.actionButton {
+
+.pull-right {
   float: right;
 }
- 
+
+md-card {
+  min-height: 50vh;
+}
