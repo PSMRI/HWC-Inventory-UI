@@ -10,7 +10,7 @@
       <form [formGroup]="inwardStockForm" class="row">
         <div class="col-3">
           <mat-form-field
-            class="input-full-width  mat_form_field_background_width"
+            class="input-full-width mat_form_field_background_width"
           >
             <mat-label>
               {{ currentLanguageSet?.inventory?.startDate }}
@@ -24,6 +24,7 @@
               (change)="checkEndDate()"
               [max]="maxEndDate"
               [disabled]="true"
+              (focus)="trackFieldInteraction('Start Date')"
             />
             <mat-datepicker-toggle
               matSuffix
@@ -34,7 +35,7 @@
         </div>
         <div class="col-3">
           <mat-form-field
-            class="input-full-width  mat_form_field_background_width"
+            class="input-full-width mat_form_field_background_width"
           >
             <mat-label>
               {{ currentLanguageSet?.inventory?.endDate }}
@@ -48,6 +49,7 @@
               [min]="minEndDate"
               [max]="maxEndDate"
               [disabled]="true"
+              (focus)="trackFieldInteraction('End Date')"
             />
             <mat-datepicker-toggle
               matSuffix
@@ -58,19 +60,23 @@
         </div>
         <div class="col-3">
           <mat-form-field
-            class="input-full-width  mat_form_field_background_width"
+            class="input-full-width mat_form_field_background_width"
           >
             <mat-label>
               {{ currentLanguageSet?.inventory?.facility }}
             </mat-label>
-            <mat-select [style.width]="'100%'" formControlName="facilityName">
+            <mat-select
+              [style.width]="'100%'"
+              formControlName="facilityName"
+              (selectionChange)="trackFieldInteraction('Facility')"
+            >
               <mat-option *ngFor="let item of facilities" [value]="item">{{
                 item
               }}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="col-3" style="text-align:start;margin-top: 20px;">
+        <div class="col-3" style="text-align: start; margin-top: 20px">
           <button
             mat-raised-button
             color="accent"
@@ -78,12 +84,12 @@
             type="submit"
             [disabled]="!inwardStockForm.valid"
             (click)="downloadReport(true)"
+            (click)="trackFieldInteraction('Download Button')"
           >
             {{ currentLanguageSet?.inventory?.download }}
           </button>
         </div>
       </form>
     </div>
-    
   </div>
 </div>

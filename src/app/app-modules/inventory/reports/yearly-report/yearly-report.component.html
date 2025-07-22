@@ -9,9 +9,7 @@
     <div class="col-12">
       <form [formGroup]="yearlyForm" class="row">
         <div class="col-3">
-          <mat-form-field
-            class="mat_form_field_background_width "
-          >
+          <mat-form-field class="mat_form_field_background_width ">
             <mat-label>
               {{ currentLanguageSet?.inventory?.selectyear }}
             </mat-label>
@@ -21,6 +19,7 @@
               id="year"
               formControlName="year"
               required
+              (selectionChange)="trackFieldInteraction('Select year')"
             >
               <mat-option *ngFor="let year of years" [value]="year">{{
                 year
@@ -29,9 +28,7 @@
           </mat-form-field>
         </div>
         <div class="col-3">
-          <mat-form-field
-            class="mat_form_field_background_width "
-          >
+          <mat-form-field class="mat_form_field_background_width ">
             <mat-label>
               {{ currentLanguageSet?.inventory?.facility }}
             </mat-label>
@@ -39,6 +36,7 @@
               [style.width]="'100%'"
               class="input-full-width"
               formControlName="facilityName"
+              (selectionChange)="trackFieldInteraction('Facility')"
             >
               <mat-option *ngFor="let item of facilities" [value]="item">{{
                 item
@@ -54,6 +52,7 @@
             type="submit"
             [disabled]="!yearlyForm.valid"
             (click)="downloadReport(true)"
+            (click)="trackFieldInteraction('Download Button')"
           >
             {{ currentLanguageSet?.inventory?.download }}
           </button>

@@ -10,6 +10,7 @@
         type="button"
         color="primary"
         (click)="routeToRaiseRequest()"
+        (click)="trackFieldInteraction('Raise Request Button')"
       >
         {{ currentLanguageSet?.inventory?.raiseRequest }}
       </button>

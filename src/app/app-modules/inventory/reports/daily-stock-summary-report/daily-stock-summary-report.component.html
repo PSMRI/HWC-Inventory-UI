@@ -23,6 +23,7 @@
             (dateChange)="checkEndDate($event)"
             [max]="maxEndDate"
             [disabled]="true"
+            (focus)="trackFieldInteraction('Start Date')"
           />
           <mat-datepicker-toggle
             matSuffix
@@ -48,6 +49,7 @@
             (dateChange)="checkStartDate($event)"
             [min]="minEndDate"
             [max]="maxEndDate"
+            (focus)="trackFieldInteraction('End Date')"
           />
           <mat-datepicker-toggle
             matSuffix
@@ -57,20 +59,22 @@
         </mat-form-field>
       </div>
       <div class="col-3">
-        <mat-form-field
-          class="mat_form_field_background_width"
-        >
+        <mat-form-field class="mat_form_field_background_width">
           <mat-label>
             {{ currentLanguageSet?.inventory?.facility }}
           </mat-label>
-          <mat-select [style.width]="'100%'" formControlName="facilityName">
+          <mat-select
+            [style.width]="'100%'"
+            formControlName="facilityName"
+            (selectionChange)="trackFieldInteraction('Facility')"
+          >
             <mat-option *ngFor="let item of facilities" [value]="item">{{
               item
             }}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
-      <div class="col-3" style="text-align:start;margin-top: 20px;">
+      <div class="col-3" style="text-align: start; margin-top: 20px">
         <button
           mat-raised-button
           color="accent"
@@ -78,11 +82,11 @@
           class="mat_green"
           [disabled]="!dailyStockSummaryForm.valid"
           (click)="downloadReport(true)"
+          (click)="trackFieldInteraction('Download Button')"
         >
           {{ currentLanguageSet?.inventory?.download }}
         </button>
       </div>
     </form>
-    
   </div>
 </div>

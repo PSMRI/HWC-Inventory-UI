@@ -23,6 +23,7 @@
             (change)="checkEndDate()"
             [max]="maxEndDate"
             [disabled]="true"
+            (focus)="trackFieldInteraction('Start Date')"
           />
           <mat-datepicker-toggle
             matSuffix
@@ -47,6 +48,7 @@
             [min]="minEndDate"
             [max]="maxEndDate"
             [disabled]="true"
+            (focus)="trackFieldInteraction('End Date')"
           />
           <mat-datepicker-toggle
             matSuffix
@@ -63,6 +65,7 @@
           type="submit"
           [disabled]="!transitForm.valid"
           (click)="downloadReport(true)"
+          (click)="trackFieldInteraction('Download Button')"
         >
           {{ currentLanguageSet?.inventory?.download }}
         </button>

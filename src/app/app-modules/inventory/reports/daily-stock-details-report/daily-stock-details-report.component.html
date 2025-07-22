@@ -24,6 +24,7 @@
               formControlName="startDate"
               [max]="maxEndDate"
               [disabled]="true"
+              (focus)="trackFieldInteraction('Start Date')"
             />
             <mat-datepicker-toggle
               matPrefix
@@ -49,6 +50,7 @@
               (dateChange)="checkStartDate($event)"
               [max]="maxEndDate"
               [disabled]="true"
+              (focus)="trackFieldInteraction('End Date')"
             />
             <mat-datepicker-toggle
               matPrefix
@@ -68,6 +70,7 @@
               [style.width]="'100%'"
               class="input-full-width"
               formControlName="facilityName"
+              (selectionChange)="trackFieldInteraction('Facility')"
             >
               <mat-option *ngFor="let item of facilities" [value]="item">{{
                 item
@@ -75,21 +78,20 @@
             </mat-select>
           </mat-form-field>
         </div>
-        
-    <div class="col-3" style="text-align:start;margin-top: 20px;">
-      <button
-        mat-raised-button
-        color="accent"
-        class="mat_green"
-        type="submit"
-        [disabled]="!dailyStockDetailsForm.valid"
-        (click)="downloadReport(true)"
-      >
-        {{ currentLanguageSet?.inventory?.download }}
-      </button>
-    </div>
+        <div class="col-3" style="text-align: start; margin-top: 20px">
+          <button
+            mat-raised-button
+            color="accent"
+            class="mat_green"
+            type="submit"
+            [disabled]="!dailyStockDetailsForm.valid"
+            (click)="downloadReport(true)"
+            (click)="trackFieldInteraction('Download Button')"
+          >
+            {{ currentLanguageSet?.inventory?.download }}
+          </button>
+        </div>
       </form>
     </div>
-
   </div>
 </div>

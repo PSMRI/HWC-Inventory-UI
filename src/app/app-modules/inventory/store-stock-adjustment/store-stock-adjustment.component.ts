@@ -36,6 +36,7 @@ import { InventoryService } from '../shared/service/inventory.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { AmritTrackingService } from 'Common-UI/src/tracking';
 
 @Component({
   selector: 'app-store-stock-adjustment',
@@ -77,6 +78,7 @@ export class StoreStockAdjustmentComponent
     private confirmationService: ConfirmationService,
     private inventoryService: InventoryService,
     readonly sessionstorage:SessionStorageService,
+    private trackingService: AmritTrackingService
   ) {
     this.subs = this.inventoryService
       .getDialogClosedObservable()
@@ -459,5 +461,9 @@ export class StoreStockAdjustmentComponent
         this.confirmationService.alert(err, 'error');
       },
     );
+  }
+
+  trackFieldInteraction(fieldName: string) {
+    this.trackingService.trackFieldInteraction(fieldName, 'Store Stock Adjustment');
   }
 }
