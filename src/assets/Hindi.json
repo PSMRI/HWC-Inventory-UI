@@ -32,10 +32,11 @@
             "route": "मार्ग"
         },
         "alerts": {
-            "confirmtoProceedFurther": "आगे बढ़ने के लिए की पुष्टि करें",
-            "medicinenotavailable": "औषधि उपलब्ध नहीं है",
-            "langNotDefinesd": "Language not defined",
-            "comingUpWithThisLang": "We are coming up with this language"
+            "confirmtoProceedFurther": "आगे बढ़ने के लिए पुष्टि करें",
+            "medicinenotavailable": "दवा उपलब्ध नहीं है",
+            "langNotDefinesd": "भाषा परिभाषित नहीं है",
+            "comingUpWithThisLang": "हम इस भाषा के साथ आ रहे हैं",
+            "adjustedQuantityExceeds": "समायोजित मात्रा स्टॉक मात्रा से अधिक नहीं होनी चाहिए"
         },
         "bendetails": {
             "edit": "एडिट करें",
@@ -363,30 +364,30 @@
             "dailyStockReportDetails": "दैनिक भंडार विवरण रिपोर्ट",
             "dailyStockReportSummary": "दैनिक भंडार सारांश रिपोर्ट",
             "store": "संग्रह",
-            "storeSelection": "Store Selection",
-            "itemNameCode": "Item Name / Code",
-            "provideDraftDesc": "Provide Draft Description",
-            "drugItem": "Drug Item",
-            "itemBatch": "Item Batch",
-            "stockAdjustmentDraftID": "Stock Adjustment Draft ID",
-            "selectmonth": "Select month",
-            "selectyear": "Select year",
+            "storeSelection": "स्टोर चयन",
+            "itemNameCode": "आइटम नाम / कोड",
+            "provideDraftDesc": "ड्राफ्ट विवरण प्रदान करें",
+            "drugItem": "दवा आइटम",
+            "itemBatch": "आइटम बैच",
+            "stockAdjustmentDraftID": "भंडार समायोजन ड्राफ्ट आईडी",
+            "selectmonth": "महीना चुनें",
+            "selectyear": "वर्ष चुनें",
             "batchID": "बैच आईडी",
             "entryID":"एंट्री आईडी",
-            "errorinFetchingData": "Error in Fetching Data, try again later",
-            "removeRedEye": "remove_red_eye",
-            "dispensedQuantity": "Dispensed Quantity",
-            "indentDate": "Indent Date",
+            "errorinFetchingData": "डेटा प्राप्त करने में त्रुटि, बाद में पुन: प्रयास करें",
+            "removeRedEye": "आंख हटाएं",
+            "dispensedQuantity": "वितरित मात्रा",
+            "indentDate": "इंडेंट तिथि",
             "quantityRequired":"आवश्यक मात्रा",
-            "issueID": "Issue ID",
+            "issueID": "मुद्दा आईडी",
             "stockAdjustment": "भंडार समायोजन",
-            "toDateCannotBeBeforeFromDate":"To Date cannot be before From Date",
-            "inwardDate": "Inward Date",
-            "failedStockEntryMessage": "Please click here to see the failed stock list",
-            "listOfFailedStock": "List Of Failed stock",
-            "drugName": "Drug Name",
-            "failedStock": "Failed Stock"
+            "toDateCannotBeBeforeFromDate":"समाप्ति तिथि प्रारंभ तिथि से पहले नहीं हो सकती",
+            "inwardDate": "आवक तिथि",
+            "failedStockEntryMessage": "कृपया विफल स्टॉक सूची देखने के लिए यहां क्लिक करें",
+            "listOfFailedStock": "विफल स्टॉक की सूची",
+            "drugName": "दवा का नाम",
+            "failedStock": "विफल स्टॉक"
         },
-        "healthId":"Health ID"
+        "healthId": "हेल्थ आईडी"
     }
 }

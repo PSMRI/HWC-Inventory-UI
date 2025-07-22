@@ -374,14 +374,23 @@ export class StoreStockAdjustmentComponent
     const adjustedQuantity = parseInt(stockForm.value.adjustedQuantity) || 0;
     const adjustmentType = stockForm.value.adjustmentType;
 
+
+
     if (adjustmentType === 'Receipt') {
       if (qoh >= 0 && adjustedQuantity >= 0)
         stockForm.patchValue({ qohAfterAdjustment: qoh + adjustedQuantity });
     } else if (adjustmentType === 'Issue') {
-      console.log('loose');
-      if (qoh > 0 && adjustedQuantity >= 0 && adjustedQuantity <= qoh)
-        console.log('win');
-      stockForm.patchValue({ qohAfterAdjustment: qoh - adjustedQuantity });
+      
+      if(qoh > 0 && adjustedQuantity >= 0 && adjustedQuantity > qoh) {
+        this.confirmationService.alert(
+          this.currentLanguageSet?.alerts?.adjustedQuantityExceeds,
+          'error',
+        );
+        stockForm.patchValue({ adjustedQuantity: 0 });
+        stockForm.patchValue({ qohAfterAdjustment: qoh });
+      } else {
+        stockForm.patchValue({ qohAfterAdjustment: qoh - adjustedQuantity });
+      }
     }
   }
 
