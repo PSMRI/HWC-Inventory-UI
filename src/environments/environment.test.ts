@@ -28,7 +28,7 @@ export const environment = {
     platform: 'matomo',
     siteId: 2,  
     trackerUrl: '//127.0.0.1/',
-    trackingPlatform: 'platform',
+    trackingPlatform: 'test',
     enabled: true 
   },
 

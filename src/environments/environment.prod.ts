@@ -34,7 +34,7 @@ export const environment = {
     platform: 'matomo',
     siteId: 2,  
     trackerUrl: 'https://matomo.piramalswasthya.org/',
-    trackingPlatform: 'platform',
+    trackingPlatform: 'production',
     enabled: true 
   },
 
