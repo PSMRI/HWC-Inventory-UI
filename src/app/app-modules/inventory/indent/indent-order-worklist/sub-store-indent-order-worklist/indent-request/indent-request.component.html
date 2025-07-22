@@ -231,8 +231,7 @@
                 <button
                   mat-mini-fab
                   color="primary"
-                  (click)="addToindentItemList()"
-                  (click)="trackFieldInteraction('Add Button')"
+                  (click)="addToindentItemList(); trackFieldInteraction('Add Button')"
                 >
                   <mat-icon>add</mat-icon>
                 </button>
@@ -253,8 +252,7 @@
             mat-raised-button
             matTooltip="{{ currentLanguageSet?.inventory?.back }}"
             matTooltipPosition="right"
-            (click)="goBack()"
-            (click)="trackFieldInteraction('Back Button')"
+            (click)="goBack(); trackFieldInteraction('Back Button')"
           >
             {{ currentLanguageSet?.inventory?.back }}
           </button>
@@ -268,8 +266,7 @@
             class="pull-right m-r-5 mat_green"
             *ngIf="!editMode"
             [disabled]="indentRequestForm.invalid"
-            (click)="submitIndentRequest(indentRequestForm)"
-            (click)="trackFieldInteraction('Save Button')"
+            (click)="submitIndentRequest(indentRequestForm); trackFieldInteraction('Save Button')"
           >
             {{ currentLanguageSet?.common?.save }}
           </button>
@@ -280,8 +277,7 @@
             *ngIf="editMode"
             class="pull-right m-r-5 mat_green"
             [disabled]="indentRequestForm.invalid"
-            (click)="updateIndentRequest(indentRequestForm)"
-            (click)="trackFieldInteraction('Update Button')"
+            (click)="updateIndentRequest(indentRequestForm); trackFieldInteraction('Update Button')"
           >
             {{ currentLanguageSet?.inventory?.update }}
           </button>
@@ -292,8 +288,7 @@
             color="primary"
             class="pull-right m-r-5"
             [disabled]="indentRequestForm.pristine"
-            (click)="resetIndentRequestForm()"
-            (click)="trackFieldInteraction('Clear Button')"
+            (click)="resetIndentRequestForm(); trackFieldInteraction('Clear Button')"
           >
             {{ currentLanguageSet?.inventory?.clear }}
           </button>

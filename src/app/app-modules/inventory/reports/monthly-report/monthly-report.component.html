@@ -70,8 +70,7 @@
             class="mat_green"
             type="submit"
             [disabled]="!monthlyForm.valid"
-            (click)="downloadReport(true)"
-            (click)="trackFieldInteraction('Download Button')"
+            (click)="downloadReport(true); trackFieldInteraction('Download Button')"
           >
             {{ currentLanguageSet?.inventory?.download }}
           </button>

@@ -300,8 +300,7 @@
               <button
                 mat-mini-fab
                 color="primary"
-                (click)="addStock()"
-                (click)="trackFieldInteraction('Add Button')"
+                (click)="addStock(); trackFieldInteraction('Add Button')"
               >
                 <mat-icon>add</mat-icon>
               </button>
@@ -319,8 +318,7 @@
           color="primary"
           class="pull-right m-r-5"
           [disabled]="physicalStockEntryForm.pristine"
-          (click)="reset()"
-          (click)="trackFieldInteraction('Clear Button')"
+          (click)="reset(); trackFieldInteraction('Clear Button')"
         >
           {{ currentLanguageSet?.inventory?.clear }}
         </button>
@@ -331,8 +329,7 @@
           mat-raised-button
           class="pull-right m-r-5"
           [disabled]="physicalStockEntryForm.invalid"
-          (click)="savePhysicalStock()"
-          (click)="trackFieldInteraction('Save Button')"
+          (click)="savePhysicalStock(); trackFieldInteraction('Save Button')"
         >
           {{ currentLanguageSet?.common?.save }}
         </button>

@@ -83,11 +83,9 @@
             <div class="row m-t-10 m-b-10">
               <div class="col-xs-12">
                 <button mat-raised-button color="primary" *ngIf="facilityForm.value.isMainStore !== 'false'" class="pull-right submit button-disabled" [disabled]="!facilityForm.value.facility"
-                  (click)='proceedFurther()'
-                  (click)="trackFieldInteraction('Continue Button (Main Store)')">{{currentLanguageSet?.inventory?.continue}}</button>
+                  (click)="proceedFurther(); trackFieldInteraction('Continue Button (Main Store)')">{{currentLanguageSet?.inventory?.continue}}</button>
                 <button mat-raised-button color="primary" *ngIf="facilityForm.value.isMainStore === 'false'" class="pull-right submit button-disabled" [disabled]="!facilityForm.value.facility || !facilityForm.value.subFacility"
-                  (click)='proceedFurther()'
-                  (click)="trackFieldInteraction('Continue Button (Sub Store)')">{{currentLanguageSet?.inventory?.continue}}</button>
+                  (click)="proceedFurther(); trackFieldInteraction('Continue Button (Sub Store)')">{{currentLanguageSet?.inventory?.continue}}</button>
               </div>
             </div>
           <!-- </md-card-content> -->

@@ -9,8 +9,7 @@
         class="pull-right button-full-width"
         type="button"
         color="primary"
-        (click)="routeToRaiseRequest()"
-        (click)="trackFieldInteraction('Raise Request Button')"
+        (click)="routeToRaiseRequest(); trackFieldInteraction('Raise Request Button')"
       >
         {{ currentLanguageSet?.inventory?.raiseRequest }}
       </button>

@@ -11,8 +11,7 @@
         class="pull-right button-full-width m-l-5"
         type="button"
         color="primary"
-        (click)="openSearchDialog()"
-        (click)="trackFieldInteraction('Advance Search Button')"
+        (click)="openSearchDialog(); trackFieldInteraction('Advance Search Button')"
       >
         {{ currentLanguageSet?.bendetails?.advanceSearch }}
       </button>

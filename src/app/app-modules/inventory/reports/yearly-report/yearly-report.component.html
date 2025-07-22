@@ -51,8 +51,7 @@
             class="mat_green"
             type="submit"
             [disabled]="!yearlyForm.valid"
-            (click)="downloadReport(true)"
-            (click)="trackFieldInteraction('Download Button')"
+            (click)="downloadReport(true); trackFieldInteraction('Download Button')"
           >
             {{ currentLanguageSet?.inventory?.download }}
           </button>

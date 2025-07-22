@@ -50,7 +50,7 @@
               (dateChange)="checkStartDate($event)"
               [max]="maxEndDate"
               [disabled]="true"
-              (focus)="trackFieldInteraction('End Date')"
+              (click)="trackFieldInteraction('End Date')"
             />
             <mat-datepicker-toggle
               matPrefix
@@ -85,8 +85,7 @@
             class="mat_green"
             type="submit"
             [disabled]="!dailyStockDetailsForm.valid"
-            (click)="downloadReport(true)"
-            (click)="trackFieldInteraction('Download Button')"
+            (click)="downloadReport(true); trackFieldInteraction('Download Button')"
           >
             {{ currentLanguageSet?.inventory?.download }}
           </button>

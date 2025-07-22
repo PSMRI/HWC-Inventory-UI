@@ -81,8 +81,7 @@
           type="submit"
           class="mat_green"
           [disabled]="!dailyStockSummaryForm.valid"
-          (click)="downloadReport(true)"
-          (click)="trackFieldInteraction('Download Button')"
+          (click)="downloadReport(true); trackFieldInteraction('Download Button')"
         >
           {{ currentLanguageSet?.inventory?.download }}
         </button>
