@@ -35,6 +35,7 @@ import { SetLanguageComponent } from '../../core/components/set-language.compone
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { AmritTrackingService } from 'Common-UI/src/tracking';
 
 export interface PeriodicElement {
   itemName: string;
@@ -75,6 +76,7 @@ export class StoreSelfConsumptionComponent implements OnInit, DoCheck {
     private inventoryService: InventoryService,
     private alertService: ConfirmationService,
     readonly sessionstorage:SessionStorageService,
+    private trackingService: AmritTrackingService 
   ) {
     this.subs = this.inventoryService
       .getDialogClosedObservable()
@@ -277,4 +279,8 @@ export class StoreSelfConsumptionComponent implements OnInit, DoCheck {
     this.currentLanguageSet = this.languageComponent.currentLanguageObject;
   }
   //--End--
+
+  trackFieldInteraction(fieldName: string) {
+    this.trackingService.trackFieldInteraction(fieldName, 'Store Self Consumption');
+  }
 }

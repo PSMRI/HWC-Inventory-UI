@@ -30,6 +30,14 @@ export const environment = {
   countryId: 1,
   encKey: sessionStorageEncKey,
 
+  tracking: {
+    platform: 'matomo',
+    siteId: 2,  
+    trackerUrl: 'https://matomo.piramalswasthya.org/',
+    trackingPlatform: 'production',
+    enabled: true 
+  },
+
   getBeneficiaryDetail: `registrar/get/benDetailsByRegIDForLeftPanelNew`,
   getBeneficiaryImage: `registrar/getBenImage`,
   getPrescriptions: `${INVENTORY_API}RX/getPrescribedMedicines`,

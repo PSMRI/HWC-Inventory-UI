@@ -31,6 +31,7 @@ import { LanguageService } from 'src/app/app-modules/core/services/language.serv
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { AmritTrackingService } from 'Common-UI/src/tracking';
 
 @Component({
   selector: 'app-sub-store-indent-order-worklist',
@@ -60,6 +61,7 @@ export class SubStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
     private confirmationService: ConfirmationService,
     private dataStorageService: DataStorageService,
     readonly sessionstorage:SessionStorageService,
+    private trackingService: AmritTrackingService
   ) {}
 
   ngOnInit() {
@@ -141,4 +143,8 @@ export class SubStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
     this.currentLanguageSet = this.languageComponent.currentLanguageObject;
   }
   // -----End------
+
+  trackFieldInteraction(fieldName: string) {
+    this.trackingService.trackFieldInteraction(fieldName, 'Sub Store Indent Order Worklist');
+  }
 }

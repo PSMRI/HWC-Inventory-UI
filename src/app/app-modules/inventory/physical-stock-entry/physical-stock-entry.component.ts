@@ -41,6 +41,7 @@ import { SetLanguageComponent } from '../../core/components/set-language.compone
 import { LanguageService } from '../../core/services/language.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { AmritTrackingService } from 'Common-UI/src/tracking';
 
 @Component({
   selector: 'app-physical-stock-entry',
@@ -87,7 +88,8 @@ export class PhysicalStockEntryComponent implements OnInit, OnChanges, DoCheck {
     private http_service: LanguageService,
     private dialogService: ConfirmationService,
     private fb: FormBuilder,
-    readonly sessionstorage:SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
+    private trackingService: AmritTrackingService
   ) {}
   dataSource = new MatTableDataSource<any>();
 
@@ -312,4 +314,8 @@ export class PhysicalStockEntryComponent implements OnInit, OnChanges, DoCheck {
     this.currentLanguageSet = this.languageComponent.currentLanguageObject;
   }
   //--End--
+
+  trackFieldInteraction(fieldName: string) {
+    this.trackingService.trackFieldInteraction(fieldName, 'Physical Stock Entry');
+  }
 }

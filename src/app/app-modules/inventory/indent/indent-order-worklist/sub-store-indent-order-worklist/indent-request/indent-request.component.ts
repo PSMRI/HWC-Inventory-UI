@@ -39,6 +39,7 @@ import { LanguageService } from 'src/app/app-modules/core/services/language.serv
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { AmritTrackingService } from 'Common-UI/src/tracking';
 
 @Component({
   selector: 'app-indent-request',
@@ -77,6 +78,7 @@ export class IndentRequestComponent implements OnInit, DoCheck {
     private confirmationService: ConfirmationService,
     private dataStorageService: DataStorageService,
     readonly sessionstorage:SessionStorageService,
+    private trackingService: AmritTrackingService
   ) {
     this.subs = this.inventoryService
       .getDialogClosedObservable()
@@ -402,4 +404,8 @@ export class IndentRequestComponent implements OnInit, DoCheck {
     this.currentLanguageSet = this.languageComponent.currentLanguageObject;
   }
   // -----End------
+
+  trackFieldInteraction(fieldName: string) {
+    this.trackingService.trackFieldInteraction(fieldName, 'Indent Request');
+  }
 }

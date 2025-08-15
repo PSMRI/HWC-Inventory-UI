@@ -28,6 +28,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LanguageService } from '../../core/services/language.service';
 import { BenificiaryDetailsComponent } from './benificiary-details/benificiary-details.component';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { AmritTrackingService } from 'Common-UI/src/tracking';
 
 @Component({
   selector: 'app-patient-return',
@@ -53,6 +54,7 @@ export class PatientReturnComponent implements OnInit, DoCheck {
     private inventoryService: InventoryService,
     private confirmationService: ConfirmationService,
     readonly sessionstorage:SessionStorageService,
+    private trackingService: AmritTrackingService
   ) {}
 
   ngOnInit() {
@@ -216,4 +218,8 @@ export class PatientReturnComponent implements OnInit, DoCheck {
     this.currentLanguageSet = this.languageComponent.currentLanguageObject;
   }
   //--End--
+
+  trackFieldInteraction(fieldName: string) {
+    this.trackingService.trackFieldInteraction(fieldName, 'Patient Return');
+  }
 }

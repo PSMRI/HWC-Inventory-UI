@@ -20,6 +20,7 @@
             id="requestDate"
             formControlName="requestDate"
             [disabled]="true"
+            (focus)="trackFieldInteraction('Indent Date')"
           />
           <mat-datepicker-toggle
             matPrefix
@@ -39,6 +40,7 @@
             allowText="alphanumeric"
             maxlength="20"
             formControlName="referenceNumber"
+            (focus)="trackFieldInteraction('Reference No')"
           />
         </mat-form-field>
       </div>
@@ -53,6 +55,7 @@
             allowText="alphanumericspace"
             maxlength="250"
             formControlName="indentReason"
+            (focus)="trackFieldInteraction('Reason')"
           />
         </mat-form-field>
       </div>
@@ -101,6 +104,7 @@
                         "
                         [itemListForm]="element"
                         required
+                        (focus)="trackFieldInteraction('Item Name')"
                       />
                       <!-- *ngIf="!element.itemNameView.disabled" -->
                       <mat-icon
@@ -138,6 +142,7 @@
                         name="qOH"
                         formControlName="qOH"
                         required
+                        (focus)="trackFieldInteraction('Quantity On Hand')"
                       />
                     </mat-form-field>
                   </td>
@@ -165,6 +170,7 @@
                         [attr.maxlength]="('' + element.qOH).length"
                         (blur)="checkQuantity(element)"
                         required
+                        (focus)="trackFieldInteraction('Required Quantity')"
                       />
                       <!--  -->
                     </mat-form-field>
@@ -189,6 +195,7 @@
                         name="remarks"
                         formControlName="remarks"
                         allowText="alphanumericspace"
+                        (focus)="trackFieldInteraction('Remarks')"
                       />
                     </mat-form-field>
                   </td>
@@ -224,7 +231,7 @@
                 <button
                   mat-mini-fab
                   color="primary"
-                  (click)="addToindentItemList()"
+                  (click)="addToindentItemList(); trackFieldInteraction('Add Button')"
                 >
                   <mat-icon>add</mat-icon>
                 </button>
@@ -245,7 +252,7 @@
             mat-raised-button
             matTooltip="{{ currentLanguageSet?.inventory?.back }}"
             matTooltipPosition="right"
-            (click)="goBack()"
+            (click)="goBack(); trackFieldInteraction('Back Button')"
           >
             {{ currentLanguageSet?.inventory?.back }}
           </button>
@@ -259,7 +266,7 @@
             class="pull-right m-r-5 mat_green"
             *ngIf="!editMode"
             [disabled]="indentRequestForm.invalid"
-            (click)="submitIndentRequest(indentRequestForm)"
+            (click)="submitIndentRequest(indentRequestForm); trackFieldInteraction('Save Button')"
           >
             {{ currentLanguageSet?.common?.save }}
           </button>
@@ -270,7 +277,7 @@
             *ngIf="editMode"
             class="pull-right m-r-5 mat_green"
             [disabled]="indentRequestForm.invalid"
-            (click)="updateIndentRequest(indentRequestForm)"
+            (click)="updateIndentRequest(indentRequestForm); trackFieldInteraction('Update Button')"
           >
             {{ currentLanguageSet?.inventory?.update }}
           </button>
@@ -281,7 +288,7 @@
             color="primary"
             class="pull-right m-r-5"
             [disabled]="indentRequestForm.pristine"
-            (click)="resetIndentRequestForm()"
+            (click)="resetIndentRequestForm(); trackFieldInteraction('Clear Button')"
           >
             {{ currentLanguageSet?.inventory?.clear }}
           </button>

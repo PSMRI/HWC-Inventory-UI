@@ -8,6 +8,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AppRoutingModule } from "./app-routing.module";
 import { CookieService } from 'ngx-cookie-service';
+import { TrackingModule } from "Common-UI/src/tracking";
 
 // import { RouteReuseStrategy } from '@angular/router';
 // import { CustomRouteReuseStrategy } from './custom-route-reuse-strategy';
@@ -115,6 +116,7 @@ import { CaptchaComponent } from "./captcha/captcha.component";
     AppRoutingModule,
     CoreModule.forRoot(),
     // Ng2GoogleChartsModule
+    TrackingModule.forRoot(),
   ],
   providers: [
     AuthenticationService,
