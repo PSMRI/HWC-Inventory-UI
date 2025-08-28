@@ -14,10 +14,19 @@ const siteKey = '<%= SITE_KEY %>';
 const captchaChallengeURL = '<%= CAPTCHA_CHALLENGE_URL %>';
 const enableCaptcha = <%= ENABLE_CAPTCHA %>;
 
+
 export const environment = {
   production: true,
   countryId: 1,
   encKey: sessionStorageEncKey,
+
+  tracking: {
+    platform: 'matomo',
+    siteId: parseInt('<%= SITE_ID %>'),
+    trackerUrl: '<%= TRACKER_URL %>',
+    trackingPlatform: '<%= TRACKING_PLATFORM %>',
+    enabled: '<%= TRACKING_ENABLED %>' === 'true'
+  },
 
   getBeneficiaryDetail: `registrar/get/benDetailsByRegIDForLeftPanelNew`,
   getBeneficiaryImage: `registrar/getBenImage`,

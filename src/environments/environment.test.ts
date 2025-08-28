@@ -24,6 +24,14 @@ export const environment = {
   countryId: 1,
   encKey: sessionStorageEncKey,
 
+  tracking: {
+    platform: 'matomo',
+    siteId: 2,  
+    trackerUrl: '//127.0.0.1/',
+    trackingPlatform: 'test',
+    enabled: true 
+  },
+
   getBeneficiaryDetail: `registrar/get/benDetailsByRegIDForLeftPanelNew`,
   getBeneficiaryImage: `registrar/getBenImage`,
   getPrescriptions: `${INVENTORY_API}RX/getPrescribedMedicines`,

@@ -28,6 +28,7 @@ import { LanguageService } from '../../core/services/language.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SearchComponent } from '../../core/components/search/search.component';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { AmritTrackingService } from 'Common-UI/src/tracking';
 
 @Component({
   selector: 'app-medicine-dispense',
@@ -49,7 +50,8 @@ export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
     private inventoryService: InventoryService,
     public http_service: LanguageService,
     private dialog: MatDialog,
-    readonly sessionstorage:SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
+    private trackingService: AmritTrackingService
   ) {}
 
   ngOnInit() {
@@ -316,4 +318,8 @@ export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
     this.currentLanguageSet = this.languageComponent.currentLanguageObject;
   }
   // -----End------
+
+  trackFieldInteraction(fieldName: string) {
+    this.trackingService.trackFieldInteraction(fieldName, 'Medicine Dispense');
+  }
 }
