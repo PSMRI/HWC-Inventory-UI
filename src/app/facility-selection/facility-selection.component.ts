@@ -7,6 +7,7 @@ import { ConfirmationService } from '../app-modules/core/services';
 import { SetLanguageComponent } from '../app-modules/core/components/set-language.component';
 import { LanguageService } from '../app-modules/core/services/language.service';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { AmritTrackingService } from 'Common-UI/src/tracking';
 
 
 @Component({
@@ -33,6 +34,7 @@ export class FacilitySelectionComponent implements OnInit, DoCheck {
     private http_service: LanguageService,
     private confirmationService: ConfirmationService,
     readonly sessionstorage:SessionStorageService,
+    private trackingService: AmritTrackingService
   ) {}
 
   facilityForm = this.fb.group({
@@ -219,4 +221,8 @@ export class FacilitySelectionComponent implements OnInit, DoCheck {
   //   this.languageComponent.setLanguage();
   //   this.currentLanguageSet = this.languageComponent.currentLanguageObject;
   // }
+
+    trackFieldInteraction(fieldName: string) {
+      this.trackingService.trackFieldInteraction(fieldName, 'Facility Selection');
+    }
 }

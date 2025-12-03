@@ -7,6 +7,7 @@ import * as CryptoJS from 'crypto-js';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 import { CaptchaComponent } from '../captcha/captcha.component';
 import { environment } from 'src/environments/environment';
+import { AmritTrackingService } from 'Common-UI/src/tracking';
 
 @Component({
   selector: 'app-login-cmp',
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthenticationService,
     private confirmationService: ConfirmationService,
     readonly sessionstorage:SessionStorageService,
+    private trackingService: AmritTrackingService,
     private router: Router) {
       this._keySize = 256;
       this._ivSize = 128;
@@ -122,7 +124,8 @@ export class LoginComponent implements OnInit {
               this.authService.login(this.userName, encryptPassword, true,this.enableCaptcha ? this.captchaToken : undefined).subscribe((userLoggedIn) => {
                 if (userLoggedIn.statusCode == '200') {
                 if (userLoggedIn.data.previlegeObj != null && userLoggedIn.data.previlegeObj != undefined && userLoggedIn.data.previlegeObj[0]) {
-                 
+                 this.sessionstorage.setItem('loginDataResponse', JSON.stringify(userLoggedIn.data));
+                  this.trackingService.setUserId(userLoggedIn.data.userID);
                   this.checkRoleMapped(userLoggedIn.data);
                 } else {
                   this.resetCaptcha();
@@ -223,6 +226,7 @@ export class LoginComponent implements OnInit {
       //localStorage.setItem('userID', loginDataResponse.userID);
       // localStorage.setItem('userName', loginDataResponse.userName);
       this.sessionstorage.setItem('userID', loginDataResponse.userID);
+      this.trackingService.setUserId(loginDataResponse.userID);
       this.sessionstorage.setItem('userName', loginDataResponse.userName);
       // localStorage.setItem('username', this.userName);
       this.sessionstorage.setItem('username', loginDataResponse.userName);

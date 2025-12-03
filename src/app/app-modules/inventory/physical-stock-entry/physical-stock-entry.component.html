@@ -13,6 +13,7 @@
           type="button"
           color="primary"
           routerLink="View"
+          (click)="trackFieldInteraction('Previous Records Button')"
         >
           {{ currentLanguageSet?.inventory?.previousRecords }}
         </button>
@@ -22,7 +23,7 @@
     <div class="row m-t-10">
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
         <mat-form-field
-          class="input-full-width  mat_form_field_background_color_padding"
+          class="input-full-width mat_form_field_background_color_padding"
         >
           <mat-label>{{
             currentLanguageSet?.inventory?.referenceNumber
@@ -35,6 +36,7 @@
             formControlName="referenceNumber"
             #referenceNumber
             required
+            (focus)="trackFieldInteraction('Reference Number')"
           />
         </mat-form-field>
         <mat-hint>
@@ -52,9 +54,7 @@
       </div>
 
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-        <mat-form-field
-          class="input-full-width"
-        >
+        <mat-form-field class="input-full-width">
           <mat-label>{{ currentLanguageSet?.inventory?.date }}</mat-label>
           <input
             readonly
@@ -62,6 +62,7 @@
             [matDatepicker]="picker"
             name="stockEntryDate"
             [formControl]="stockEntryDate"
+            (focus)="trackFieldInteraction('Date')"
           />
           <mat-datepicker-toggle
             [disabled]="true"
@@ -120,6 +121,7 @@
                         formControlName="itemName"
                         #itemName
                         maxlength="100"
+                        (focus)="trackFieldInteraction('Item Name')"
                       />
                       <mat-icon
                         *ngIf="!stock.controls['itemName'].disabled"
@@ -157,6 +159,7 @@
                         [required]="true"
                         [readonly]="!stock.value.itemID"
                         [(ngModel)]="stock.quantity"
+                        (focus)="trackFieldInteraction('Qty (In Lowest Unit)')"
                       />
                     </mat-form-field>
                   </td>
@@ -185,6 +188,7 @@
                         formControlName="totalCostPrice"
                         [required]="true"
                         [readonly]="!stock.value.itemID"
+                        (focus)="trackFieldInteraction('Unit Cost Price')"
                       />
                     </mat-form-field>
                   </td>
@@ -213,6 +217,7 @@
                         [required]="true"
                         [readonly]="!stock.value.itemID"
                         (change)="checkForDuplicateBatch(stock, i)"
+                        (focus)="trackFieldInteraction('Batch No')"
                       />
                     </mat-form-field>
                   </td>
@@ -248,6 +253,7 @@
                         name="expiryDate"
                         formControlName="expiryDate"
                         (keydown)="preventTyping($event)"
+                        (focus)="trackFieldInteraction('Expiry Date')"
                       />
                       <mat-datepicker-toggle
                         [disabled]="!stock.value.itemID"
@@ -273,6 +279,7 @@
                       class="cursorPointer"
                       (click)="removeStock(i, stock)"
                       matTooltip="{{ currentLanguageSet?.inventory?.delete }}"
+                      (click)="trackFieldInteraction('Delete Button')"
                       >delete</mat-icon
                     >
                   </td>
@@ -290,7 +297,11 @@
               style="margin-top: 15px"
               *ngIf="physicalStockEntryForm.controls['physicalStock'].valid"
             >
-              <button mat-mini-fab color="primary" (click)="addStock()">
+              <button
+                mat-mini-fab
+                color="primary"
+                (click)="addStock(); trackFieldInteraction('Add Button')"
+              >
                 <mat-icon>add</mat-icon>
               </button>
             </div>
@@ -307,7 +318,7 @@
           color="primary"
           class="pull-right m-r-5"
           [disabled]="physicalStockEntryForm.pristine"
-          (click)="reset()"
+          (click)="reset(); trackFieldInteraction('Clear Button')"
         >
           {{ currentLanguageSet?.inventory?.clear }}
         </button>
@@ -318,7 +329,7 @@
           mat-raised-button
           class="pull-right m-r-5"
           [disabled]="physicalStockEntryForm.invalid"
-          (click)="savePhysicalStock()"
+          (click)="savePhysicalStock(); trackFieldInteraction('Save Button')"
         >
           {{ currentLanguageSet?.common?.save }}
         </button>

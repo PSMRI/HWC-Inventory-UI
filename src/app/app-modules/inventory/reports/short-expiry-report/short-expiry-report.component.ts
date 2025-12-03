@@ -28,6 +28,7 @@ import { InventoryService } from '../../shared/service/inventory.service';
 import { ConfirmationService } from '../../../core/services/confirmation.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
+import { AmritTrackingService } from 'Common-UI/src/tracking';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
@@ -46,6 +47,7 @@ export class ShortExpiryReportComponent implements OnInit, DoCheck {
     private inventoryService: InventoryService,
     private http_service: LanguageService,
     private confirmationService: ConfirmationService,
+    private trackingService: AmritTrackingService
     private sessionstorage: SessionStorageService
   ) {}
 
@@ -249,4 +251,11 @@ export class ShortExpiryReportComponent implements OnInit, DoCheck {
     this.currentLanguageSet = this.languageComponent.currentLanguageObject;
   }
   //--End--
+
+  trackFieldInteraction(fieldName: string) {
+    this.trackingService.trackFieldInteraction(
+      fieldName,
+      'Short Expiry Report',
+    );
+  }
 }
