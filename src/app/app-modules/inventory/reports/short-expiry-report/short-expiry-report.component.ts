@@ -29,6 +29,7 @@ import { ConfirmationService } from '../../../core/services/confirmation.service
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { AmritTrackingService } from 'Common-UI/src/tracking';
+import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
   selector: 'app-short-expiry-report',
@@ -47,6 +48,7 @@ export class ShortExpiryReportComponent implements OnInit, DoCheck {
     private http_service: LanguageService,
     private confirmationService: ConfirmationService,
     private trackingService: AmritTrackingService
+    private sessionstorage: SessionStorageService
   ) {}
 
   today!: Date;
@@ -84,15 +86,9 @@ export class ShortExpiryReportComponent implements OnInit, DoCheck {
     startDate.setSeconds(0);
     startDate.setMilliseconds(0);
 
-    console.log(
-      'Data form value...',
-      JSON.stringify(this.shortExpiryForm.value),
-    );
-    const reqObjForShortExpiryReport = {};
-    console.log(
-      'Data form data',
-      JSON.stringify(reqObjForShortExpiryReport, null, 4),
-    );
+    const reqObjForShortExpiryReport = {
+      facilityID: this.sessionstorage.getItem('facilityID')
+    };
 
     this.inventoryService
       .getShortExpiryReports(reqObjForShortExpiryReport)

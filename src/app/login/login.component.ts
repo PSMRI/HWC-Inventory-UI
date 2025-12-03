@@ -168,6 +168,21 @@ export class LoginComponent implements OnInit {
     let roleObj;
     if (loginDataResponse.previlegeObj[0].roles) {
       roleObj = loginDataResponse.previlegeObj[0].roles;
+      const hasPharmacist = roleObj.some(
+        (role: any) => role.RoleName === 'Pharmacist',
+      );
+
+      if (!hasPharmacist) {
+        sessionStorage.clear();
+
+        this.router.navigate(['/login']).then(() => {
+          this.confirmationService.alert(
+            'Designation is not matched with your roles , Please map the Designation or include more roles',
+            'error',
+          );
+        });
+        return;
+      }
       if (roleObj.length > 0) {
         roleObj.forEach((role: any) => {
           role.serviceRoleScreenMappings.forEach((serviceRole: any) => {
