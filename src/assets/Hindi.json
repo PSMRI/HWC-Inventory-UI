@@ -388,6 +388,8 @@
             "drugName": "दवा का नाम",
             "failedStock": "विफल स्टॉक"
         },
-        "healthId": "हेल्थ आईडी"
+        "healthId": "हेल्थ आईडी",
+        "sessionExpiredPleaseLogin": "Session expired. Please log in again to continue",
+        "somethingWentWrong": "कुछ गलत हो गया"
     }
 }

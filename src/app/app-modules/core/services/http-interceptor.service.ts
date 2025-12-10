@@ -79,6 +79,15 @@ export class HttpInterceptorService implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         console.error(error);
 
+        if (error.status === 401) {
+          this.confirmationService.alert(
+            this.currentLanguageSet.sessionExpiredPleaseLogin,
+          );
+        } else this.confirmationService.alert(
+            error.error.errorMessage || this.currentLanguageSet.somethingWentWrong,
+            'error',
+          );
+
         this.spinnerService.show();
         return throwError(error.error);
       }),
