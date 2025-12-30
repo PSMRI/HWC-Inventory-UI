@@ -148,6 +148,7 @@ export class ExpiryReportComponent implements OnInit, DoCheck {
     criteria.push({ Filter_Name: 'End_Date', value: this.endDate });
     this.exportToxlsx(criteria);
   }
+
   exportToxlsx(criteria: any) {
     if (criteria.length > 0) {
       const criteriaArray = criteria.filter(function (obj: any) {
@@ -232,22 +233,16 @@ export class ExpiryReportComponent implements OnInit, DoCheck {
           report_worksheet.addRow(rowData);
         });
 
-        // Write to file
         workbook.xlsx.writeBuffer().then((buffer) => {
           const blob = new Blob([buffer], {
             type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
           });
-          saveAs(blob, wb_name + '.xlsx');
-          if (navigator.msSaveBlob) {
-            navigator.msSaveBlob(blob, wb_name);
+          const filename = wb_name.replace(/ /g, '_') + '.xlsx';
+
+          if ((window as any).navigator && (window as any).navigator.msSaveBlob) {
+            (window as any).navigator.msSaveBlob(blob, filename);
           } else {
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.setAttribute('visibility', 'hidden');
-            link.download = wb_name.replace(/ /g, '_') + '.xlsx';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            saveAs(blob, filename);
           }
         });
       }
