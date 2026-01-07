@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.iemr.aam-inventory-ui</groupId>
 	<artifactId>aam-inventory-ui</artifactId>
-	<version>3.4.0</version>
+	<version>3.6.0</version>
 	<name>AAM-Inventory-UI</name>
 	<description>Piramal - inventory: Module ui</description>
 	<packaging>war</packaging>

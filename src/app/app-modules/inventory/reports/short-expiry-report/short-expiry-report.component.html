@@ -22,6 +22,7 @@
             [max]="maxEndDate"
             formControlName="startDate"
             [readonly]="true"
+            (focus)="trackFieldInteraction('Date')"
           />
 
           <mat-datepicker-toggle
@@ -41,7 +42,7 @@
           color="accent"
           class="mat_green"
           type="submit"
-          (click)="downloadReport(true)"
+          (click)="downloadReport(true); trackFieldInteraction('Download Button')"
         >
           {{ currentLanguageSet?.inventory?.download }}
         </button>
