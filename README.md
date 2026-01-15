@@ -37,6 +37,4 @@ Join our [Discord server](https://discord.gg/FVQWsf5ENS) to connect with contrib
 
 ## Documentation
 
-Detailed technical documentation for this service is available on DeepWiki:
-
-- https://deepwiki.com/PSMRI/HWC-Inventory-UI
+[DeepWiki - HWC-Inventory-UI](https://deepwiki.com/PSMRI/HWC-Inventory-UI)
