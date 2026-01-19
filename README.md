@@ -1,4 +1,6 @@
 # AAM InventoryUI
+[![DeepWiki](https://img.shields.io/badge/DeepWiki-PSMRI%2FHWC--Inventory--UI-blue)](https://deepwiki.com/PSMRI/HWC-Inventory-UI)
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.10.
 
@@ -35,6 +37,3 @@ If you encounter any issues, bugs, or have feature requests, please file them in
 We’d love to have you join our community discussions and get real-time support!  
 Join our [Discord server](https://discord.gg/FVQWsf5ENS) to connect with contributors, ask questions, and stay updated.  
 
-## Documentation
-
-[DeepWiki - HWC-Inventory-UI](https://deepwiki.com/PSMRI/HWC-Inventory-UI)
