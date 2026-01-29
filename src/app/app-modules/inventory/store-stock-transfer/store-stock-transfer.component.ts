@@ -36,6 +36,7 @@ import { LanguageService } from '../../core/services/language.service';
 import * as moment from 'moment';
 import { MatTableDataSource } from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { AmritTrackingService } from 'Common-UI/src/tracking';
 @Component({
   selector: 'app-store-stock-transfer',
   templateUrl: './store-stock-transfer.component.html',
@@ -77,7 +78,8 @@ export class StoreStockTransferComponent implements OnInit, DoCheck {
     private router: Router,
     private http_service: LanguageService,
     private confirmationService: ConfirmationService,
-    readonly sessionstorage:SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
+    private trackingService: AmritTrackingService 
   ) {
     this.checkFacility();
   }
@@ -319,4 +321,8 @@ createdBy: this.sessionstorage.getItem('username'),
     this.currentLanguageSet = this.languageComponent.currentLanguageObject;
   }
   //--End--
+
+  trackFieldInteraction(fieldName: string) {
+    this.trackingService.trackFieldInteraction(fieldName, 'Stock Transfer');
+  }
 }

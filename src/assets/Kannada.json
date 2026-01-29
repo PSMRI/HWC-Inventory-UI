@@ -385,6 +385,8 @@
 
         },
         "healthId":"ಆರೋಗ್ಯ ಐಡಿ",
-        "list": "ಪಟ್ಟಿ"
+        "list": "ಪಟ್ಟಿ",
+        "sessionExpiredPleaseLogin": "ಸೆಷನ್ ಅವಧಿ ಮೀರಿದೆ. ಮುಂದುವರಿಸಲು ದಯವಿಟ್ಟು ಮತ್ತೆ ಲಾಗಿನ್ ಮಾಡಿ",
+        "somethingWentWrong": "ಏನೋ ತಪ್ಪಾಗಿದೆ"
     }
 }
