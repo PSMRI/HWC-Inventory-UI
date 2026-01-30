@@ -54,7 +54,29 @@
 .mat_form_field_background_color_table >>> .mdc-text-field--filled, .mdc-text-field--focused {
     /* background-color: #f9f9f9 !important; */
     background-color:unset !important;
+} 
+
+ /* floating label (NO blur) */
+.mat_form_field_background_color_table >>> 
+.mdc-text-field--filled.mdc-text-field--focused {
+    background-color: unset !important;
 }
+.mat_form_field_background_color_table >>> 
+.mdc-floating-label {
+    transform-origin: left top !important;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* Float ABOVE without scaling */
+.mat_form_field_background_color_table >>> 
+.mdc-floating-label--float-above {
+    transform: translateY(-22px) !important;
+    font-size: 12px !important;   
+    line-height: 14px;
+    opacity: 1 !important;
+}
+
 .mat_form_field_background_color_table >>> .mdc-text-field{
     padding: unset !important;
 }
