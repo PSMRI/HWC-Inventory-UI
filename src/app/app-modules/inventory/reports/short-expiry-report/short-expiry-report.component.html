@@ -8,9 +8,7 @@
   <div class="m-b-10 col-12">
     <form [formGroup]="shortExpiryForm" class="row">
       <div class="col-3">
-        <mat-form-field
-          class="input-full-width "
-        >
+        <mat-form-field class="input-full-width">
           <mat-label>
             {{ currentLanguageSet?.inventory?.date }}
           </mat-label>
@@ -22,6 +20,7 @@
             [max]="maxEndDate"
             formControlName="startDate"
             [readonly]="true"
+            (focus)="trackFieldInteraction('Date')"
           />
 
           <mat-datepicker-toggle
@@ -35,18 +34,19 @@
           ></mat-datepicker>
         </mat-form-field>
       </div>
-      <div class="col-3" style="text-align: start;margin-top: 20px;">
+      <div class="col-3" style="text-align: start; margin-top: 20px">
         <button
           mat-raised-button
           color="accent"
           class="mat_green"
           type="submit"
-          (click)="downloadReport(true)"
+          (click)="
+            downloadReport(true); trackFieldInteraction('Download Button')
+          "
         >
           {{ currentLanguageSet?.inventory?.download }}
         </button>
       </div>
     </form>
-    
   </div>
 </div>

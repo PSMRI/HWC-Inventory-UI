@@ -24,6 +24,7 @@
               (change)="checkEndDate()"
               [max]="maxEndDate"
               [disabled]="true"
+              (focus)="trackFieldInteraction('Start Date')"
             />
             <mat-datepicker-toggle
               matSuffix
@@ -48,6 +49,7 @@
               [min]="minEndDate"
               [max]="maxEndDate"
               [disabled]="true"
+              (focus)="trackFieldInteraction('End Date')"
             />
             <mat-datepicker-toggle
               matSuffix
@@ -56,21 +58,21 @@
             <mat-datepicker [style.width]="'100%'" #pickerEnd></mat-datepicker>
           </mat-form-field>
         </div>
-        
-    <div class="col-3" style="text-align:start;margin-top: 20px;">
-      <button
-        mat-raised-button
-        color="accent"
-        type="submit"
-        class="mat_green"
-        [disabled]="!expiryForm.valid"
-        (click)="downloadReport(true)"
-      >
-        {{ currentLanguageSet?.inventory?.download }}
-      </button>
-    </div>
+        <div class="col-3" style="text-align: start; margin-top: 20px">
+          <button
+            mat-raised-button
+            color="accent"
+            type="submit"
+            class="mat_green"
+            [disabled]="!expiryForm.valid"
+            (click)="
+              downloadReport(true); trackFieldInteraction('Download Button')
+            "
+          >
+            {{ currentLanguageSet?.inventory?.download }}
+          </button>
+        </div>
       </form>
     </div>
-
   </div>
 </div>

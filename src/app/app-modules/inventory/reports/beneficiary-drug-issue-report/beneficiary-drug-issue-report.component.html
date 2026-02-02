@@ -24,6 +24,7 @@
               (change)="checkEndDate()"
               [max]="maxEndDate"
               [disabled]="true"
+              (focus)="trackFieldInteraction('Start Date')"
             />
             <mat-datepicker-toggle
               matPrefix
@@ -48,6 +49,7 @@
               [min]="minEndDate"
               [max]="maxEndDate"
               [disabled]="true"
+              (focus)="trackFieldInteraction('End Date')"
             />
             <mat-datepicker-toggle
               matPrefix
@@ -56,21 +58,21 @@
             <mat-datepicker [style.width]="'100%'" #pickerEnd></mat-datepicker>
           </mat-form-field>
         </div>
-        <div class="col-3" style="text-align:start;margin-top: 20px;">
+        <div class="col-3" style="text-align: start; margin-top: 20px">
           <button
             mat-raised-button
             class="mat_green"
             color="accent"
             type="submit"
             [disabled]="!beneficiaryDrugIssueForm.valid"
-            (click)="downloadReport(true)"
+            (click)="
+              downloadReport(true); trackFieldInteraction('Download Button')
+            "
           >
             {{ currentLanguageSet?.inventory?.download }}
           </button>
         </div>
       </form>
     </div>
-
-    
   </div>
 </div>

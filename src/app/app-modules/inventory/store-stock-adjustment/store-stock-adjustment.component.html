@@ -14,6 +14,7 @@
         type="button"
         color="primary"
         routerLink="/inventory/storeStockAdjustment/view"
+        (click)="trackFieldInteraction('Previous Records Button')"
       >
         {{ currentLanguageSet?.inventory?.previousRecords }}
       </button>
@@ -25,6 +26,7 @@
         type="button"
         color="primary"
         routerLink="/inventory/storeStockAdjustmentDraft/view"
+        (click)="trackFieldInteraction('Previous Draft Records Button')"
       >
         {{ currentLanguageSet?.inventory?.previousDraftRecords }}
       </button>
@@ -35,6 +37,7 @@
         class="pull-right button-full-width"
         type="button"
         color="primary"
+        (click)="trackFieldInteraction('Add E-Aushadhi Stock Button')"
       >
         Add E-Aushadhi Stock
       </button>
@@ -51,11 +54,9 @@
     </div>
   </div>
   <form [formGroup]="storeStockAdjustmentForm" autocomplete="off" novalidate>
-    <div class="row m-t-20 ">
+    <div class="row m-t-20">
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 box">
-        <mat-form-field
-          class="input-full-width "
-        >
+        <mat-form-field class="input-full-width">
           <mat-label>{{
             currentLanguageSet?.inventory?.adjustmentDate
           }}</mat-label>
@@ -65,6 +66,7 @@
             autocomplete="off"
             name="adjustmentDate"
             formControlName="adjustmentDate"
+            (focus)="trackFieldInteraction('Adjustment Date')"
           />
           <mat-datepicker-toggle
             matPrefix
@@ -76,7 +78,7 @@
 
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 box">
         <mat-form-field
-          class="input-full-width  mat_form_field_background_color_padding"
+          class="input-full-width mat_form_field_background_color_padding"
         >
           <mat-label>{{
             currentLanguageSet?.inventory?.referenceNumber
@@ -87,6 +89,7 @@
             name="refNo"
             formControlName="refNo"
             required
+            (focus)="trackFieldInteraction('Reference Number')"
           />
         </mat-form-field>
       </div>
@@ -144,6 +147,7 @@
                       formControlName="itemName"
                       maxlength="100"
                       required
+                      (focus)="trackFieldInteraction('Item Name')"
                     />
                     <mat-icon
                       *ngIf="!stock.controls['itemName'].disabled"
@@ -180,6 +184,7 @@
                       formControlName="batchID"
                       required
                       readonly
+                      (focus)="trackFieldInteraction('Batch ID')"
                     />
                   </mat-form-field>
                 </td>
@@ -206,6 +211,7 @@
                       formControlName="quantityInHand"
                       required
                       readonly
+                      (focus)="trackFieldInteraction('QOH')"
                     />
                   </mat-form-field>
                 </td>
@@ -230,6 +236,9 @@
                       name="adjustmentType"
                       formControlName="adjustmentType"
                       (selectionChange)="calculateQOHAfterAdjustment(stock)"
+                      (selectionChange)="
+                        trackFieldInteraction('Adjustment Type')
+                      "
                       required
                     >
                       <mat-option
@@ -267,6 +276,7 @@
                       (input)="calculateQOHAfterAdjustment(stock)"
                       allowMax="item.value.quantityInHand"
                       required
+                      (focus)="trackFieldInteraction('Adjustment Quantity')"
                     />
                   </mat-form-field>
 
@@ -285,6 +295,7 @@
                       (input)="calculateQOHAfterAdjustment(stock)"
                       allowMax="9999"
                       required
+                      (focus)="trackFieldInteraction('Adjustment Quantity')"
                     />
                   </mat-form-field>
                 </td>
@@ -311,6 +322,7 @@
                       formControlName="qohAfterAdjustment"
                       required
                       readonly
+                      (focus)="trackFieldInteraction('QOH After Adjustment')"
                     />
                   </mat-form-field>
                 </td>
@@ -335,6 +347,7 @@
                       name="reason"
                       formControlName="reason"
                       required
+                      (focus)="trackFieldInteraction('Reason')"
                     />
                   </mat-form-field>
                 </td>
@@ -353,7 +366,10 @@
                   <mat-icon
                     class="icon-remove cursorPointer"
                     matTooltip="{{ currentLanguageSet?.inventory?.delete }}"
-                    (click)="removeFromStockAdjustmentList(i, stock)"
+                    (click)="
+                      removeFromStockAdjustmentList(i, stock);
+                      trackFieldInteraction('Delete Button')
+                    "
                     >delete</mat-icon
                   >
                 </td>
@@ -376,7 +392,10 @@
                 mat-mini-fab
                 type="button"
                 color="primary"
-                (click)="addToStockAdjustmentList()"
+                (click)="
+                  addToStockAdjustmentList();
+                  trackFieldInteraction('Add Button')
+                "
               >
                 <mat-icon>add</mat-icon>
               </button>
@@ -396,7 +415,7 @@
           mat-raised-button
           matTooltip="{{ currentLanguageSet?.inventory?.back }}"
           matTooltipPosition="right"
-          (click)="goBack()"
+          (click)="goBack(); trackFieldInteraction('Back Button')"
         >
           {{ currentLanguageSet?.inventory?.back }}
         </button>
@@ -405,7 +424,10 @@
           mat-raised-button
           class="pull-right m-r-5"
           [disabled]="storeStockAdjustmentForm.invalid"
-          (click)="submitStockAdjustmentFinal(storeStockAdjustmentForm)"
+          (click)="
+            submitStockAdjustmentFinal(storeStockAdjustmentForm);
+            trackFieldInteraction('Save Button')
+          "
         >
           {{ currentLanguageSet?.common?.save }}
         </button>
@@ -414,7 +436,10 @@
           mat-raised-button
           class="pull-right m-r-5"
           [disabled]="storeStockAdjustmentForm.invalid"
-          (click)="submitStockAdjustmentDraft(storeStockAdjustmentForm)"
+          (click)="
+            submitStockAdjustmentDraft(storeStockAdjustmentForm);
+            trackFieldInteraction('Save Draft Button')
+          "
         >
           {{ currentLanguageSet?.inventory?.saveDraft }}
         </button>

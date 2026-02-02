@@ -386,6 +386,8 @@
         },
         "healthId":"ಆರೋಗ್ಯ ಐಡಿ",
         "list": "ಪಟ್ಟಿ",
-        "noBatchesAvailable":"ಆಯ್ಕೆಮಾಡಿದ ಐಟಂಗೆ ಯಾವುದೇ ಬ್ಯಾಚ್ ಲಭ್ಯವಿಲ್ಲ"
+        "noBatchesAvailable":"ಆಯ್ಕೆಮಾಡಿದ ಐಟಂಗೆ ಯಾವುದೇ ಬ್ಯಾಚ್ ಲಭ್ಯವಿಲ್ಲ",
+        "sessionExpiredPleaseLogin": "ಸೆಷನ್ ಅವಧಿ ಮೀರಿದೆ. ಮುಂದುವರಿಸಲು ದಯವಿಟ್ಟು ಮತ್ತೆ ಲಾಗಿನ್ ಮಾಡಿ",
+        "somethingWentWrong": "ಏನೋ ತಪ್ಪಾಗಿದೆ"
     }
 }

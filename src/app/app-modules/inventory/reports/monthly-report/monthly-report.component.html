@@ -9,9 +9,7 @@
     <div class="col-12">
       <form [formGroup]="monthlyForm" class="row">
         <div class="col-3 box">
-          <mat-form-field
-            class="input-full-width  "
-          >
+          <mat-form-field class="input-full-width">
             <mat-label>
               {{ currentLanguageSet?.inventory?.selectmonth }}
             </mat-label>
@@ -21,6 +19,7 @@
               id="month"
               formControlName="month"
               required
+              (selectionChange)="trackFieldInteraction('Select month')"
             >
               <mat-option *ngFor="let month of months" [value]="month">{{
                 month.name
@@ -30,9 +29,7 @@
         </div>
 
         <div class="col-3 box">
-          <mat-form-field
-            class="input-full-width  "
-          >
+          <mat-form-field class="input-full-width">
             <mat-label>
               {{ currentLanguageSet?.inventory?.selectyear }}
             </mat-label>
@@ -42,6 +39,7 @@
               id="year"
               formControlName="year"
               required
+              (selectionChange)="trackFieldInteraction('Select year')"
             >
               <mat-option *ngFor="let year of years" [value]="year">{{
                 year
@@ -50,34 +48,36 @@
           </mat-form-field>
         </div>
         <div class="col-3">
-          <mat-form-field
-            class="input-full-width  "
-          >
+          <mat-form-field class="input-full-width">
             <mat-label>
               {{ currentLanguageSet?.inventory?.facility }}
             </mat-label>
-            <mat-select [style.width]="'100%'" formControlName="facilityName">
+            <mat-select
+              [style.width]="'100%'"
+              formControlName="facilityName"
+              (selectionChange)="trackFieldInteraction('Facility')"
+            >
               <mat-option *ngFor="let item of facilities" [value]="item">{{
                 item
               }}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="col-3" style="text-align:start;margin-top: 20px;">
+        <div class="col-3" style="text-align: start; margin-top: 20px">
           <button
             mat-raised-button
             color="accent"
             class="mat_green"
             type="submit"
             [disabled]="!monthlyForm.valid"
-            (click)="downloadReport(true)"
+            (click)="
+              downloadReport(true); trackFieldInteraction('Download Button')
+            "
           >
             {{ currentLanguageSet?.inventory?.download }}
           </button>
         </div>
       </form>
     </div>
-
-    
   </div>
 </div>

@@ -11,7 +11,9 @@
         class="pull-right button-full-width m-l-5"
         type="button"
         color="primary"
-        (click)="openSearchDialog()"
+        (click)="
+          openSearchDialog(); trackFieldInteraction('Advance Search Button')
+        "
       >
         {{ currentLanguageSet?.bendetails?.advanceSearch }}
       </button>
@@ -21,6 +23,7 @@
         type="button"
         color="primary"
         routerLink="View"
+        (click)="trackFieldInteraction('Previous Records Button')"
       >
         {{ currentLanguageSet?.inventory?.previousRecords }}
       </button>
@@ -44,6 +47,7 @@
                   id="beneficiaryID"
                   formControlName="beneficiaryID"
                   (keyup)="checkBeneficiary()"
+                  (focus)="trackFieldInteraction('Beneficiary ID')"
                 />
               </mat-form-field>
             </div>
@@ -61,6 +65,7 @@
                     !beneficiaryDetailForm.get('beneficiaryID')?.value
                   "
                   (selectionChange)="getVisitDetail()"
+                  (selectionChange)="trackFieldInteraction('Visit Code')"
                 >
                   <mat-option
                     *ngFor="let visit of beneficiaryDetail"
@@ -83,6 +88,7 @@
                   autocomplete="off"
                   formControlName="visitDate"
                   [readonly]="true"
+                  (focus)="trackFieldInteraction('Visit Date')"
                 />
                 <mat-datepicker-toggle
                   matPrefix
@@ -104,6 +110,7 @@
                   id="beneficiaryName"
                   formControlName="beneficiaryName"
                   [readonly]="true"
+                  (focus)="trackFieldInteraction('Patient Name')"
                 />
               </mat-form-field>
             </div>
@@ -118,6 +125,7 @@
                   id="beneficiaryAge"
                   formControlName="beneficiaryAge"
                   [readonly]="true"
+                  (focus)="trackFieldInteraction('Age')"
                 />
               </mat-form-field>
             </div>
@@ -134,6 +142,7 @@
                   id="genderName"
                   formControlName="genderName"
                   [readonly]="true"
+                  (focus)="trackFieldInteraction('Gender')"
                 />
               </mat-form-field>
             </div>
@@ -150,6 +159,7 @@
                   id="doctorName"
                   formControlName="doctorName"
                   [readonly]="true"
+                  (focus)="trackFieldInteraction('Doctor Name')"
                 />
               </mat-form-field>
             </div>
@@ -167,6 +177,7 @@
                   formControlName="reference"
                   maxlength="50"
                   [readonly]="!dateBool"
+                  (focus)="trackFieldInteraction('Remarks')"
                 />
               </mat-form-field>
             </div>
@@ -182,6 +193,7 @@
                 formControlName="medicineDispenseType"
                 [disabled]="!beneficiaryDetailForm.get('visitCode')?.value"
                 (change)="getBeneficiaryDetail()"
+                (change)="trackFieldInteraction('Type of Dispense')"
               >
                 <mat-radio-button
                   color="primary"

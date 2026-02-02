@@ -24,6 +24,7 @@
               (change)="checkEndDate()"
               [max]="maxEndDate"
               [disabled]="true"
+              (focus)="trackFieldInteraction('Start Date')"
             />
             <mat-datepicker-toggle
               matSuffix
@@ -48,6 +49,7 @@
               [disabled]="true"
               [min]="minEndDate"
               [max]="maxEndDate"
+              (focus)="trackFieldInteraction('End Date')"
             />
             <mat-datepicker-toggle
               matSuffix
@@ -67,6 +69,7 @@
               [style.width]="'100%'"
               class="input-full-width"
               formControlName="facilityName"
+              (selectionChange)="trackFieldInteraction('Facility')"
             >
               <mat-option *ngFor="let item of facilities" [value]="item">{{
                 item
@@ -74,21 +77,21 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="col-3" style="text-align: start;margin-top: 20px;">
+        <div class="col-3" style="text-align: start; margin-top: 20px">
           <button
             mat-raised-button
             color="accent"
             class="mat_green"
             type="submit"
             [disabled]="!consumptionForm.valid"
-            (click)="downloadReport(true)"
+            (click)="
+              downloadReport(true); trackFieldInteraction('Download Button')
+            "
           >
             {{ currentLanguageSet?.inventory?.download }}
           </button>
         </div>
       </form>
     </div>
-
-    
   </div>
 </div>
