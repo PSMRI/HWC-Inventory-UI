@@ -384,6 +384,7 @@
             "drugName": "Drug Name",
             "failedStock": "Failed Stock"
         },
-        "healthId":"Health ID"
+        "healthId":"Health ID",
+        "noBatchesAvailable":"No batches available for the selected item"
     }
 }

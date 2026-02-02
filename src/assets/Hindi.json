@@ -388,6 +388,7 @@
             "drugName": "दवा का नाम",
             "failedStock": "विफल स्टॉक"
         },
-        "healthId": "हेल्थ आईडी"
+        "healthId": "हेल्थ आईडी",
+        "noBatchesAvailable": "चयनित आइटम के लिए कोई बैच उपलब्ध नहीं है"
     }
 }
