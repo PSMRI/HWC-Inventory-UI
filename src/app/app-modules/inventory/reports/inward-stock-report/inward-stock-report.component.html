@@ -83,7 +83,9 @@
             class="mat_green"
             type="submit"
             [disabled]="!inwardStockForm.valid"
-            (click)="downloadReport(true); trackFieldInteraction('Download Button')"
+            (click)="
+              downloadReport(true); trackFieldInteraction('Download Button')
+            "
           >
             {{ currentLanguageSet?.inventory?.download }}
           </button>

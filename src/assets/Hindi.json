@@ -389,6 +389,7 @@
             "failedStock": "विफल स्टॉक"
         },
         "healthId": "हेल्थ आईडी",
+        "noBatchesAvailable": "चयनित आइटम के लिए कोई बैच उपलब्ध नहीं है",
         "sessionExpiredPleaseLogin": "Session expired. Please log in again to continue",
         "somethingWentWrong": "कुछ गलत हो गया"
     }
