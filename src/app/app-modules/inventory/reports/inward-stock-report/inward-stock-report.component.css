@@ -1,7 +1,20 @@
-/* CSS files should not be empty SonarQube Bug Fix */
-
-
-.mat_form_field_background_width>>>.mat-mdc-text-field-wrapper {
-    width: 125% !important;
+/* Fix for overlapping at different zoom levels */
+.mat_form_field_background_width {
+    width: 100% !important;
 }
 
+.input-full-width {
+    width: 100% !important;
+}
+
+/* Ensure Material form field doesn't overflow */
+::ng-deep .mat_form_field_background_width .mat-mdc-text-field-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* Add some spacing between columns to prevent overlap */
+.row > [class*='col-'] {
+    padding-left: 8px;
+    padding-right: 8px;
+}
