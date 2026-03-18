@@ -1,96 +1,84 @@
-<div class="container-fluid">
-  <div class="row m-t-10">
-    <div class="col-xs-12 col-sm-6">
-      <h4>{{ currentLanguageSet?.inventory?.inwardStockReport }}</h4>
-    </div>
-  </div>
-
-  <div class="m-b-10">
-    <div class="col-12">
-      <form [formGroup]="inwardStockForm" class="row">
-        <div class="col-3">
-          <mat-form-field
-            class="input-full-width mat_form_field_background_width"
+<div class="m-b-10">
+  <div class="col-12">
+    <form [formGroup]="inwardStockForm" class="row g-2">
+      <div class="col-12 col-md-6 col-lg-3">
+        <mat-form-field class="w-75">
+          <mat-label>
+            {{ currentLanguageSet?.inventory?.startDate }}
+          </mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            name="startDate"
+            id="startDate"
+            formControlName="startDate"
+            (change)="checkEndDate()"
+            [max]="maxEndDate"
+            [disabled]="true"
+            (focus)="trackFieldInteraction('Start Date')"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-md-6 col-lg-3">
+        <mat-form-field class="w-75">
+          <mat-label>
+            {{ currentLanguageSet?.inventory?.endDate }}
+          </mat-label>
+          <input
+            matInput
+            [matDatepicker]="pickerEnd"
+            name="endDate"
+            id="endDate"
+            formControlName="endDate"
+            [min]="minEndDate"
+            [max]="maxEndDate"
+            [disabled]="true"
+            (focus)="trackFieldInteraction('End Date')"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="pickerEnd"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #pickerEnd></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-md-6 col-lg-3">
+        <mat-form-field class="w-75">
+          <mat-label>
+            {{ currentLanguageSet?.inventory?.facility }}
+          </mat-label>
+          <mat-select
+            formControlName="facilityName"
+            (selectionChange)="trackFieldInteraction('Facility')"
           >
-            <mat-label>
-              {{ currentLanguageSet?.inventory?.startDate }}
-            </mat-label>
-            <input
-              matInput
-              [matDatepicker]="picker"
-              name="startDate"
-              id="startDate"
-              formControlName="startDate"
-              (change)="checkEndDate()"
-              [max]="maxEndDate"
-              [disabled]="true"
-              (focus)="trackFieldInteraction('Start Date')"
-            />
-            <mat-datepicker-toggle
-              matSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle>
-            <mat-datepicker [style.width]="'100%'" #picker></mat-datepicker>
-          </mat-form-field>
-        </div>
-        <div class="col-3">
-          <mat-form-field
-            class="input-full-width mat_form_field_background_width"
-          >
-            <mat-label>
-              {{ currentLanguageSet?.inventory?.endDate }}
-            </mat-label>
-            <input
-              matInput
-              [matDatepicker]="pickerEnd"
-              name="endDate"
-              id="endDate"
-              formControlName="endDate"
-              [min]="minEndDate"
-              [max]="maxEndDate"
-              [disabled]="true"
-              (focus)="trackFieldInteraction('End Date')"
-            />
-            <mat-datepicker-toggle
-              matSuffix
-              [for]="pickerEnd"
-            ></mat-datepicker-toggle>
-            <mat-datepicker [style.width]="'100%'" #pickerEnd></mat-datepicker>
-          </mat-form-field>
-        </div>
-        <div class="col-3">
-          <mat-form-field
-            class="input-full-width mat_form_field_background_width"
-          >
-            <mat-label>
-              {{ currentLanguageSet?.inventory?.facility }}
-            </mat-label>
-            <mat-select
-              [style.width]="'100%'"
-              formControlName="facilityName"
-              (selectionChange)="trackFieldInteraction('Facility')"
-            >
-              <mat-option *ngFor="let item of facilities" [value]="item">{{
-                item
-              }}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="col-3" style="text-align: start; margin-top: 20px">
-          <button
-            mat-raised-button
-            color="accent"
-            class="mat_green"
-            type="submit"
-            [disabled]="!inwardStockForm.valid"
-            (click)="
-              downloadReport(true); trackFieldInteraction('Download Button')
-            "
-          >
-            {{ currentLanguageSet?.inventory?.download }}
-          </button>
-        </div>
-      </form>
-    </div>
+            <mat-option *ngFor="let item of facilities" [value]="item">{{
+              item
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div
+        class="col-3"
+        style="display: flex; align-items: flex-end; padding-bottom: 20px"
+      >
+        <button
+          mat-raised-button
+          color="accent"
+          class="mat_green w-50"
+          type="submit"
+          [disabled]="!inwardStockForm.valid"
+          (click)="
+            downloadReport(true); trackFieldInteraction('Download Button')
+          "
+        >
+          {{ currentLanguageSet?.inventory?.download }}
+        </button>
+      </div>
+    </form>
   </div>
 </div>
