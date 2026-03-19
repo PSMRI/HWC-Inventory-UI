@@ -11,7 +11,9 @@
         class="pull-right button-full-width m-l-5"
         type="button"
         color="primary"
-        (click)="openSearchDialog(); trackFieldInteraction('Advance Search Button')"
+        (click)="
+          openSearchDialog(); trackFieldInteraction('Advance Search Button')
+        "
       >
         {{ currentLanguageSet?.bendetails?.advanceSearch }}
       </button>
@@ -63,9 +65,7 @@
                     !beneficiaryDetailForm.get('beneficiaryID')?.value
                   "
                   (selectionChange)="getVisitDetail()"
-                  (selectionChange)="
-                    trackFieldInteraction('Visit Code')
-                  "
+                  (selectionChange)="trackFieldInteraction('Visit Code')"
                 >
                   <mat-option
                     *ngFor="let visit of beneficiaryDetail"

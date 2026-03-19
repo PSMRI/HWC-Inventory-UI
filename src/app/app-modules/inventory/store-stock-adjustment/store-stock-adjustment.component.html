@@ -366,7 +366,10 @@
                   <mat-icon
                     class="icon-remove cursorPointer"
                     matTooltip="{{ currentLanguageSet?.inventory?.delete }}"
-                    (click)="removeFromStockAdjustmentList(i, stock); trackFieldInteraction('Delete Button')"
+                    (click)="
+                      removeFromStockAdjustmentList(i, stock);
+                      trackFieldInteraction('Delete Button')
+                    "
                     >delete</mat-icon
                   >
                 </td>
@@ -389,7 +392,10 @@
                 mat-mini-fab
                 type="button"
                 color="primary"
-                (click)="addToStockAdjustmentList(); trackFieldInteraction('Add Button')"
+                (click)="
+                  addToStockAdjustmentList();
+                  trackFieldInteraction('Add Button')
+                "
               >
                 <mat-icon>add</mat-icon>
               </button>
@@ -418,7 +424,10 @@
           mat-raised-button
           class="pull-right m-r-5"
           [disabled]="storeStockAdjustmentForm.invalid"
-          (click)="submitStockAdjustmentFinal(storeStockAdjustmentForm); trackFieldInteraction('Save Button')"
+          (click)="
+            submitStockAdjustmentFinal(storeStockAdjustmentForm);
+            trackFieldInteraction('Save Button')
+          "
         >
           {{ currentLanguageSet?.common?.save }}
         </button>
@@ -427,7 +436,10 @@
           mat-raised-button
           class="pull-right m-r-5"
           [disabled]="storeStockAdjustmentForm.invalid"
-          (click)="submitStockAdjustmentDraft(storeStockAdjustmentForm); trackFieldInteraction('Save Draft Button')"
+          (click)="
+            submitStockAdjustmentDraft(storeStockAdjustmentForm);
+            trackFieldInteraction('Save Draft Button')
+          "
         >
           {{ currentLanguageSet?.inventory?.saveDraft }}
         </button>

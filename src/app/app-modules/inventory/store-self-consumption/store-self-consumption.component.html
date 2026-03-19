@@ -227,7 +227,10 @@
                   <mat-icon
                     class="icon-remove cursorPointer"
                     matTooltip="{{ currentLanguageSet?.inventory?.delete }}"
-                    (click)="removeDispensedStock(i, element); trackFieldInteraction('Delete Button')"
+                    (click)="
+                      removeDispensedStock(i, element);
+                      trackFieldInteraction('Delete Button')
+                    "
                     >delete</mat-icon
                   >
                 </td>
@@ -248,7 +251,9 @@
                 type="button"
                 class="pull-right"
                 color="primary"
-                (click)="addDispensedStock(); trackFieldInteraction('Add Button')"
+                (click)="
+                  addDispensedStock(); trackFieldInteraction('Add Button')
+                "
               >
                 <mat-icon>add</mat-icon>
               </button>
@@ -265,7 +270,9 @@
           mat-raised-button
           class="pull-right m-r-5"
           [disabled]="storeSelfConsumptionForm.invalid"
-          (click)="saveSelfConsumptionStock(); trackFieldInteraction('Save Button')"
+          (click)="
+            saveSelfConsumptionStock(); trackFieldInteraction('Save Button')
+          "
         >
           {{ currentLanguageSet?.common?.save }}
         </button>

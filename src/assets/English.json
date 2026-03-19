@@ -385,6 +385,7 @@
             "failedStock": "Failed Stock"
         },
         "healthId":"Health ID",
+        "noBatchesAvailable":"No batches available for the selected item",
         "sessionExpiredPleaseLogin": "Session expired. Please log in again to continue",
         "somethingWentWrong": "Something went wrong"
 
