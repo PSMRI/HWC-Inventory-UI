@@ -239,17 +239,10 @@ export class TransitReportComponent implements OnInit, DoCheck {
           const blob = new Blob([buffer], {
             type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
           });
-          saveAs(blob, wb_name + '.xlsx');
           if (navigator.msSaveBlob) {
             navigator.msSaveBlob(blob, wb_name);
           } else {
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.setAttribute('visibility', 'hidden');
-            link.download = wb_name.replace(/ /g, '_') + '.xlsx';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            saveAs(blob, wb_name + '.xlsx');
           }
         });
       }
