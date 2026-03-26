@@ -270,15 +270,7 @@ export class MonthlyReportComponent implements OnInit, DoCheck {
           const blob = new Blob([buffer], {
             type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
           });
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = wb_name.replace(/ /g, '_') + '.xlsx';
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          setTimeout(() => URL.revokeObjectURL(url), 100);
-          this.isDownloading = false;
+          this.inventoryService.downloadExcelFile(blob, wb_name.replace(/ /g, '_') + '.xlsx');
         });
       }
       this.confirmationService.alert(
@@ -286,7 +278,6 @@ export class MonthlyReportComponent implements OnInit, DoCheck {
         'success',
       );
     } else {
-      this.isDownloading = false;
       this.confirmationService.alert(
         this.currentLanguageSet.inventory.norecordfound,
       );

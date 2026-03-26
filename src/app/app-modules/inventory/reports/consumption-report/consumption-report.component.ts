@@ -40,7 +40,6 @@ export class ConsumptionReportComponent implements OnInit, DoCheck {
   languageComponent!: SetLanguageComponent;
   currentLanguageSet: any;
   criteriaHead: any;
-  isDownloading = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -161,8 +160,7 @@ export class ConsumptionReportComponent implements OnInit, DoCheck {
   }
 
   downloadReport(downloadFlag: boolean) {
-    if (downloadFlag === true && !this.isDownloading) {
-      this.isDownloading = true;
+    if (downloadFlag === true) {
       this.searchReport();
     }
   }
@@ -276,15 +274,7 @@ export class ConsumptionReportComponent implements OnInit, DoCheck {
           const blob = new Blob([buffer], {
             type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
           });
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = wb_name.replace(/ /g, '_') + '.xlsx';
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          setTimeout(() => URL.revokeObjectURL(url), 100);
-          this.isDownloading = false;
+          this.inventoryService.downloadExcelFile(blob, wb_name.replace(/ /g, '_') + '.xlsx');
         });
       }
       this.confirmationService.alert(
@@ -292,7 +282,6 @@ export class ConsumptionReportComponent implements OnInit, DoCheck {
         'success',
       );
     } else {
-      this.isDownloading = false;
       this.confirmationService.alert(
         this.currentLanguageSet.inventory.norecordfound,
       );
