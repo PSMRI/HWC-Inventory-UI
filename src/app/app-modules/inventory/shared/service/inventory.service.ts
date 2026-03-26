@@ -387,4 +387,22 @@ export class InventoryService {
   saveEAusadha(obj: any) {
     return this.http.post<any>(environment.saveEAusadhaStock_Url, obj);
   }
+
+  private isDownloading = false;
+
+  downloadExcelFile(blob: Blob, fileName: string): void {
+    if (this.isDownloading) return;
+    this.isDownloading = true;
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => {
+      URL.revokeObjectURL(url);
+      this.isDownloading = false;
+    }, 100);
+  }
 }

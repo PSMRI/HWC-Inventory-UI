@@ -274,8 +274,11 @@ export class MonthlyReportComponent implements OnInit, DoCheck {
           const a = document.createElement('a');
           a.href = url;
           a.download = wb_name.replace(/ /g, '_') + '.xlsx';
+          document.body.appendChild(a);
           a.click();
-          URL.revokeObjectURL(url);
+          document.body.removeChild(a);
+          setTimeout(() => URL.revokeObjectURL(url), 100);
+          this.isDownloading = false;
         });
       }
       this.confirmationService.alert(
@@ -283,6 +286,7 @@ export class MonthlyReportComponent implements OnInit, DoCheck {
         'success',
       );
     } else {
+      this.isDownloading = false;
       this.confirmationService.alert(
         this.currentLanguageSet.inventory.norecordfound,
       );
