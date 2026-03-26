@@ -22,7 +22,6 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as ExcelJS from 'exceljs';
-import { saveAs } from 'file-saver';
 
 import { InventoryService } from '../../shared/service/inventory.service';
 import { ConfirmationService } from '../../../core/services/confirmation.service';
@@ -237,13 +236,12 @@ export class ExpiryReportComponent implements OnInit, DoCheck {
           const blob = new Blob([buffer], {
             type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
           });
-          const filename = wb_name.replace(/ /g, '_') + '.xlsx';
-
-          if ((window as any).navigator && (window as any).navigator.msSaveBlob) {
-            (window as any).navigator.msSaveBlob(blob, filename);
-          } else {
-            saveAs(blob, filename);
-          }
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = wb_name.replace(/ /g, '_') + '.xlsx';
+          a.click();
+          URL.revokeObjectURL(url);
         });
       }
       this.confirmationService.alert(
