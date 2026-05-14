@@ -45,7 +45,8 @@ import { AmritTrackingService } from 'Common-UI/src/tracking';
   selector: 'app-indent-request',
   templateUrl: './indent-request.component.html',
   styleUrls: ['./indent-request.component.css'],
-})
+
+  standalone: false})
 export class IndentRequestComponent implements OnInit, DoCheck {
   indentRequestForm!: FormGroup;
   indentDetails: any;

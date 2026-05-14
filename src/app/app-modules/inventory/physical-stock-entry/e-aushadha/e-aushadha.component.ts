@@ -12,7 +12,8 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
   templateUrl: './e-aushadha.component.html',
   styleUrls: ['./e-aushadha.component.css'],
   providers:[DatePipe]
-})
+,
+  standalone: false})
 export class EAushadhaComponent implements OnInit, DoCheck {
   eAushadhaForm!: FormGroup;
   currentLanguageSet: any;

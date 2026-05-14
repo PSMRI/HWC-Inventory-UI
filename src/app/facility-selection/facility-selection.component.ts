@@ -14,7 +14,8 @@ import { AmritTrackingService } from 'Common-UI/src/tracking';
   selector: 'app-facility-selection',
   templateUrl: './facility-selection.component.html',
   styleUrls: ['./facility-selection.component.css']
-})
+,
+  standalone: false})
 export class FacilitySelectionComponent implements OnInit, DoCheck {
 
   serviceProviderId: any;

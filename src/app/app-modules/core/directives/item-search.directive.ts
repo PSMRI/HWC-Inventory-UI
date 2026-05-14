@@ -26,7 +26,8 @@ import { ItemSearchComponent } from '../components/item-search/item-search.compo
 
 @Directive({
   selector: '[appItemSearch]',
-})
+
+  standalone: false})
 export class ItemSearchDirective {
   @Input()
   stockForm!: FormGroup;

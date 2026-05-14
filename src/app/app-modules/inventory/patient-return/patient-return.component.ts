@@ -34,7 +34,8 @@ import { AmritTrackingService } from 'Common-UI/src/tracking';
   selector: 'app-patient-return',
   templateUrl: './patient-return.component.html',
   styleUrls: ['./patient-return.component.css'],
-})
+
+  standalone: false})
 export class PatientReturnComponent implements OnInit, DoCheck {
   patientReturnForm!: FormGroup;
   beneficiaryDetailsList: any = [];

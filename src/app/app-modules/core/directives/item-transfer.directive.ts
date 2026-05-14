@@ -26,7 +26,8 @@ import { MatDialog } from '@angular/material/dialog';
 
 @Directive({
   selector: '[appItemTransfer]',
-})
+
+  standalone: false})
 export class ItemTransferDirective {
   @Input()
   previousSelected: any;

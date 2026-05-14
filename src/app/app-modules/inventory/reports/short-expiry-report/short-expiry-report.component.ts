@@ -35,7 +35,8 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
   selector: 'app-short-expiry-report',
   templateUrl: './short-expiry-report.component.html',
   styleUrls: ['./short-expiry-report.component.css'],
-})
+
+  standalone: false})
 export class ShortExpiryReportComponent implements OnInit, DoCheck {
   shortExpiryForm!: FormGroup;
   languageComponent!: SetLanguageComponent;

@@ -34,7 +34,8 @@ import { MatDialog } from '@angular/material/dialog';
 
 @Directive({
   selector: '[appItemDispense]',
-})
+
+  standalone: false})
 export class ItemDispenseDirective {
   @Input()
   stockForm!: FormGroup;

@@ -42,7 +42,8 @@ import { AmritTrackingService } from 'Common-UI/src/tracking';
   selector: 'app-store-stock-adjustment',
   templateUrl: './store-stock-adjustment.component.html',
   styleUrls: ['./store-stock-adjustment.component.css'],
-})
+
+  standalone: false})
 export class StoreStockAdjustmentComponent
   implements OnInit, DoCheck, OnDestroy
 {

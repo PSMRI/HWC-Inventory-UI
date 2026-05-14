@@ -27,7 +27,8 @@ import { InventoryService } from '../../inventory/shared/service/inventory.servi
 
 @Directive({
   selector: '[appIndentRequest]',
-})
+
+  standalone: false})
 export class IndentRequestDirective {
   @Input()
   previousSelected: any;
