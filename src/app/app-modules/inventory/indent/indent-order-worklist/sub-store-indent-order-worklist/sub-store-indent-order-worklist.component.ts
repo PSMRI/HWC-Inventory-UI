@@ -114,17 +114,25 @@ export class SubStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
     console.log('acceptorder', acceptorder);
     this.inventoryService
       .receiveIndentOrder(acceptorder)
-      .subscribe((acceptOrderResponse) => {
-        if (acceptOrderResponse.statusCode === 200) {
+      .subscribe(
+        (acceptOrderResponse) => {
+          if (acceptOrderResponse.statusCode === 200) {
+            this.confirmationService.alert(
+              acceptOrderResponse.data.response,
+              'success',
+            );
+            this.showSubstoreOrderWorklist(this.orderReqObject);
+          } else {
+            this.confirmationService.alert(acceptOrderResponse.errorMessage);
+          }
+        },
+        (error) => {
+          console.error('Error receiving indent', error);
           this.confirmationService.alert(
-            acceptOrderResponse.data.response,
-            'success',
+            error?.errorMessage || this.currentLanguageSet?.inventory?.receiveIndentFailed || 'Failed to receive indent. Please try again.',
           );
-          this.showSubstoreOrderWorklist(this.orderReqObject);
-        } else {
-          this.confirmationService.alert(acceptOrderResponse.errorMessage);
-        }
-      });
+        },
+      );
   }
   goToUpdateIndentRequest(indentDetails: any) {
     console.log('indentDetails', indentDetails);
