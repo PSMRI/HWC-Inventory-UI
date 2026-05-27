@@ -34,7 +34,8 @@ import { AmritTrackingService } from 'Common-UI/src/tracking';
   selector: 'app-medicine-dispense',
   templateUrl: './medicine-dispense.component.html',
   styleUrls: ['./medicine-dispense.component.css'],
-})
+
+  standalone: false})
 export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
   beneficiaryDetailForm!: FormGroup;
   beneficaryDetail: any;

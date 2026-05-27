@@ -53,7 +53,8 @@ import { AmritTrackingService } from 'Common-UI/src/tracking';
       ]),
     ]),
   ],
-})
+
+  standalone: false})
 export class StoreStockTransferComponent implements OnInit, DoCheck {
   stockTransferForm!: FormGroup;
   arrayHead!: FormArray;

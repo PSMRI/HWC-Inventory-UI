@@ -35,7 +35,8 @@ import { LanguageService } from 'src/app/app-modules/core/services/language.serv
   selector: 'app-system-indent-dispense',
   templateUrl: './system-indent-dispense.component.html',
   styleUrls: ['./system-indent-dispense.component.css'],
-})
+
+  standalone: false})
 export class SystemIndentDispenseComponent implements OnInit, DoCheck {
   mainStoreItemList: any;
   displayedColumns = [

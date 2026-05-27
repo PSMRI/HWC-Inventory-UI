@@ -27,7 +27,8 @@ import { LanguageService } from '../services/language.service';
 
 @Component({
   template: '',
-})
+
+  standalone: false})
 export class SetLanguageComponent {
   currentLanguageObject: any;
   constructor(private httpServices: LanguageService) {}

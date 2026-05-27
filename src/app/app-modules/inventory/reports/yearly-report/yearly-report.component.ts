@@ -35,7 +35,8 @@ import { AmritTrackingService } from 'Common-UI/src/tracking';
   selector: 'app-yearly-report',
   templateUrl: './yearly-report.component.html',
   styleUrls: ['./yearly-report.component.css'],
-})
+
+  standalone: false})
 export class YearlyReportComponent implements OnInit, DoCheck {
   yearlyForm!: FormGroup;
   currentLanguageSet: any;

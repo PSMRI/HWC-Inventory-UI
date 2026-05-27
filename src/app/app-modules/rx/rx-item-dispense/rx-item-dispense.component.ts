@@ -40,7 +40,8 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
   selector: 'app-rx-item-dispense',
   templateUrl: './rx-item-dispense.component.html',
   styleUrls: ['./rx-item-dispense.component.css'],
-})
+
+  standalone: false})
 export class RxItemDispenseComponent implements OnInit, OnChanges, DoCheck {
   utils = new PrescribedDrugsUtils(this.fb);
 

@@ -23,7 +23,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'utcDate',
-})
+
+  standalone: false})
 export class UtcDatePipe implements PipeTransform {
   transform(value: string): any {
     if (!value) {

@@ -35,7 +35,8 @@ import { AmritTrackingService } from 'Common-UI/src/tracking';
   selector: 'app-consumption-report',
   templateUrl: './consumption-report.component.html',
   styleUrls: ['./consumption-report.component.css'],
-})
+
+  standalone: false})
 export class ConsumptionReportComponent implements OnInit, DoCheck {
   consumptionForm!: FormGroup;
   languageComponent!: SetLanguageComponent;

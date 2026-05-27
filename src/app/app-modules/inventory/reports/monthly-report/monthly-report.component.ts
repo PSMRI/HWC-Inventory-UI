@@ -35,7 +35,8 @@ import { AmritTrackingService } from 'Common-UI/src/tracking';
   selector: 'app-monthly-report',
   templateUrl: './monthly-report.component.html',
   styleUrls: ['./monthly-report.component.css'],
-})
+
+  standalone: false})
 export class MonthlyReportComponent implements OnInit, DoCheck {
   monthlyForm!: FormGroup;
   languageComponent!: SetLanguageComponent;

@@ -39,7 +39,8 @@ declare global {
   selector: 'app-beneficiary-drug-issue-report',
   templateUrl: './beneficiary-drug-issue-report.component.html',
   styleUrls: ['./beneficiary-drug-issue-report.component.css'],
-})
+
+  standalone: false})
 export class BeneficiaryDrugIssueReportComponent implements OnInit, DoCheck {
   beneficiaryDrugIssueForm!: FormGroup;
   languageComponent!: SetLanguageComponent;

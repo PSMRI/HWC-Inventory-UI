@@ -37,7 +37,8 @@ import { AmritTrackingService } from 'Common-UI/src/tracking';
   selector: 'app-sub-store-indent-order-worklist',
   templateUrl: './sub-store-indent-order-worklist.component.html',
   styleUrls: ['./sub-store-indent-order-worklist.component.css'],
-})
+
+  standalone: false})
 export class SubStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
   substoreOrderlist = new MatTableDataSource<any>();
   orderReqObject: any;

@@ -34,7 +34,8 @@ import { AmritTrackingService } from 'Common-UI/src/tracking';
   selector: 'app-expiry-report',
   templateUrl: './expiry-report.component.html',
   styleUrls: ['./expiry-report.component.css'],
-})
+
+  standalone: false})
 export class ExpiryReportComponent implements OnInit, DoCheck {
   expiryForm!: FormGroup;
   languageComponent!: SetLanguageComponent;

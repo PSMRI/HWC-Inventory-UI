@@ -59,7 +59,8 @@ import { AmritTrackingService } from 'Common-UI/src/tracking';
       ]),
     ]),
   ],
-})
+
+  standalone: false})
 export class PhysicalStockEntryComponent implements OnInit, OnChanges, DoCheck {
   stockItemName: any;
   physicalStockEntryForm!: FormGroup;
