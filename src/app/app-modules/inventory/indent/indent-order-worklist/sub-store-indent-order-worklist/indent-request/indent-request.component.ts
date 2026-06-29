@@ -272,8 +272,8 @@ export class IndentRequestComponent implements OnInit, DoCheck {
       fromFacilityName: JSON.parse(
         this.sessionstorage.getItem('facilityDetail') || '{}', 
       ).facilityName,
-      toFacilityID: JSON.parse(this.sessionstorage.getItem('facilityDetail') || '{}') 
-        .mainFacilityID,
+      toFacilityID: JSON.parse(this.sessionstorage.getItem('facilityDetail') || '{}').mainFacilityID
+        || JSON.parse(this.sessionstorage.getItem('facilityDetail') || '{}').parentFacilityID,
       // createdBy: localStorage.getItem('username'),
       createdBy: this.sessionstorage.getItem('username'),
       providerServiceMapID: this.sessionstorage.getItem('providerServiceID'), //localStorage.getItem('providerServiceID'),
@@ -356,8 +356,8 @@ export class IndentRequestComponent implements OnInit, DoCheck {
       fromFacilityName: JSON.parse(
         this.sessionstorage.getItem('facilityDetail') || '{}', //localStorage.getItem('facilityDetail')
       ).facilityName,
-      toFacilityID: JSON.parse(this.sessionstorage.getItem('facilityDetail') || '{}') //localStorage.getItem('facilityDetail')
-        .mainFacilityID,
+      toFacilityID: JSON.parse(this.sessionstorage.getItem('facilityDetail') || '{}').mainFacilityID
+        || JSON.parse(this.sessionstorage.getItem('facilityDetail') || '{}').parentFacilityID,
       // createdBy: localStorage.getItem('username'),
       createdBy: this.sessionstorage.getItem('username'),
       providerServiceMapID: this.sessionstorage.getItem('providerServiceID'), //localStorage.getItem('providerServiceID'),

@@ -122,15 +122,21 @@ export class StoreStockTransferComponent implements OnInit, DoCheck {
       (item: any) => item.facilityID == facilityID,
     );
 
-    const children = [];
-    const queue = [];
+    if (!source || source.length === 0) return [];
+
+    const children: any[] = [];
+    const queue: any[] = [];
     queue.push(source[0]);
 
     while (queue.length > 0) {
       const front = queue.shift();
       children.push(front);
       storeList.forEach((item: any) => {
-        if (item.mainFacilityID && item.mainFacilityID === front.facilityID)
+        // Find children via mainFacilityID OR parentFacilityID
+        if (
+          (item.mainFacilityID && item.mainFacilityID === front.facilityID) ||
+          (item.parentFacilityID && item.parentFacilityID === front.facilityID && item.facilityID !== front.facilityID)
+        )
           queue.push(item);
       });
     }
@@ -138,19 +144,23 @@ export class StoreStockTransferComponent implements OnInit, DoCheck {
     const index = children.indexOf(source[0]);
     children.splice(index, 1);
 
+    // Find parent via mainFacilityID OR parentFacilityID
+    const parentID = source[0].mainFacilityID || source[0].parentFacilityID;
     const parent = storeList.filter(
       (item: any) =>
-        source[0].mainFacilityID &&
-        item.facilityID === source[0].mainFacilityID,
+        parentID && item.facilityID === parentID,
     );
+
+    // Find siblings via mainFacilityID OR parentFacilityID
     const sibling = storeList.filter(
       (item: any) =>
-        source[0].mainFacilityID &&
-        item.mainFacilityID === source[0].mainFacilityID,
+        parentID &&
+        ((item.mainFacilityID && item.mainFacilityID === parentID) ||
+         (item.parentFacilityID && item.parentFacilityID === parentID)),
     );
 
     const index2 = sibling.indexOf(source[0]);
-    sibling.splice(index2, 1);
+    if (index2 > -1) sibling.splice(index2, 1);
 
     const final = new Set(parent.concat(sibling).concat(children));
     return Array.from(final);

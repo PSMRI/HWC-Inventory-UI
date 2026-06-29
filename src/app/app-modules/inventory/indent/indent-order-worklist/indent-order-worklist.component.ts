@@ -45,22 +45,17 @@ export class IndentOrderWorklistComponent implements OnInit {
   }
 
   showOrderWorklistBasedOnID() {
-    this.isMainStore = JSON.parse(
+    const facilityDetail = JSON.parse(
       this.sessionstorage.getItem('facilityDetail') || '{}',
-    ).isMainFacility;
-    this.mainFacilityID = JSON.parse(
-      this.sessionstorage.getItem('facilityDetail') || '{}',
-    ).mainFacilityID;
-    if (
-      !this.isMainStore &&
-      (this.mainFacilityID !== null || this.mainFacilityID !== undefined)
-    ) {
+    );
+    this.isMainStore = facilityDetail.isMainFacility;
+    this.mainFacilityID = facilityDetail.mainFacilityID;
+    const parentFacilityID = facilityDetail.parentFacilityID;
+    // Has a parent (via mainFacilityID or parentFacilityID) → SubStore worklist (request stock)
+    // No parent → MainStore worklist (receive requests)
+    if (this.mainFacilityID || parentFacilityID) {
       this.router.navigate(['inventory/subStoreIndentOrderWorklist']);
-    } else if (
-      this.isMainStore ||
-      this.mainFacilityID !== null ||
-      this.mainFacilityID !== undefined
-    ) {
+    } else {
       this.router.navigate(['/inventory/mainStoreIndentOrderWorklist']);
     }
   }

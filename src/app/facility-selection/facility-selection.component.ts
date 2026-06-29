@@ -48,7 +48,37 @@ export class FacilitySelectionComponent implements OnInit, DoCheck {
     localStorage.removeItem('facilityID');
     this.fetchLanguageResponse();
     this.serviceProviderId = this.sessionstorage.getItem('providerServiceID'); //localStorage.getItem('providerServiceID');
-    this.getAllStores();
+
+    // Check if user has facilityID from work-location-mapping (via login response)
+    const userFacilityID = this.sessionstorage.getItem('facilityID');
+    if (userFacilityID) {
+      // Auto-select facility — skip dropdown
+      this.autoSelectFacility(parseInt(userFacilityID));
+    } else {
+      this.getAllStores();
+    }
+  }
+
+  autoSelectFacility(facilityID: number) {
+    this.faciltyService.getAllStores(this.serviceProviderId).subscribe((data: any) => {
+      this.stores = data.data;
+      // Find user's facility in store list
+      const facility = this.stores?.find((f: any) => f.facilityID === facilityID && !f.deleted);
+      if (facility) {
+        this.sessionstorage.setItem('facilityID', facility.facilityID);
+        this.sessionstorage.setItem('facilityDetail', JSON.stringify(facility));
+        if (facility.facilityID) {
+          this.getFacilityMappedVanID(facility.facilityID);
+        }
+        this.enableContinue = true;
+        this.routeToDesignation(this.designation);
+      } else {
+        // Facility not in PSMID-filtered list — set from session directly
+        this.sessionstorage.setItem('facilityID', facilityID.toString());
+        this.enableContinue = true;
+        this.routeToDesignation(this.designation);
+      }
+    });
   }
 
   getAllStores() {
