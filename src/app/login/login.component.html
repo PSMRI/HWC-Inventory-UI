@@ -12,7 +12,7 @@
           <div class="col-xs-11 col-md-11 col-sm-11">
             <mat-form-field class="full-width">
               <mat-label>Enter User Name</mat-label>
-              <input autocomplete="off" allowText="usernameValidator" matInput type="text" id="userID" [(ngModel)]="userName" name="userName" />
+              <input required autocomplete="off" allowText="usernameValidator" matInput type="text" id="userID" [(ngModel)]="userName" name="userName" />
             </mat-form-field>
           </div>
         </div>
@@ -24,14 +24,34 @@
           <div class="col-xs-11 col-md-11 col-sm-11">
             <mat-form-field class="full-width">
               <mat-label>Enter Password</mat-label>
-              <input autocomplete="off" matInput [type]="dynamictype" id="password" [(ngModel)]="password" name="password" />
+              <input required autocomplete="off" matInput [type]="dynamictype" id="password" [(ngModel)]="password" name="password" />
               <mat-icon matSuffix class="mat-icon material-icons cursorPointer" role="img" aria-hidden="true" matTooltip="Show Password" (mousedown)='showPWD()' (touchstart)='showPWD()' (mouseup)='hidePWD()' (touchend)='showPWD()' style="color:gray">visibility</mat-icon>
             </mat-form-field>
           </div>
         </div>
+        <div *ngIf="enableCaptcha" class="row" role="group" aria-labelledby="captcha-label">
+          <label id="captcha-label" class="sr-only">Security check</label>
+          <app-captcha #captchaCmp style="display: flex;justify-content: center;" (tokenResolved)="onCaptchaResolved($event)"></app-captcha>
+        </div>
         <div class="row mdContent">
           <div class="col-xs-12">
-            <button mat-raised-button color="primary" type="submit" class="btn-full-width full-width-login background-overall">Login</button>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            class="btn-full-width full-width-login background-overall"
+            [ngClass]="{
+              disabledLoginButton:
+                (enableCaptcha && (!captchaToken || f.form.invalid)) ||
+                (!enableCaptcha && f.form.invalid)
+            }"
+            [disabled]="
+              (enableCaptcha && (!captchaToken || f.form.invalid)) ||
+              (!enableCaptcha && f.form.invalid)
+            "
+          >
+            Login
+          </button>
           </div>
         </div>
         <div class="row m-t-25 mdContent">

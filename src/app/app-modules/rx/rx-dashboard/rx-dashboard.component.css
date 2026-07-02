@@ -1,12 +1,11 @@
-.stepper {
-  margin-bottom: 100px;
-}
- 
 .mat-stepper-horizontal {
   padding: 0px;
   background: #f2f2f0 !important;
 }
- 
+
+.stepper {
+  margin-bottom: 100px;
+}
 .mat-horizontal-stepper-header-container {
   background: #f2f2f0 !important;
 }
@@ -26,12 +25,17 @@ md-card {
   width: 100%;
   overflow: auto;
 }
- 
+
+.example-sidenav-fab-container md-sidenav {
+  max-width: 250px;
+}
+
 .sideNav {
   max-width: 250px;
   display: flex;
 }
  
+
 .example-scrolling-content {
   flex: auto;
   /* overflow: auto; */
@@ -48,11 +52,12 @@ md-card {
   padding: 20px 0px;
 }
  
-.example-fab.mat-mini-fab {
+.example-fab{
   position: fixed;
   left: 20px;
   bottom: 50px;
-  z-index: 3;
+  z-index: 1000;
+  display: flex;
 }
  
 .centered {

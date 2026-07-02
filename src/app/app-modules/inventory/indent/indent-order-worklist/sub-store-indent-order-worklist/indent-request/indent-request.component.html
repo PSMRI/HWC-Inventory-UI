@@ -29,9 +29,7 @@
         </mat-form-field>
       </div>
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-        <mat-form-field
-          [style.width]="'100%'"
-        >
+        <mat-form-field [style.width]="'100%'">
           <mat-label>
             {{ currentLanguageSet?.inventory?.referenceNo }}
           </mat-label>
@@ -45,9 +43,7 @@
         </mat-form-field>
       </div>
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-        <mat-form-field
-          [style.width]="'100%'"
-        >
+        <mat-form-field [style.width]="'100%'">
           <mat-label>
             {{ currentLanguageSet?.inventory?.reason }}
           </mat-label>
@@ -270,9 +266,9 @@
           <button
             type="button"
             mat-raised-button
-            color="accent mat_green"
-            class="pull-right m-r-5"
+            color="accent"
             *ngIf="editMode"
+            class="pull-right m-r-5 mat_green"
             [disabled]="indentRequestForm.invalid"
             (click)="updateIndentRequest(indentRequestForm)"
           >
@@ -281,6 +277,7 @@
           <button
             type="button"
             mat-raised-button
+            *ngIf="editMode"
             color="primary"
             class="pull-right m-r-5"
             [disabled]="indentRequestForm.pristine"

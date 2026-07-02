@@ -31,6 +31,7 @@ import { ViewStockAdjustmentDetailsComponent } from '../view-stock-adjustment-de
 import { InventoryService } from '../../shared/service/inventory.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
   selector: 'app-view-store-stock-adjustment',
@@ -65,6 +66,7 @@ export class ViewStoreStockAdjustmentComponent implements OnInit, DoCheck {
     private router: Router,
     private dataStorageService: DataStorageService,
     private inventoryService: InventoryService,
+    private sessionstorage: SessionStorageService
   ) {}
 
   ngOnInit() {
@@ -78,7 +80,7 @@ export class ViewStoreStockAdjustmentComponent implements OnInit, DoCheck {
   }
 
   viewRecords() {
-    const facilityID = localStorage.getItem('facilityID');
+    const facilityID = this.sessionstorage.getItem('facilityID');
     const startDate: Date = new Date(this.fromDate);
     startDate.setHours(0);
     startDate.setMinutes(0);
@@ -187,7 +189,7 @@ export class ViewStoreStockAdjustmentComponent implements OnInit, DoCheck {
   }
 
   createPrintableData(adjustmentDetials: any) {
-    const facilityDetailStorage: any = localStorage.getItem('facilityDetail');
+    const facilityDetailStorage: any = this.sessionstorage.getItem('facilityDetail'); //localStorage.getItem('facilityDetail');
     const facilityDetail = JSON.parse(facilityDetailStorage);
     const facilityName = facilityDetail.facilityName;
     const adjustedItemList: any = [];

@@ -27,6 +27,7 @@ import { SetLanguageComponent } from '../../core/components/set-language.compone
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LanguageService } from '../../core/services/language.service';
 import { BenificiaryDetailsComponent } from './benificiary-details/benificiary-details.component';
+import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
   selector: 'app-patient-return',
@@ -51,6 +52,7 @@ export class PatientReturnComponent implements OnInit, DoCheck {
     private http_service: LanguageService,
     private inventoryService: InventoryService,
     private confirmationService: ConfirmationService,
+    readonly sessionstorage:SessionStorageService,
   ) {}
 
   ngOnInit() {
@@ -184,7 +186,7 @@ export class PatientReturnComponent implements OnInit, DoCheck {
       this.inventoryService
         .getItemList({
           benRegID: beneficiary.beneficiaryRegID,
-          facilityID: localStorage.getItem('facilityID'),
+          facilityID: this.sessionstorage.getItem('facilityID'),
         })
         .subscribe((response) => {
           console.log(this.itemMasterList);
