@@ -191,9 +191,7 @@ export class RedirInComponent implements OnInit {
       this.externalSession.ben &&
       this.externalSession.facility &&
       this.externalSession.returnURL &&
-      this.externalSession.benRegID &&
-      this.externalSession.vanID &&
-      this.externalSession.parkingPlaceID
+      this.externalSession.benRegID
     ) {
       // session check
       this.getSession();
