@@ -166,8 +166,16 @@ export class RedirInComponent implements OnInit {
     this.sessionstorage.setItem('parentBenVisit', this.externalSession.visit);
     // localStorage.setItem('benFlowID', this.externalSession.flowID);
     this.sessionstorage.setItem('benFlowID', this.externalSession.flowID);
-    localStorage.setItem('vanID', this.externalSession.vanID);
-    localStorage.setItem('parkingPlaceID', this.externalSession.parkingPlaceID);
+    if (this.externalSession.vanID) {
+      localStorage.setItem('vanID', this.externalSession.vanID);
+    } else {
+      localStorage.removeItem('vanID');
+    }
+    if (this.externalSession.parkingPlaceID) {
+      localStorage.setItem('parkingPlaceID', this.externalSession.parkingPlaceID);
+    } else {
+      localStorage.removeItem('parkingPlaceID');
+    }
     localStorage.setItem(
       'inventoryServiceName',
       this.externalSession.inventoryServiceName,
@@ -185,6 +193,7 @@ export class RedirInComponent implements OnInit {
   }
 
   checkSession() {
+    console.log('checkSession externalSession:', this.externalSession);
     if (
       this.externalSession.auth &&
       this.externalSession.flowID &&
@@ -193,6 +202,7 @@ export class RedirInComponent implements OnInit {
       this.externalSession.returnURL &&
       this.externalSession.benRegID
     ) {
+      console.log('checkSession: required fields present, calling getSession()');
       // session check
       this.getSession();
     } else if (
@@ -201,9 +211,11 @@ export class RedirInComponent implements OnInit {
       this.externalSession.protocol
     ) {
       console.log(this.externalSession, 'exter');
+      console.log('checkSession: required fields missing, bouncing to fallback ->', this.fallback);
       this.deleteParentSessioning();
       window.location.href = this.fallback;
     } else {
+      console.log('checkSession: neither branch matched, going back');
       // go back
       this.location.back();
     }
